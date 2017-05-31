@@ -11,5 +11,3 @@ rounds2 <- read.csv("rounds2.csv",stringsAsFactors = F)
 library(stringr)
 library(dplyr)
 library(tidyr)
-
-# How many unique companies are present in rounds2?
