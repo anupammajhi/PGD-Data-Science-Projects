@@ -9,5 +9,3 @@ rounds2 <- read.csv("rounds2.csv",stringsAsFactors = F)
 
 # Loading libraries stringr, tidyr and dplyr
 library(stringr)
-library(dplyr)
-library(tidyr)
