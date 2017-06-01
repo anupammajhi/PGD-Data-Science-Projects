@@ -8,3 +8,19 @@ companies <- read.delim("companies.txt",stringsAsFactors = F)
 rounds2 <- read.csv("rounds2.csv",stringsAsFactors = F)
 
 # Loading libraries stringr, tidyr and dplyr
+library(stringr)
+library(dplyr)
+library(tidyr)
+
+# How many unique companies are present in rounds2?
+# converting permalink to lower case for uniformity
+rounds2$company_permalink <- str_to_lower(rounds2$company_permalink,locale = "en")
+count_companies_in_rounds2 <- n_distinct(as.data.frame(rounds2$company_permalink))
+
+# How many unique companies are present in the companies file?
+# converting permalink to lower case for uniformity
+companies$permalink <- str_to_lower(companies$permalink,locale = "en")
+count_companies_in_companies <- n_distinct(as.data.frame(companies$permalink))
+
+# Any companies in the rounds2 file which are not present in companies
+# anti_join will find those rows in distinct rounds2$company_permalink which are not present in distinct companies$permalink
