@@ -20,5 +20,3 @@ count_companies_in_rounds2 <- n_distinct(as.data.frame(rounds2$company_permalink
 # How many unique companies are present in the companies file?
 # converting permalink to lower case for uniformity
 companies$permalink <- str_to_lower(companies$permalink,locale = "en")
-count_companies_in_companies <- n_distinct(as.data.frame(companies$permalink))
-
