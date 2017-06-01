@@ -22,5 +22,3 @@ count_companies_in_rounds2 <- n_distinct(as.data.frame(rounds2$company_permalink
 companies$permalink <- str_to_lower(companies$permalink,locale = "en")
 count_companies_in_companies <- n_distinct(as.data.frame(companies$permalink))
 
-# Any companies in the rounds2 file which are not present in companies
-# anti_join will find those rows in distinct rounds2$company_permalink which are not present in distinct companies$permalink
