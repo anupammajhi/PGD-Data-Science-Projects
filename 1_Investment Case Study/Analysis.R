@@ -47,3 +47,15 @@ summarise(funding_rounds_spread,avg_seed = mean(seed,na.rm = T),avg_venture = me
 # Average Seed Fund
 mean(master_frame$raised_amount_usd[which(master_frame$funding_round_type == "seed")],na.rm = T)
 # Average Venture Fund
+mean(master_frame$raised_amount_usd[which(master_frame$funding_round_type == "venture")],na.rm = T)
+# Average Angel Fund
+mean(master_frame$raised_amount_usd[which(master_frame$funding_round_type == "angel")],na.rm = T)
+# Average Private Equity Fund
+mean(master_frame$raised_amount_usd[which(master_frame$funding_round_type == "private_equity")],na.rm = T)
+
+#============ GOAL 2 : Country analysis ===========================
+
+# Checkpoint 3: Country Analysis
+
+# Filter by chosen investment type
+filter_by_inv_type <- filter(master_frame,funding_round_type == "venture")
