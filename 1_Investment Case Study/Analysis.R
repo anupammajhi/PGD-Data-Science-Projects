@@ -70,6 +70,3 @@ top_9 <- arrange(total_investment_by_country[which(total_investment_by_country$c
 
 #============ GOAL 3 : Sector analysis ============================
 
-# Checkpoint 4: Sector Analysis 1
-
-mapping_data_raw <- read.csv("mapping.csv",check.names=FALSE,stringsAsFactors = F)
