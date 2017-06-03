@@ -102,3 +102,18 @@ D1 <- master_frame[which(master_frame$country_code == "USA" & master_frame$fundi
 D2 <- master_frame[which(master_frame$country_code == "GBR" & master_frame$funding_round_type == 'venture' & master_frame$raised_amount_usd >= 5000000 & master_frame$raised_amount_usd <= 15000000) ,]
 D3 <- master_frame[which(master_frame$country_code == "IND" & master_frame$funding_round_type == 'venture' & master_frame$raised_amount_usd >= 5000000 & master_frame$raised_amount_usd <= 15000000) ,]
 
+# The three data frames should contain:
+  # - All the columns of the master_frame along with the primary sector and the main sector
+  # - The total number (or count) of investments for each main sector in a separate column
+  # - The total amount invested in each main sector in a separate column
+D1 <- mutate(group_by(D1,main_sector),total_investment_by_number = length(raised_amount_usd),total_investment_by_amount = sum(raised_amount_usd))
+D2 <- mutate(group_by(D2,main_sector),total_investment_by_number = length(raised_amount_usd),total_investment_by_amount = sum(raised_amount_usd))
+D3 <- mutate(group_by(D3,main_sector),total_investment_by_number = length(raised_amount_usd),total_investment_by_amount = sum(raised_amount_usd))
+
+
+# Total number of Investments (count)
+nrow(D1)
+nrow(D2)
+nrow(D3)
+
+# Total amount of investment (USD)
