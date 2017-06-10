@@ -61,3 +61,4 @@ UberData <- read.csv("Uber Request Data.csv")
     length(slashDates_Request) + length(hyphenDates_Request) == length(UberData$Request.timestamp) #TRUE , Hence No other date formats
   
     # New POSIXct column named POSIXRequestTime
+    UberData$POSIXRequestTime <- as.POSIXct(NA)
