@@ -77,3 +77,16 @@ UberData <- read.csv("Uber Request Data.csv")
     # Identifying rows with Date format %d/%m/%Y %H:%M using regex
     slashDates_Drop <- grep(pattern = '^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{1,2}:[0-9]{1,2}$',x=UberData$Drop.timestamp)
     
+    # Identifying rows with Date format %d-%m-%Y %H:%M:%S using regex
+    hyphenDates_Drop <- grep(pattern = '^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4} [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}$',x=UberData$Drop.timestamp)
+    
+    # Check for missed format by taking count of identified patterns in previous step as well as NA in source column and compare with dataset
+    length(slashDates_Drop) + length(hyphenDates_Drop) + sum(is.na(UberData$Drop.timestamp)) == length(UberData$Drop.timestamp) #TRUE , Hence No other date formats
+    
+    # New POSIXct column names POSIXRequestTime
+    UberData$POSIXDropTime <- as.POSIXct(NA)
+    
+    # Update POSIXct values to new column, hence standardising Date Time
+    UberData$POSIXDropTime[slashDates_Drop] <- as.POSIXct(UberData$Drop.timestamp[slashDates_Drop],format = '%d/%m/%Y %H:%M')
+    UberData$POSIXDropTime[hyphenDates_Drop] <- as.POSIXct(UberData$Drop.timestamp[hyphenDates_Drop],format = '%d-%m-%Y %H:%M:%S')
+    
