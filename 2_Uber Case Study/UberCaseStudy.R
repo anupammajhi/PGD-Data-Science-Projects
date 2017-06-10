@@ -62,3 +62,4 @@ UberData <- read.csv("Uber Request Data.csv")
   
     # New POSIXct column named POSIXRequestTime
     UberData$POSIXRequestTime <- as.POSIXct(NA)
+    
