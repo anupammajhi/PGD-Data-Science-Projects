@@ -60,3 +60,4 @@ UberData <- read.csv("Uber Request Data.csv")
     # Check for missed format by taking count of identified patterns in previous step and compare with dataset
     length(slashDates_Request) + length(hyphenDates_Request) == length(UberData$Request.timestamp) #TRUE , Hence No other date formats
   
+    # New POSIXct column named POSIXRequestTime
