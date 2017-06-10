@@ -90,3 +90,17 @@ UberData <- read.csv("Uber Request Data.csv")
     UberData$POSIXDropTime[slashDates_Drop] <- as.POSIXct(UberData$Drop.timestamp[slashDates_Drop],format = '%d/%m/%Y %H:%M')
     UberData$POSIXDropTime[hyphenDates_Drop] <- as.POSIXct(UberData$Drop.timestamp[hyphenDates_Drop],format = '%d-%m-%Y %H:%M:%S')
     
+    # Removing unwanted Columns Request.timestamp and Drop.timestamp as new columns created with POSIXct
+    UberData <- UberData[,c(1:4,7:8)]
+    
+    # Deriving Columns
+    UberData$HourOfTheDay <- NA # New Column to identify Which Clock Hour of the Day the request was made
+    UberData$HourOfTheDay <- as.factor(format(UberData$POSIXRequestTime,"%H"))
+    
+    UberData$PartOfDay <- NA # New Column to identify Which Part of the Day the request was made
+    UberData$PartOfDay <- sapply(as.numeric(as.vector(UberData$HourOfTheDay)),function(x){
+      if(x %in% c(4,5,6)){
+        return('Early Morning')
+      }else if(x %in% c(7,8,9)){
+        return('Morning')
+      }else if(x %in% c(10,11)){
