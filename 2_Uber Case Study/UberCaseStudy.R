@@ -116,3 +116,4 @@ UberData <- read.csv("Uber Request Data.csv")
       }else if(x %in% c(0,1,2,3)){
         return('Late Night')
       }else{
+        return(NA)
