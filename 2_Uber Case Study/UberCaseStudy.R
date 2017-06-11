@@ -117,3 +117,15 @@ UberData <- read.csv("Uber Request Data.csv")
         return('Late Night')
       }else{
         return(NA)
+      }
+    })
+    
+    # Ordering the factor levels
+    UberData$PartOfDay = factor(UberData$PartOfDay,levels = c('Early Morning','Morning','Late Morning','Afternoon','Early Evening','Late Evening','Night','Late Night'))
+    
+    
+    
+#======= Data Analysis ========
+ 
+    library(ggplot2)
+    
