@@ -162,3 +162,18 @@ UberData <- read.csv("Uber Request Data.csv")
       # Bar chart is optimal to observe the frequency
       ggplot(UberData,aes(x=Status, 
              fill = Status)) + 
+        geom_bar() + 
+        scale_fill_manual(values = c('#b81313','#b81313','#6dc14b')) +
+        geom_text(aes(y = (..count..), 
+                  label = scales::percent((..count..)/sum(..count..))),
+                  stat = 'count', 
+                  vjust = -0.4,
+                  size = 5) +
+        labs(x = 'Status',
+             y='Number of Requests', 
+             title='Overall Response to Demand')
+      # Explanation : bar chart is used, labs has been used to change graph labels, geom_text for adding text to graph with 
+      # vjust for adjusting text position, ..count.. identity to specify that the frequency itself is used and size for text size
+      # scale_fill_manual used to cange colors of bars with hex code
+      
+      # VERDICT : There is a significant difference in Demand and Supply. Only 42% customer requests are successfully served
