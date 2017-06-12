@@ -177,3 +177,15 @@ UberData <- read.csv("Uber Request Data.csv")
       # scale_fill_manual used to cange colors of bars with hex code
       
       # VERDICT : There is a significant difference in Demand and Supply. Only 42% customer requests are successfully served
+      
+    # POSIXRequestTime : Ordered Categorical
+      summary(as.factor(format(UberData$POSIXRequestTime,'%a'))) 
+      #Number of requests based on Week Day is almost equivalent
+      
+    # POSIXDropTime : Ordered Categorical
+      summary(as.factor(format(UberData[which(UberData$Status == 'Trip Completed'),c("POSIXDropTime")],'%a'))) 
+      #Number of drops are also equivalent. The difference in data is because of midnight drops
+      
+    # HourOfTheDay : Ordered Categorical
+      summary(UberData$HourOfTheDay)
+      
