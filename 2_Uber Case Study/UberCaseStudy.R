@@ -189,3 +189,20 @@ UberData <- read.csv("Uber Request Data.csv")
     # HourOfTheDay : Ordered Categorical
       summary(UberData$HourOfTheDay)
       
+      # Plot for above
+      # Bar chart is optimal to observe the frequency with color
+      ggplot(UberData,aes(x=HourOfTheDay, fill = ..count..)) + 
+        geom_bar() + 
+        scale_fill_gradient(low = '#b81313', high = 'green', space = 'lab') +
+        geom_text(aes(y=(..count..),
+                      label=(..count..)),
+                  stat='count',
+                  angle=90,
+                  hjust = -0.2)+
+        labs(x = "Hour of The Day",
+             y="Number of Requests", 
+             fill = 'No. of Requests',
+             title='Overall Demand Throughout The Day')+
+        coord_cartesian(ylim = c(0,600))
+      
+      # Explanation : bar chart is used, labs has been used to change graph labels, geom_text for adding text to graph with 
