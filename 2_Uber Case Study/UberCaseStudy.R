@@ -143,3 +143,4 @@ UberData <- read.csv("Uber Request Data.csv")
         labs(x = "Pickup Point", 
              y="Number of Requests", 
              title = "Overall Demand from Airport and City") +
+        geom_text(aes(y=(..count..),
