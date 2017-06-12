@@ -161,3 +161,4 @@ UberData <- read.csv("Uber Request Data.csv")
       # Pot for above
       # Bar chart is optimal to observe the frequency
       ggplot(UberData,aes(x=Status, 
+             fill = Status)) + 
