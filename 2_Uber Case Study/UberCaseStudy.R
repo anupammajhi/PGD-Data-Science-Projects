@@ -129,3 +129,17 @@ UberData <- read.csv("Uber Request Data.csv")
  
     library(ggplot2)
     
+    
+  #------ .. Univariate Analysis ------
+    # Request.iD : It is unique identifier for each request
+    # Pickup.point : Categorical variable (Airport, City)
+      # Frequency of requests from Pickup point POV
+      summary(UberData$Pickup.point)
+    
+      # Plot for the above
+      # Bar chart is optimal to observe the frequency based on pickup location
+      ggplot(UberData,aes(x=Pickup.point)) + 
+        geom_bar() +
+        labs(x = "Pickup Point", 
+             y="Number of Requests", 
+             title = "Overall Demand from Airport and City") +
