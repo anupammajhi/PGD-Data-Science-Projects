@@ -208,3 +208,4 @@ UberData <- read.csv("Uber Request Data.csv")
       # Explanation : bar chart is used, labs has been used to change graph labels, geom_text for adding text to graph with 
       # vjust for adjusting text position, ..count.. identity to specify that the frequency itself is used and size for text size
       # scale_fill_manual used to cange colors of bars with hex code
+      
