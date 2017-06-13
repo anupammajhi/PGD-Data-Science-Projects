@@ -212,3 +212,4 @@ UberData <- read.csv("Uber Request Data.csv")
       # Verdict : There is a high demand 5am to 9am and also 5pm to 9pm
       
       # Plot for demand based on time as well as day
+      # Multiple Bar charts to observe and compare the frequency
