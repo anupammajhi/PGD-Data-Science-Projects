@@ -209,3 +209,4 @@ UberData <- read.csv("Uber Request Data.csv")
       # vjust for adjusting text position, ..count.. identity to specify that the frequency itself is used and size for text size
       # scale_fill_manual used to cange colors of bars with hex code
       
+      # Verdict : There is a high demand 5am to 9am and also 5pm to 9pm
