@@ -213,3 +213,19 @@ UberData <- read.csv("Uber Request Data.csv")
       
       # Plot for demand based on time as well as day
       # Multiple Bar charts to observe and compare the frequency
+      ggplot(UberData,aes(x=HourOfTheDay, fill = ..count..)) + 
+        geom_bar() + 
+        scale_fill_gradient(low = '#b81313', high = 'green', space = 'lab') +
+        geom_text(aes(y=(..count..),
+                  label=(..count..)),
+                  stat='count',
+                  vjust = -0.2,
+                  size = 3)+
+        labs(x = "Hour of The Day",
+             y="Number of Requests", 
+             fill = 'No. of Requests',
+             title='Daily Demand Throughout The Day')+
+        coord_cartesian(ylim = c(0,120))+
+        facet_grid(format(POSIXRequestTime,"%d-%b")~.)
+      
+      # Explanation : used facet to above graph to check consistency of demand
