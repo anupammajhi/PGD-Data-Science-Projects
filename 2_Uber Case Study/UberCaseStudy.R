@@ -259,3 +259,4 @@ UberData <- read.csv("Uber Request Data.csv")
       # scale_fill_manual used to cange colors of bars with hex code 
       # used facet to check demand based on Pickup Location
       
+      # Verdict : There is a high demand for cabs from City to Airport in the Early Morning and Morning hours
