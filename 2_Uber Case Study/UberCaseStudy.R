@@ -260,3 +260,16 @@ UberData <- read.csv("Uber Request Data.csv")
       # used facet to check demand based on Pickup Location
       
       # Verdict : There is a high demand for cabs from City to Airport in the Early Morning and Morning hours
+      #           There is a high demand for cabs from Airport to City in the Late Evening
+      #           However the vice versa is not true
+      #           This shows that there are more outbound flights in the Mornings and inbound flights in the evening
+      #           Rest of the times there is quite less demand to and from Airport
+      
+      
+  
+      
+      
+  #------ .. Segmented Univariate Analysis ------
+      
+      
+      
