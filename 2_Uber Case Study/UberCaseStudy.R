@@ -290,3 +290,20 @@ UberData <- read.csv("Uber Request Data.csv")
         geom_text(data = UberData[UberData$Pickup.point == 'Airport',],
                   aes(y = (..count..), 
                   label = scales::percent(((..count..)/sum(..count..)))),
+                  stat = 'count',
+                  hjust = -0.03, 
+                  size = 4)+
+        geom_text(data = UberData[UberData$Pickup.point == 'City',],
+                  aes(y = (..count..),
+                      label = scales::percent(((..count..)/sum(..count..)))),
+                  stat = 'count',
+                  hjust = -0.03, 
+                  size = 4)+
+        coord_flip()+
+        facet_grid(Pickup.point ~ .)+
+        theme(legend.position="none",
+              strip.text.y = element_text(size = 15))
+      
+      # Explanation : bar chart is used, labs has been used to change graph labels, geom_text for adding text to graph with 
+      # vjust for adjusting text position, ..count.. identity to specify that the frequency itself is used and size for text size
+      # Also geom text uses seperate subset of dataset for the sake of calculation based on request location
