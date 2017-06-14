@@ -246,3 +246,16 @@ UberData <- read.csv("Uber Request Data.csv")
                   vjust = -0.4,
                   size=4.7) +
         scale_fill_gradient(low = '#b81313', high = 'green', space = 'lab')+
+        labs(x = "Part of The Day",
+             y="Number of Requests", 
+             fill = 'No. of Requests',
+             title='Overall Demand Throughout The Day (Simplified)') +
+        facet_grid(Pickup.point~.) + theme(strip.text.y = element_text(size = 15))+
+        theme(axis.text.x = element_text(angle = 90, hjust = 1))+ 
+        coord_cartesian(ylim = c(0,1300))
+     
+      # Explanation : bar chart is used, labs has been used to change graph labels, geom_text for adding text to graph with 
+      # vjust for adjusting text position, ..count.. identity to specify that the frequency itself is used and size for text size
+      # scale_fill_manual used to cange colors of bars with hex code 
+      # used facet to check demand based on Pickup Location
+      
