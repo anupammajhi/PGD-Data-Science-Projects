@@ -307,3 +307,17 @@ UberData <- read.csv("Uber Request Data.csv")
       # Explanation : bar chart is used, labs has been used to change graph labels, geom_text for adding text to graph with 
       # vjust for adjusting text position, ..count.. identity to specify that the frequency itself is used and size for text size
       # Also geom text uses seperate subset of dataset for the sake of calculation based on request location
+      # scale_fill_manual used to cange colors of bars with hex code
+      
+      # Verdict :  It is clearly visible that Customers requesting cabs from Airport get way more 'No Cars Available' compared to customers from City
+      # Also Customers from city to Airport get a lot of rejects from drivers
+      # Drivers are avoiding trip to airport and also this results in non availability of drivers from airport
+        
+    # Analyzing Status of requests from both locations at differents timings
+      
+      UberData %>%
+        group_by(Pickup.point,HourOfTheDay,Status) %>%
+        summarise(Status.Count = length(Status))
+      
+      # Plot to analyze demand and supply based on pickup point and Time of request
+      # Multiple juxtaposed Bar chart is optimal to observe the frequency and copmarision
