@@ -289,3 +289,4 @@ UberData <- read.csv("Uber Request Data.csv")
              subtitle = 'Based on Status of Request and Location')+
         geom_text(data = UberData[UberData$Pickup.point == 'Airport',],
                   aes(y = (..count..), 
+                  label = scales::percent(((..count..)/sum(..count..)))),
