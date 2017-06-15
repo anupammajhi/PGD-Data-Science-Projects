@@ -351,3 +351,4 @@ UberData <- read.csv("Uber Request Data.csv")
       UberData %>%
         group_by(Pickup.point,PartOfDay,Status) %>%
         summarise(Status.Count = length(Status))
+      
