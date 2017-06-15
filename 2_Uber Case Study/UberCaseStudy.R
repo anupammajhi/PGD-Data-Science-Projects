@@ -367,3 +367,16 @@ UberData <- read.csv("Uber Request Data.csv")
         scale_fill_manual(values = c('#b81313','#400808','#6dc14b')) +
         scale_color_manual('',values = c('grey')) +
         facet_grid(Pickup.point ~ .)+
+        theme(strip.text.y = element_text(size = 15))+
+        labs(x='Hour Of The Day', 
+             y='Count of Demand and Supply', 
+             title='Demand and Supply Gap', 
+             subtitle='Based On Time Slot') +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1))
+      
+      # Explanation : bar chart is used, labs has been used to change graph labels,
+      # Text not used to keep it clean and simple and to find obvious inferences
+      # Facet grid is used to seperate the graphs based on pickup point
+      # scale_fill_manual used to cange colors of bars with hex code
+      # theme is used to adjust the size of facet grid text
+      # labs used to rename labels
