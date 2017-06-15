@@ -349,3 +349,4 @@ UberData <- read.csv("Uber Request Data.csv")
       # Analyzing Status of requests from both locations at different parts of the day for simplification  
       
       UberData %>%
+        group_by(Pickup.point,PartOfDay,Status) %>%
