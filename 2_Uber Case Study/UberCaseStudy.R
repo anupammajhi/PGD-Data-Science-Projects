@@ -336,3 +336,4 @@ UberData <- read.csv("Uber Request Data.csv")
         facet_grid(Pickup.point ~ .)+
         theme(strip.text.y = element_text(size = 15))+
         labs(x='Hour Of The Day', 
+             y='Count of Demand and Supply', 
