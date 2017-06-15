@@ -337,3 +337,15 @@ UberData <- read.csv("Uber Request Data.csv")
         theme(strip.text.y = element_text(size = 15))+
         labs(x='Hour Of The Day', 
              y='Count of Demand and Supply', 
+             title='Demand and Supply Gap',
+             subtitle='Based On Time of The Day')
+      
+      # Explanation : bar chart is used, labs has been used to change graph labels,
+      # Text not used to keep it clean and simple and to find obvious inferences
+      # Facet grid is used to seperate the graphs based on pickup point
+      # scale_fill_manual used to cange colors of bars with hex code
+      # Here two bar graphs are extrapolated to show the demand (in grey) and supply (in colors)
+      
+      # Analyzing Status of requests from both locations at different parts of the day for simplification  
+      
+      UberData %>%
