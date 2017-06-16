@@ -382,3 +382,20 @@ UberData <- read.csv("Uber Request Data.csv")
       # labs used to rename labels
       # Here two bar graphs are extrapolated t show the demand (in grey) and supply (in colors)
       
+      # Verdict : For ABOVE TWO GRAPHS, Based on Time we can see In the Morning Hours there is a huge demand for cabs to airport, 
+      #          however there are very less demand from Airport, hence drivers do not get enough return trips to City
+      #          Also in the late evenings there is a high demand at airport, 
+      #          but there are not enough cars around as there were very less trips from City to airport due to less outbound flights in the early evening or afternoon
+      
+    
+      # Plots to show consistency of Demand Supply Gap over different days
+      
+      
+      UberData[which(UberData$Status == 'No Cars Available' & UberData$Pickup.point == 'Airport'),] %>%
+        group_by(HourOfTheDay,RequestDate = format(POSIXRequestTime,'%d-%b')) %>%
+        summarise(Status.Count = length(Status)) %>%
+      ggplot(aes(x=HourOfTheDay,y=RequestDate,fill=Status.Count))+
+        geom_tile()+
+        scale_fill_gradient(low="green", high="red") +
+        labs(x="Hour Of The Day",
+             y="Date",
