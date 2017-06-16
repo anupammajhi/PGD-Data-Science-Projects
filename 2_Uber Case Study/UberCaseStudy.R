@@ -380,3 +380,4 @@ UberData <- read.csv("Uber Request Data.csv")
       # scale_fill_manual used to cange colors of bars with hex code
       # theme is used to adjust the size of facet grid text
       # labs used to rename labels
+      # Here two bar graphs are extrapolated t show the demand (in grey) and supply (in colors)
