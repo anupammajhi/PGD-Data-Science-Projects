@@ -431,3 +431,4 @@ UberData <- read.csv("Uber Request Data.csv")
       # Average Non-Availability of Cars
       UberData[which(UberData$Status == 'No Cars Available'),] %>%
         group_by(HourOfTheDay) %>%
+        summarise(NonAvailability = length(HourOfTheDay)) %>%
