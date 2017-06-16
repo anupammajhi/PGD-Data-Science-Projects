@@ -399,3 +399,16 @@ UberData <- read.csv("Uber Request Data.csv")
         scale_fill_gradient(low="green", high="red") +
         labs(x="Hour Of The Day",
              y="Date",
+             title = "Time-Series Heatmap - No Cars Available at Airport", 
+             fill="Frequency")
+  
+      
+      UberData[which(UberData$Status == 'Cancelled' & UberData$Pickup.point == 'City'),] %>%
+        group_by(HourOfTheDay,RequestDate = format(POSIXRequestTime,'%d-%b')) %>%
+        summarise(Status.Count = length(Status)) %>%
+        ggplot(aes(x=HourOfTheDay,y=RequestDate,fill=Status.Count))+
+        geom_tile()+
+        scale_fill_gradient(low="green", high="red") +
+        labs(x="Hour Of The Day",
+             y="Date",
+             title = "Time-Series Heatmap - Trips Cancelled from City", 
