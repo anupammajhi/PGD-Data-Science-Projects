@@ -433,3 +433,4 @@ UberData <- read.csv("Uber Request Data.csv")
         group_by(HourOfTheDay) %>%
         summarise(NonAvailability = length(HourOfTheDay)) %>%
         summarise(Average_Non_Availabilty = mean(NonAvailability))
+      
