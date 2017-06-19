@@ -447,3 +447,4 @@ UberData <- read.csv("Uber Request Data.csv")
         summarise(Average_Non_Availabilty = mean(NonAvailability,na.rm=T))
 
       
+      
