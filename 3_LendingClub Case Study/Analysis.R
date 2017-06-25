@@ -38,5 +38,3 @@ Vague_Columns
 # url: no new data that can be obtained
 Vague_Columns <- append(Vague_Columns,"url")
 
-# id and member_id
-loanData[which(duplicated(loanData$id)),] # 0 Duplicates, hence unique
