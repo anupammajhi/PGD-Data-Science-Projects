@@ -54,5 +54,3 @@ Vague_Columns <- append(Vague_Columns,c("last_credit_pull_d","next_pymnt_d","las
 # Removing unnecessary columns from dataframe saved as list "Vague_Columns"
 loanData <- loanData[,!names(loanData) %in% Vague_Columns]
 
-#---- .. Data Consistency .. ----  
-
