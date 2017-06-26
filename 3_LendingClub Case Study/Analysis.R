@@ -72,3 +72,23 @@ lapply(loanData,function(x){
   {
     return(unique(x))
   }
+}
+) # No spelling issues or other inconsistency
+
+#---- .. Find and Impute NA values .. ----
+
+names(which(lapply(loanData,function(x){sum(is.na(x))}) > 0))
+
+# No need to impute the NA's. NA is correctly assigned
+
+#---- .. Treat Values to be useful for analysis .. ----
+
+# int_rate : Correcting value to have numbers instead of string with %
+loanData <- mutate(loanData,int_rate = as.double(strsplit(int_rate,"%")))
+
+# revol_util : Correcting value to have numbers instead of string with %
+loanData <- mutate(loanData,revol_util = as.double(strsplit(revol_util,"%")))
+
+# emp_length : converting to numbers by combining <1 years and 1 years and dropping the texts and symbols
+# Correct different representations of NA
+loanData[which(loanData$emp_length == "n/a"),"emp_length"] <- 0
