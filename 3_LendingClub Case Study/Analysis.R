@@ -92,3 +92,19 @@ loanData <- mutate(loanData,revol_util = as.double(strsplit(revol_util,"%")))
 # emp_length : converting to numbers by combining <1 years and 1 years and dropping the texts and symbols
 # Correct different representations of NA
 loanData[which(loanData$emp_length == "n/a"),"emp_length"] <- 0
+# Convert to number
+loanData <- mutate(loanData,emp_length = as.numeric(str_replace_all(emp_length,"[a-zA-Z\\+\\s</]","")))
+
+# format date
+
+CorrectDate <- function(x){
+  x <- paste("01-",x,sep = '')
+  yy <- formatC(as.numeric(substr(x,8,9)),width=2,flag=0)
+  if(yy<=17){
+    x <- paste(substr(x,1,7),"20",as.character(yy),sep = "")
+  }else{
+    x <- paste(substr(x,1,7),"19",as.character(yy),sep = "")
+  }
+  
+  as.Date(x,"%d-%b-%Y")
+}
