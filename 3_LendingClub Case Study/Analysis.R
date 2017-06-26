@@ -51,3 +51,24 @@ Vague_Columns <- append(Vague_Columns,c("member_id","funded_amnt_inv","out_prncp
 # last_credit_pull_d,next_pymnt_d,last_pymnt_amnt,last_pymnt_d,collection_recovery_fee,recoveries,out_prncp : not relevant for this analysis, as these variables are helpful only post default or full payment
 Vague_Columns <- append(Vague_Columns,c("last_credit_pull_d","next_pymnt_d","last_pymnt_amnt","last_pymnt_d","collection_recovery_fee","recoveries","out_prncp"))
 
+# Removing unnecessary columns from dataframe saved as list "Vague_Columns"
+loanData <- loanData[,!names(loanData) %in% Vague_Columns]
+
+#---- .. Data Consistency .. ----  
+
+# Convert All characters to upper case to maintain consistency in cases
+loanData <- data.frame(lapply(loanData, function(x){
+  if(is.character(x)){
+    return(toupper(x))
+  }else{
+    return(x)
+  }
+}),stringsAsFactors = F)
+
+# Check for spelling issues and inconsistency
+
+lapply(loanData,function(x){
+  if(is.character(x))
+  {
+    return(unique(x))
+  }
