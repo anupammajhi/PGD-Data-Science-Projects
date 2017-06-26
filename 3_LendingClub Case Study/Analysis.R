@@ -105,6 +105,3 @@ CorrectDate <- function(x){
   }else{
     x <- paste(substr(x,1,7),"19",as.character(yy),sep = "")
   }
-  
-  as.Date(x,"%d-%b-%Y")
-}
