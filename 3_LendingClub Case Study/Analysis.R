@@ -159,6 +159,3 @@ loanData %>%
   coord_cartesian(ylim = c(0, 20000)) +
   labs(x = "Home Ownership", 
        y="Count", 
-       title = "Home Ownership Frequency")
-# people staying in rented houses tend to take more loans, followed by people having morgaged house
-
