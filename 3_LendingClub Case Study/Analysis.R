@@ -121,3 +121,27 @@ loanData$annual_inc_level <- NA
 loanData$annual_inc_level <- sapply(loanData$annual_inc, function(x){
   return(paste(formatC(ceiling(x/25000),width=3,flag = 0),"L",sep=""))
 })
+
+# default_loss : Measure of loss incurred by a person who defaulted on loan
+# Business & data driven Metric
+loanData <- mutate(loanData,default_loss = (installment*as.numeric(str_replace(term," MONTHS","")))-total_pymnt)
+#NA for Fully Paid and Current
+loanData[which(loanData$loan_status != "CHARGED OFF"),"default_loss"] <- NA 
+
+# issue_m_name : Loan issued month Name
+# Data driven metric
+loanData <- mutate(loanData,issue_m_name = format(issue_d,"%b"))
+
+# days_since_first_credit_line : number of days since first credit line. This gives an idea about a person's experience with loan.
+# Data driven metric
+loanData <- mutate(loanData,days_since_first_credit_line =  Sys.Date() - earliest_cr_line)
+loanData$days_since_first_credit_line <- as.numeric(loanData$days_since_first_credit_line)
+
+
+
+#======= Data Analysis ========
+
+
+library(ggplot2)     
+
+#---- .. Univariate Analysis .. ----
