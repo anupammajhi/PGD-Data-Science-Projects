@@ -121,6 +121,3 @@ loanData$annual_inc_level <- NA
 loanData$annual_inc_level <- sapply(loanData$annual_inc, function(x){
   return(paste(formatC(ceiling(x/25000),width=3,flag = 0),"L",sep=""))
 })
-
-# default_loss : Measure of loss incurred by a person who defaulted on loan
-# Business & data driven Metric
