@@ -156,6 +156,3 @@ loanData %>%
   ggplot(aes(x=home_ownership)) + 
   geom_bar() +
   geom_text(aes(y= ..count.., label = ..count..),stat="count",vjust=-0.5)+
-  coord_cartesian(ylim = c(0, 20000)) +
-  labs(x = "Home Ownership", 
-       y="Count", 
