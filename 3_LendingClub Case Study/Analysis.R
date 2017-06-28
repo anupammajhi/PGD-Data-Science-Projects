@@ -177,6 +177,3 @@ loanData %>%
        title = "Verification Status Frequency")
 #maximum people don't have verified income
 
-
-# purpose : reason the borrower is taking loan
-summary(as.factor(loanData$purpose))
