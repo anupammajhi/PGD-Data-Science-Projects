@@ -177,3 +177,19 @@ loanData %>%
        title = "Verification Status Frequency")
 #maximum people don't have verified income
 
+
+# purpose : reason the borrower is taking loan
+summary(as.factor(loanData$purpose))
+
+# plot for purpose
+loanData %>%
+  ggplot(aes(x=reorder(purpose,purpose,function(x)length(x)),y=..count..),stat="count") + 
+  geom_bar(fill="#aaaaaa") +
+  geom_text(aes(label =..count..),stat="count",vjust=-0.5)+
+  coord_cartesian(ylim = c(0, 20000)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  geom_line(aes(y=..count..,group = 1),stat="count",color="blue",size=1.2)+
+  labs(x = "Purpose", 
+       y="Count", 
+       title = "Purpose Rank-Frequency")
+#Debt consolidation and credit card are the top purposes for taking loan
