@@ -156,3 +156,27 @@ loanData %>%
   ggplot(aes(x=home_ownership)) + 
   geom_bar() +
   geom_text(aes(y= ..count.., label = ..count..),stat="count",vjust=-0.5)+
+  coord_cartesian(ylim = c(0, 20000)) +
+  labs(x = "Home Ownership", 
+       y="Count", 
+       title = "Home Ownership Frequency")
+# people staying in rented houses tend to take more loans, followed by people having morgaged house
+
+
+# verification_status of income of the borrower summary
+summary(as.factor(loanData$verification_status))
+
+# plot for verification_status
+loanData %>%
+  ggplot(aes(x=verification_status)) + 
+  geom_bar() +
+  geom_text(aes(y= ..count.., label = ..count..),stat="count",vjust=-0.5)+
+  coord_cartesian(ylim = c(0, 18000)) +
+  labs(x = "Verification Status", 
+       y="Count", 
+       title = "Verification Status Frequency")
+#maximum people don't have verified income
+
+
+# purpose : reason the borrower is taking loan
+summary(as.factor(loanData$purpose))
