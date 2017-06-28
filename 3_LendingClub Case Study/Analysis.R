@@ -191,3 +191,24 @@ loanData %>%
   geom_line(aes(y=..count..,group = 1),stat="count",color="blue",size=1.2)+
   labs(x = "Purpose", 
        y="Count", 
+       title = "Purpose Rank-Frequency")
+#Debt consolidation and credit card are the top purposes for taking loan
+
+
+# addr_state : borrower's address state : summary
+summary(as.factor(loanData$addr_state))
+
+# plot for addr_state
+loanData %>%
+  ggplot(aes(x=reorder(addr_state,addr_state,function(x)length(x)),y=..count..),stat="count") + 
+  geom_bar(fill="#aaaaaa") +
+  geom_text(aes(label =..count..),stat="count",hjust=-0.3,angle=90,size=3.2)+
+  coord_cartesian(ylim = c(0, 8000)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = -0.1))+
+  geom_line(aes(y=..count..,group = 1),stat="count",color="blue",size=1.2,alpha=0.4)+
+  labs(x = "State", 
+       y="Count", 
+       title = "State Rank-Frequency")
+# CA, NY, FL, TX, NJ are the top customers for loan
+
+
