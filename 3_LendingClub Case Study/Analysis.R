@@ -279,3 +279,24 @@ loanData %>%
   theme(axis.text.x = element_text(angle = 90, vjust = -0.1))+
   labs(x = "Loan Status", 
        y="Count", 
+       title = "Loan Status")
+#14.2% of loans have defaulted and contributed to loss.
+
+
+#grade : grade of loan based on mainly interest rate
+summary(as.factor(loanData$grade))
+
+#plot for grade
+loanData %>%
+  ggplot(aes(x=grade,y=..count..),stat="count") + 
+  geom_bar(fill="#aaaaaa") +
+  geom_text(aes(label = scales::percent((..count..)/sum(..count..))),stat="count",vjust=-0.3,size=4)+
+  coord_cartesian(ylim = c(0, 15000)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = -0.1))+
+  labs(x = "Grade", 
+       y="Count", 
+       title = "Grade Frequency - Based on Interest rate")
+# Higher the grade of loan, the number of loans go down
+
+
+#sub-grade : further drilled down grade
