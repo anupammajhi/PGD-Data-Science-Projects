@@ -245,5 +245,3 @@ loanData %>%
   geom_line(aes(y=..count..,group = 1),stat="count",color="blue",size=1.2,alpha=0.4)+
   labs(x = "Year", 
        y="Count", 
-       title = "Time-Frequency")
-# There is an increasing trend of borrowing loan over time
