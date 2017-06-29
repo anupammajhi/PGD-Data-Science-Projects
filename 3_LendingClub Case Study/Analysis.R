@@ -212,3 +212,24 @@ loanData %>%
 # CA, NY, FL, TX, NJ are the top customers for loan
 
 
+
+#---- .... Ordered Categorical Variables .... ----   
+
+#issue_m_name : Loan issue month name irrespective of year
+loanData$issue_m_name <- factor(loanData$issue_m_name,levels = c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"))
+summary(loanData$issue_m_name)
+
+loanData %>%
+  ggplot(aes(x=issue_m_name,y=..count..),stat="count") + 
+  geom_bar(fill="#aaaaaa") +
+  geom_text(aes(label =..count..),stat="count",hjust=-0.3,angle=90,size=3.2)+
+  coord_cartesian(ylim = c(0, 8000)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = -0.1))+
+  geom_line(aes(y=..count..,group = 1),stat="count",color="blue",size=1.2,alpha=0.4)+
+  labs(x = "Month", 
+       y="Count", 
+       title = "Month Time-Frequency")
+# There is an increasing trend of taking loan over time
+
+
+#issue_d : Loan issue month with year
