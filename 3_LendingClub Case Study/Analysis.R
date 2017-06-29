@@ -243,5 +243,3 @@ loanData %>%
   coord_cartesian(ylim = c(0, 2500)) +
   theme(axis.text.x = element_text(angle = 90, vjust = -0.1))+
   geom_line(aes(y=..count..,group = 1),stat="count",color="blue",size=1.2,alpha=0.4)+
-  labs(x = "Year", 
-       y="Count", 
