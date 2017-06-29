@@ -262,3 +262,20 @@ loanData %>%
   theme(axis.text.x = element_text(angle = 90, vjust = -0.1))+
   geom_line(aes(y=..count..,group = 1),stat="count",color="blue",size=1.2,alpha=0.4)+
   labs(x = "Annual Income Level", 
+       y="Count", 
+       title = "Freuency of Loans based on Income")
+#Higher the salary bracket, people tend to take less loans
+
+
+#loan_status : overall status of loan
+summary(as.factor(loanData$loan_status))
+
+#plot for loan_status
+loanData %>%
+  ggplot(aes(x=loan_status,y=..count..),stat="count") + 
+  geom_bar(fill="#aaaaaa") +
+  geom_text(aes(label = scales::percent((..count..)/sum(..count..))),stat="count",vjust=-0.3,size=4)+
+  coord_cartesian(ylim = c(0, 35000)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = -0.1))+
+  labs(x = "Loan Status", 
+       y="Count", 
