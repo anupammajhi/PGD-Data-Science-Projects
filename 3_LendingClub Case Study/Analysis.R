@@ -230,6 +230,3 @@ loanData %>%
        y="Count", 
        title = "Month Time-Frequency")
 # There is an increasing trend of taking loan over time
-
-
-#issue_d : Loan issue month with year
