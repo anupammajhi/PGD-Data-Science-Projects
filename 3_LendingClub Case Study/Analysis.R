@@ -230,3 +230,20 @@ loanData %>%
        y="Count", 
        title = "Month Time-Frequency")
 # There is an increasing trend of taking loan over time
+
+
+#issue_d : Loan issue month with year
+summary(loanData$issue_d)
+
+#plot for issue_d
+loanData %>%
+  ggplot(aes(x=issue_d,y=..count..),stat="count") + 
+  geom_bar(fill="#aaaaaa") +
+  geom_text(aes(label =..count..),stat="count",hjust=-0.3,angle=90,size=3.2)+
+  coord_cartesian(ylim = c(0, 2500)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = -0.1))+
+  geom_line(aes(y=..count..,group = 1),stat="count",color="blue",size=1.2,alpha=0.4)+
+  labs(x = "Year", 
+       y="Count", 
+       title = "Time-Frequency")
+# There is an increasing trend of borrowing loan over time
