@@ -243,3 +243,22 @@ loanData %>%
   coord_cartesian(ylim = c(0, 2500)) +
   theme(axis.text.x = element_text(angle = 90, vjust = -0.1))+
   geom_line(aes(y=..count..,group = 1),stat="count",color="blue",size=1.2,alpha=0.4)+
+  labs(x = "Year", 
+       y="Count", 
+       title = "Time-Frequency")
+# There is an increasing trend of borrowing loan over time
+# there was a drop in mid-2008, probably because of market crash
+
+
+#annual_inc_level : level of annual income categorised in buckets of 25000
+summary(as.factor(loanData$annual_inc_level))
+
+#plot for annual_inc_level
+loanData %>%
+  ggplot(aes(x=annual_inc_level,y=..count..),stat="count") + 
+  geom_bar(fill="#aaaaaa") +
+  geom_text(aes(label =..count..),stat="count",hjust=-0.3,angle=90,size=3.2)+
+  coord_cartesian(ylim = c(0, 15000)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = -0.1))+
+  geom_line(aes(y=..count..,group = 1),stat="count",color="blue",size=1.2,alpha=0.4)+
+  labs(x = "Annual Income Level", 
