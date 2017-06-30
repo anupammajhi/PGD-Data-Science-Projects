@@ -316,3 +316,24 @@ loanData %>%
 
 
 #term : tenure of the loan
+summary(as.factor(loanData$term))
+
+#plot for term
+loanData %>%
+  ggplot(aes(x=term)) + 
+  geom_bar() +
+  geom_text(aes(y= ..count.., label = ..count..),stat="count",vjust=-0.5)+
+  coord_cartesian(ylim = c(0, 30000)) +
+  labs(x = "Term", 
+       y="Count", 
+       title = "Term Frequency") 
+#36 months term is more popular
+
+
+#delinq_2yrs : In 2 years, number of delinquences by borrower
+summary(as.factor(loanData$delinq_2yrs))
+
+#plot for delinq_2yrs
+loanData %>%
+  ggplot(aes(x=delinq_2yrs)) + 
+  geom_bar() +
