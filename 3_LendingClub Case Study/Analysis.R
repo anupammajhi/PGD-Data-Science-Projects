@@ -334,6 +334,3 @@ loanData %>%
 summary(as.factor(loanData$delinq_2yrs))
 
 #plot for delinq_2yrs
-loanData %>%
-  ggplot(aes(x=delinq_2yrs)) + 
-  geom_bar() +
