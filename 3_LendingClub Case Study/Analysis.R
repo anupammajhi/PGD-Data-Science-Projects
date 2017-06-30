@@ -316,6 +316,3 @@ loanData %>%
 
 
 #term : tenure of the loan
-summary(as.factor(loanData$term))
-
-#plot for term
