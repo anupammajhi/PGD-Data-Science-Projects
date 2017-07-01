@@ -354,6 +354,3 @@ loanData %>%
   geom_text(aes(y= ..count.., label = ..count..),stat="count",vjust=-0.5)+
   coord_cartesian(ylim = c(0, 30000)) +
   labs(x = "Employment Length", 
-       y="Count", 
-       title = "Employment Length") 
-#Higher the employment length lower probability to take loans
