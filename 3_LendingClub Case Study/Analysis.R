@@ -352,5 +352,3 @@ loanData %>%
   ggplot(aes(x=emp_length)) + 
   geom_bar() +
   geom_text(aes(y= ..count.., label = ..count..),stat="count",vjust=-0.5)+
-  coord_cartesian(ylim = c(0, 30000)) +
-  labs(x = "Employment Length", 
