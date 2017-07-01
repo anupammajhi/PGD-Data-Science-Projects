@@ -381,3 +381,19 @@ loanData %>%
   ggplot(aes(y=loan_amnt)) +
   geom_boxplot(aes(x=loan_status),width=0.6)+
   stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+# Loan requests of higher amount have more chances to default. Both median and mean loan amount is high for defaulted loans.
+
+
+
+# Loan Status based on Loan Amount funded by lender
+Loan_Status_Summary("funded_amnt")
+
+loanData %>%
+  ggplot(aes(y=funded_amnt)) +
+  geom_boxplot(aes(x=loan_status),width=0.6)+
+  stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+# Loan funded with higher amount have more chances to default. Both median and mean loan amount is high for defaulted loans.
+
+
+
+# Loan status based on interest rate
