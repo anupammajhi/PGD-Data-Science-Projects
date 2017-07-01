@@ -368,3 +368,19 @@ Loan_Status_Summary <- function(x){
 print("FULLY PAID")
 print(summary(loanData[which(loanData$loan_status == "FULLY PAID"),x]))
 print("CHARGED OFF")
+print(summary(loanData[which(loanData$loan_status == "CHARGED OFF"),x]))
+print("CURRENT")
+print(summary(loanData[which(loanData$loan_status == "CURRENT"),x]))
+}
+
+
+# Loan Status based on Loan Amount requested
+Loan_Status_Summary("loan_amnt")
+
+loanData %>%
+  ggplot(aes(y=loan_amnt)) +
+  geom_boxplot(aes(x=loan_status),width=0.6)+
+  stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+# Loan requests of higher amount have more chances to default. Both median and mean loan amount is high for defaulted loans.
+
+
