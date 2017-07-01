@@ -349,3 +349,25 @@ loanData %>%
 summary(as.factor(loanData$emp_length))
 
 loanData %>%
+  ggplot(aes(x=emp_length)) + 
+  geom_bar() +
+  geom_text(aes(y= ..count.., label = ..count..),stat="count",vjust=-0.5)+
+  coord_cartesian(ylim = c(0, 30000)) +
+  labs(x = "Employment Length", 
+       y="Count", 
+       title = "Employment Length") 
+#Higher the employment length lower probability to take loans
+# Employment length 10 include people with more than 10 years employement length. Hence, we see a spike.
+
+
+
+#---- .... Quantitative Variables .... ----          
+
+#Function to calculate median and quantiles based on loan status
+Loan_Status_Summary <- function(x){
+print("FULLY PAID")
+print(summary(loanData[which(loanData$loan_status == "FULLY PAID"),x]))
+print("CHARGED OFF")
+print(summary(loanData[which(loanData$loan_status == "CHARGED OFF"),x]))
+print("CURRENT")
+print(summary(loanData[which(loanData$loan_status == "CURRENT"),x]))
