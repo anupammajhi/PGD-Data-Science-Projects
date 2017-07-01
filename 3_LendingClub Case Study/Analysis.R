@@ -349,6 +349,3 @@ loanData %>%
 summary(as.factor(loanData$emp_length))
 
 loanData %>%
-  ggplot(aes(x=emp_length)) + 
-  geom_bar() +
-  geom_text(aes(y= ..count.., label = ..count..),stat="count",vjust=-0.5)+
