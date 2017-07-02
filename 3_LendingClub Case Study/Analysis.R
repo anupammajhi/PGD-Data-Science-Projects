@@ -414,3 +414,24 @@ loanData %>%
   geom_boxplot(aes(x=loan_status),width=0.6)+
   stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
 # Loan funded with higher monthly intallment have more chances to default. Both median and mean loan amount is high for defaulted loans.
+
+
+# Loan status based on monthly debt to income ratio. Higher dti means higher debt than income 
+Loan_Status_Summary("dti")
+
+loanData %>%
+  ggplot(aes(y=dti)) +
+  geom_boxplot(aes(x=loan_status),width=0.6)+
+  stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+# Loan funded with higher dti have more chances to default. Both median and mean loan amount is high for defaulted loans.
+
+
+# loan status based on delinq_2yrs
+Loan_Status_Summary("delinq_2yrs")
+
+loanData %>%
+  ggplot(aes(y=delinq_2yrs)) +
+  geom_boxplot(aes(x=loan_status),width=0.6)+
+  stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+#no significant result. There are only few outliers with high number of delinquencies
+
