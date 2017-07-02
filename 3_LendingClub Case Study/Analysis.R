@@ -456,6 +456,3 @@ loanData %>%
 #higher the utilization of revolving balance, the borrower tends to default much more
 
 
-Loan_Status_Summary("total_acc")
-
-loanData %>%
