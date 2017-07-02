@@ -435,3 +435,27 @@ loanData %>%
   stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
 #no significant result. There are only few outliers with high number of delinquencies
 
+
+#revol_bal : amount of balance revolving after certain amount is repayed.
+Loan_Status_Summary("revol_bal")
+
+loanData %>%
+  ggplot(aes(y=revol_bal)) +
+  geom_boxplot(aes(x=loan_status),width=0.6)+
+  stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+#Not very significant, but borrowers having more revolving balance tend to default slightly more.
+
+
+#revol_util : percentage utilization of revolving balance
+Loan_Status_Summary("revol_util")
+
+loanData %>%
+  ggplot(aes(y=revol_util)) +
+  geom_boxplot(aes(x=loan_status),width=0.6)+
+  stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+#higher the utilization of revolving balance, the borrower tends to default much more
+
+
+Loan_Status_Summary("total_acc")
+
+loanData %>%
