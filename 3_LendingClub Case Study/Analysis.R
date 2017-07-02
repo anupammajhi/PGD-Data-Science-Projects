@@ -471,3 +471,20 @@ Loan_Status_Summary("total_pymnt")
 loanData %>%
   ggplot(aes(y=total_pymnt)) +
   geom_boxplot(aes(x=loan_status),width=0.6)+
+  stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+# Since the defaulted loans have less amount paid, they will be low in the scale.
+
+
+Loan_Status_Summary("days_since_first_credit_line")
+
+
+
+loanData %>%
+  ggplot(aes(y=days_since_first_credit_line)) +
+  geom_boxplot(aes(x=loan_status),width=0.6)+
+  stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+#nothing significant
+
+
+Loan_Status_Summary("annual_inc")
+
