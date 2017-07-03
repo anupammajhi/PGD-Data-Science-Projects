@@ -486,3 +486,20 @@ loanData %>%
 #nothing significant
 
 
+Loan_Status_Summary("annual_inc")
+
+loanData %>%
+  ggplot(aes(y=annual_inc)) +
+  geom_boxplot(aes(x=loan_status),width=0.6)+
+  stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+#Need to treat outliers
+
+
+
+#Replacing Outliers
+qnt <- quantile(loanData$annual_inc, probs=c(.25, .75), na.rm = T)
+caps <- quantile(loanData$annual_inc, probs=c(.05, .95), na.rm = T)
+H <- 1.5 * IQR(loanData$annual_inc, na.rm = T)
+loanData$annual_inc[loanData$annual_inc < (qnt[1] - H)] <- caps[1]
+loanData$annual_inc[loanData$annual_inc > (qnt[2] + H)] <- caps[2]
+
