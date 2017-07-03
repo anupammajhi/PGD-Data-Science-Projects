@@ -486,5 +486,3 @@ loanData %>%
 #nothing significant
 
 
-Loan_Status_Summary("annual_inc")
-
