@@ -503,3 +503,27 @@ H <- 1.5 * IQR(loanData$annual_inc, na.rm = T)
 loanData$annual_inc[loanData$annual_inc < (qnt[1] - H)] <- caps[1]
 loanData$annual_inc[loanData$annual_inc > (qnt[2] + H)] <- caps[2]
 
+Loan_Status_Summary("annual_inc")
+
+loanData %>%
+  ggplot(aes(y=annual_inc)) +
+  geom_boxplot(aes(x=loan_status),width=0.6)+
+  stat_summary(geom="text", fun.y=quantile,aes(x=loan_status,label=sprintf("%1.1f", ..y..)),position=position_nudge(x=0.2), size=3.5,vjust = -0.5)
+
+
+
+#---- .. Bivariate Analysis .. ----
+
+# Correlation among variables
+
+continuous_vars <- loanData[,c("loan_amnt","funded_amnt","int_rate","installment","annual_inc","dti","inq_last_6mths","open_acc","pub_rec","revol_bal","total_acc","total_pymnt","total_rec_prncp","total_rec_int","days_since_first_credit_line")]
+
+cormat <- round(cor(continuous_vars),2)
+
+get_lower_tri<-function(cormat){
+  cormat[upper.tri(cormat)] <- NA
+  return(cormat)
+}
+# Get upper triangle of the correlation matrix
+get_upper_tri <- function(cormat){
+  cormat[lower.tri(cormat)]<- NA
