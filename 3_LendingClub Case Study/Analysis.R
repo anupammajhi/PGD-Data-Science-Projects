@@ -538,6 +538,3 @@ reorder_cormat <- function(cormat){
   hc <- hclust(dd)
   cormat <-cormat[hc$order, hc$order]
 }
-
-library(reshape2)
-cormat <- reorder_cormat(cormat)
