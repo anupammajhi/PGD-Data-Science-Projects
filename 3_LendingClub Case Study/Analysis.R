@@ -559,5 +559,3 @@ ggplot(melted_cormat, aes(Var2, Var1, fill = value))+
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
     panel.grid.major = element_blank(),
-    panel.border = element_blank(),
-    panel.background = element_blank(),
