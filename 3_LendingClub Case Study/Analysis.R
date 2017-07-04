@@ -543,6 +543,3 @@ library(reshape2)
 cormat <- reorder_cormat(cormat)
 
 upper_tri <- get_upper_tri(cormat)
-
-melted_cormat <- melt(upper_tri, na.rm = TRUE)
-
