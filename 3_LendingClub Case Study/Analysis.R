@@ -551,5 +551,3 @@ ggplot(melted_cormat, aes(Var2, Var1, fill = value))+
   scale_fill_gradient2(low = "red", high = "green", mid = "white", 
                        midpoint = 0, limit = c(-1,1), space = "Lab") +
   theme_minimal()+ 
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, 
-                                   size = 12, hjust = 1))+
