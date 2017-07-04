@@ -546,5 +546,3 @@ upper_tri <- get_upper_tri(cormat)
 
 melted_cormat <- melt(upper_tri, na.rm = TRUE)
 
-ggplot(melted_cormat, aes(Var2, Var1, fill = value))+
-  geom_tile(color = "white")+
