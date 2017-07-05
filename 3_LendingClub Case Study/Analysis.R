@@ -559,3 +559,22 @@ ggplot(melted_cormat, aes(Var2, Var1, fill = value))+
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
     panel.grid.major = element_blank(),
+    panel.border = element_blank(),
+    panel.background = element_blank(),
+    axis.ticks = element_blank(),
+    legend.justification = c(1, 0),
+    legend.position = c(0.6, 0.7),
+    legend.direction = "horizontal")+
+  guides(fill = guide_colorbar(barwidth = 7, barheight = 1,
+                               title.position = "top", title.hjust = 0.5))
+
+
+
+#annual_inc vs funded_amnt with status 
+loanData %>%
+ ggplot(aes(x =annual_inc, y = funded_amnt)) + geom_point(aes(color = loan_status), alpha = 0.4)
+#higher the salary, better chances of full payment
+
+
+#annual_inc vs funded_amnt with status 
+loanData %>%
