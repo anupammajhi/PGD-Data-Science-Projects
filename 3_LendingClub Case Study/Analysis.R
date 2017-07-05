@@ -596,5 +596,3 @@ loanData %>%
 #with increasing grade, charged off percentage also increases
 
 
-
-#term vs loan status
