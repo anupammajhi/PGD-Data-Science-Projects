@@ -578,3 +578,23 @@ loanData %>%
 
 #annual_inc vs funded_amnt with status 
 loanData %>%
+  ggplot(aes(x =annual_inc, y = revol_bal)) + geom_point(aes(color = loan_status), alpha = 0.4)
+#higher the salary, more the revolving balance
+
+
+#grade vs loan status
+loanData %>%
+  filter(loan_status != "CURRENT") %>%
+ggplot(aes(x=grade,fill=loan_status)) +
+  geom_bar()+
+  geom_text(aes(y=..count..,label=..count..),stat = "count", position=position_stack(vjust = 0.5))
+
+loanData %>%
+  filter(loan_status != "CURRENT") %>%
+  ggplot(aes(x=grade,fill=loan_status)) +
+  geom_bar(position = position_fill()) 
+#with increasing grade, charged off percentage also increases
+
+
+
+#term vs loan status
