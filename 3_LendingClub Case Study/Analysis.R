@@ -596,3 +596,22 @@ loanData %>%
 #with increasing grade, charged off percentage also increases
 
 
+
+#term vs loan status
+loanData %>%
+  filter(loan_status != "CURRENT") %>%
+  ggplot(aes(x=term,fill=loan_status)) +
+  geom_bar()+
+  geom_text(aes(y=..count..,label=..count..),stat = "count", position=position_stack(vjust = 0.5))
+
+
+#verification status vs loan status
+loanData %>%
+  filter(loan_status != "CURRENT") %>%
+  ggplot(aes(x=verification_status,fill=loan_status)) +
+  geom_bar(position = position_fill()) 
+
+#purpose vs loan status
+loanData %>%
+  filter(loan_status != "CURRENT") %>%
+  ggplot(aes(x=purpose,fill=loan_status)) +
