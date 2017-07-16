@@ -27,6 +27,3 @@ which(is.na(carsDF)) #No NA Value found
 
 # Ignoring unwanted columns
 carsDF <- carsDF[,!names(carsDF) %in% c("car_ID","CarName")]
-str(carsDF)
-
-
