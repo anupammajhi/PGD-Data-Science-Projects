@@ -23,5 +23,3 @@ carsDF[which(carsDF$company == "vokswagen" | carsDF$company == "vw"),"company"] 
 carsDF[which(carsDF$company == "alfa-romero"),"company"] <- "alfa-romeo"
 
 # Checking NA
-which(is.na(carsDF)) #No NA Value found
-
