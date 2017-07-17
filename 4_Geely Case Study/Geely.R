@@ -34,5 +34,3 @@ str(carsDF)
 
 # fueltype
 summary(carsDF$fueltype)
-levels(carsDF$fueltype) <- c(0,1) # diesel = 0 , gas = 1
-carsDF$fueltype <- as.numeric(levels(carsDF$fueltype))[carsDF$fueltype]
