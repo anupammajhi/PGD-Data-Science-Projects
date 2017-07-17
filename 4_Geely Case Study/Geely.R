@@ -99,6 +99,3 @@ carsDF$wb2lRatio <- carsDF$wheelbase / carsDF$carlength
 # rpm2hpRatio : RPM to Power(HP) ratio
 carsDF$rpm2hpRatio <- carsDF$peakrpm / carsDF$horsepower
 
-
-# Linear Regression
-
