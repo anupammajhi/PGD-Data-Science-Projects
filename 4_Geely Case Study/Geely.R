@@ -68,3 +68,17 @@ carsDF <- cbind(carsDF[,-5],dummy_drivewheel[,-1])
 # enginetype
 dummy_enginetype <- data.frame(model.matrix(~enginetype,data = carsDF))
 carsDF <- cbind(carsDF[,-11],dummy_enginetype[,-1])
+
+# cylindernumber
+summary(carsDF$cylindernumber)
+levels(carsDF$cylindernumber) <- c(8,5,4,6,3,12,2)
+carsDF$cylindernumber <- as.numeric(levels(carsDF$cylindernumber))[carsDF$cylindernumber]
+summary(carsDF$cylindernumber)
+
+# fuelsystem
+dummy_fuelsystem <- data.frame(model.matrix(~fuelsystem,data = carsDF))
+carsDF <- cbind(carsDF[,-13],dummy_fuelsystem[,-1])
+
+# company
+dummy_company <- data.frame(model.matrix(~company,data = carsDF))
+carsDF <- cbind(carsDF[,-21],dummy_company[,-1])
