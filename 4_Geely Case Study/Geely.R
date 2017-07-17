@@ -21,3 +21,18 @@ carsDF[which(carsDF$company == "porcshce"),"company"] <- "porsche"
 carsDF[which(carsDF$company == "toyouta"),"company"] <- "toyota"
 carsDF[which(carsDF$company == "vokswagen" | carsDF$company == "vw"),"company"] <- "volkswagen"
 carsDF[which(carsDF$company == "alfa-romero"),"company"] <- "alfa-romeo"
+
+# Checking NA
+which(is.na(carsDF)) #No NA Value found
+
+# Ignoring unwanted columns
+carsDF <- carsDF[,!names(carsDF) %in% c("car_ID","CarName")]
+str(carsDF)
+
+
+# DUMMY VARIABLES
+
+# fueltype
+summary(carsDF$fueltype)
+levels(carsDF$fueltype) <- c(0,1) # diesel = 0 , gas = 1
+carsDF$fueltype <- as.numeric(levels(carsDF$fueltype))[carsDF$fueltype]
