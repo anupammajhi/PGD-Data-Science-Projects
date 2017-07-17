@@ -34,3 +34,17 @@ str(carsDF)
 
 # fueltype
 summary(carsDF$fueltype)
+levels(carsDF$fueltype) <- c(0,1) # diesel = 0 , gas = 1
+carsDF$fueltype <- as.numeric(levels(carsDF$fueltype))[carsDF$fueltype]
+summary(carsDF$fueltype)
+
+# aspiration
+summary(carsDF$aspiration)
+levels(carsDF$aspiration) <- c(0,1) # std = 0 , turbo = 1
+carsDF$aspiration <- as.numeric(levels(carsDF$aspiration))[carsDF$aspiration]
+summary(carsDF$aspiration)
+
+
+# doornumber
+summary(carsDF$doornumber)
+levels(carsDF$doornumber) <- c(4,2) # four = 4 , two = 2
