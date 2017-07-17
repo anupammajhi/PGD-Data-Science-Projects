@@ -48,3 +48,23 @@ summary(carsDF$aspiration)
 # doornumber
 summary(carsDF$doornumber)
 levels(carsDF$doornumber) <- c(4,2) # four = 4 , two = 2
+carsDF$doornumber <- as.numeric(levels(carsDF$doornumber))[carsDF$doornumber]
+summary(carsDF$doornumber)
+
+# enginelocation
+summary(carsDF$enginelocation)
+levels(carsDF$enginelocation) <- c(0,1) # front = 0 , rear = 1
+carsDF$enginelocation <- as.numeric(levels(carsDF$enginelocation))[carsDF$enginelocation]
+summary(carsDF$enginelocation)
+
+# carbody
+dummy_carbody <- data.frame(model.matrix(~carbody,data = carsDF))
+carsDF <- cbind(carsDF[,-5],dummy_carbody[,-1])
+
+# drivewheel
+dummy_drivewheel <- data.frame(model.matrix(~drivewheel,data=carsDF))
+carsDF <- cbind(carsDF[,-5],dummy_drivewheel[,-1])
+
+# enginetype
+dummy_enginetype <- data.frame(model.matrix(~enginetype,data = carsDF))
+carsDF <- cbind(carsDF[,-11],dummy_enginetype[,-1])
