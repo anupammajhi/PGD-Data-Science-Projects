@@ -97,5 +97,3 @@ carsDF$cc <- (pi/4) * (carsDF$bore^2) * (carsDF$stroke * 2.54 ) * carsDF$cylinde
 carsDF$wb2lRatio <- carsDF$wheelbase / carsDF$carlength
 
 # rpm2hpRatio : RPM to Power(HP) ratio
-carsDF$rpm2hpRatio <- carsDF$peakrpm / carsDF$horsepower
-
