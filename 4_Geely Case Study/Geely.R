@@ -82,3 +82,23 @@ carsDF <- cbind(carsDF[,-13],dummy_fuelsystem[,-1])
 # company
 dummy_company <- data.frame(model.matrix(~company,data = carsDF))
 carsDF <- cbind(carsDF[,-21],dummy_company[,-1])
+
+# DERIVED VARIABLES
+# hp2wRatio : power to weight ratio = horsepower / curbweight
+carsDF$hp2wRatio <- carsDF$horsepower/carsDF$curbweight
+
+# bore : bore size
+carsDF$bore <- carsDF$boreratio * carsDF$stroke
+
+# cc : Engine displacement in CC . i.e. cc = (pi/4) x bore^2 x stroke x number of cylinder (also convert in to cm).
+carsDF$cc <- (pi/4) * (carsDF$bore^2) * (carsDF$stroke * 2.54 ) * carsDF$cylindernumber
+
+# wb2lRatio : wheelbase to length ratio
+carsDF$wb2lRatio <- carsDF$wheelbase / carsDF$carlength
+
+# rpm2hpRatio : RPM to Power(HP) ratio
+carsDF$rpm2hpRatio <- carsDF$peakrpm / carsDF$horsepower
+
+
+# Linear Regression
+
