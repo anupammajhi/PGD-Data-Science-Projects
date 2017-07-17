@@ -97,3 +97,21 @@ carsDF$cc <- (pi/4) * (carsDF$bore^2) * (carsDF$stroke * 2.54 ) * carsDF$cylinde
 carsDF$wb2lRatio <- carsDF$wheelbase / carsDF$carlength
 
 # rpm2hpRatio : RPM to Power(HP) ratio
+carsDF$rpm2hpRatio <- carsDF$peakrpm / carsDF$horsepower
+
+
+# Linear Regression
+
+# Set Seed to regenerate random number
+set.seed(100)
+
+# Define Training and Test Sets : 70% train, 30% test
+trainIndices <- sample(1:nrow(carsDF),round(0.7*nrow(carsDF)))
+cars.Train <- carsDF[trainIndices,]
+cars.Test <- carsDF[-trainIndices,]
+
+
+# MODELLING
+
+# Model 1 : dependent variable against all independent variables
+model_1 <- lm(price~.,data = cars.Train)
