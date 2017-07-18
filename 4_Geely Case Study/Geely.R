@@ -115,3 +115,18 @@ cars.Test <- carsDF[-trainIndices,]
 
 # Model 1 : dependent variable against all independent variables
 model_1 <- lm(price~.,data = cars.Train)
+summary(model_1) # 5 Not defined due to singularity
+# R-squared: 0.977 , Adjusted-R-squared:0.9609
+
+
+# Model 2 : StepAIC to remove variables on model_1
+model_2 <- stepAIC(model_1,direction = "both")
+summary(model_2)
+# R-squared: 0.9761 , Adjusted-R-squared:0.9644
+sort(vif(model_2)) 
+# bore,stroke,horsepower has high vif but still significant.
+# boreratio has high vif and less significant. Hence removing from next model.
+
+
+# Model 3 : after removing boreratio
+model_3 <- lm(price~symboling+fueltype+aspiration+doornumber+enginelocation+wheelbase+carlength+carwidth+carheight+curbweight+cylindernumber+enginesize+
