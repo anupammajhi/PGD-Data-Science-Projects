@@ -128,5 +128,3 @@ sort(vif(model_2))
 # boreratio has high vif and less significant. Hence removing from next model.
 
 
-# Model 3 : after removing boreratio
-model_3 <- lm(price~symboling+fueltype+aspiration+doornumber+enginelocation+wheelbase+carlength+carwidth+carheight+curbweight+cylindernumber+enginesize+
