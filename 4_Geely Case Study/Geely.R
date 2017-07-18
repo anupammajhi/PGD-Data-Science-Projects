@@ -123,5 +123,3 @@ summary(model_1) # 5 Not defined due to singularity
 model_2 <- stepAIC(model_1,direction = "both")
 summary(model_2)
 # R-squared: 0.9761 , Adjusted-R-squared:0.9644
-sort(vif(model_2)) 
-# bore,stroke,horsepower has high vif but still significant.
