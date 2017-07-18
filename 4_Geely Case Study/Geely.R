@@ -125,6 +125,3 @@ summary(model_2)
 # R-squared: 0.9761 , Adjusted-R-squared:0.9644
 sort(vif(model_2)) 
 # bore,stroke,horsepower has high vif but still significant.
-# boreratio has high vif and less significant. Hence removing from next model.
-
-
