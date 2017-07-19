@@ -183,6 +183,3 @@ sort(vif(model_6))
 # horsepower, fueltype, hp2wratio, compressionratio, enginesize, fuelsystemmpfi, carlength, carbodysedan, fuelsystem2bbl, wheelbase has high vif but still significant.
 # carwidth has high vif and less significant. Hence removing from next model.
 
-
-# Model 7 : after removing carwidth
-model_7 <- lm(price~symboling+fueltype+aspiration+doornumber+enginelocation+wheelbase+carlength+carheight+enginesize+
