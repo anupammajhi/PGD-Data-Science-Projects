@@ -204,3 +204,24 @@ model_8 <- lm(price~symboling+fueltype+doornumber+enginelocation+wheelbase+carle
                 enginetypeohcf+enginetypeohcv+enginetyperotor+fuelsystem2bbl+fuelsystemmfi+fuelsystemmpfi+fuelsystemspdi+companyaudi+companybmw+
                 companybuick+companychevrolet+companyhonda+companyisuzu+companyjaguar+companymazda+companynissan+companyporsche+companyrenault+
                 companysaab+companytoyota+companyvolkswagen+companyvolvo+hp2wRatio+bore,
+              data = cars.Train)
+summary(model_8)
+# R-squared: 0.9722  Adjusted-R-squared:0.9610 . Hence not much change in result.
+sort(vif(model_8))
+# horsepower, fueltype, hp2wratio, compressionratio, enginesize, fuelsystemmpfi, carlength, carbodysedan, fuelsystem2bbl, wheelbase, carbodyhatchback, citympg, carbodywagon, symboling, enginetypeohcv has high vif but still significant.
+# drivewheelrwd has high vif and less significant. Hence removing from next model.
+
+
+# Model 9 : after removing drivewheelrwd
+model_9 <- lm(price~symboling+fueltype+doornumber+enginelocation+wheelbase+carlength+carheight+enginesize+
+                compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                enginetypeohcf+enginetypeohcv+enginetyperotor+fuelsystem2bbl+fuelsystemmfi+fuelsystemmpfi+fuelsystemspdi+companyaudi+companybmw+
+                companybuick+companychevrolet+companyhonda+companyisuzu+companyjaguar+companymazda+companynissan+companyporsche+companyrenault+
+                companysaab+companytoyota+companyvolkswagen+companyvolvo+hp2wRatio+bore,
+              data = cars.Train)
+summary(model_9)
+# R-squared: 0.9720  Adjusted-R-squared:0.9611 . Hence not much change in result.
+sort(vif(model_9))
+# horsepower, fueltype, hp2wratio, compressionratio, enginesize, fuelsystemmpfi, carlength, carbodysedan, wheelbase, carbodyhatchback, citympg, carbodywagon, symboling, enginetypeohcv has high vif but still significant.
+# fuelsystem2bbl has high vif and less significant. Hence removing from next model.
+
