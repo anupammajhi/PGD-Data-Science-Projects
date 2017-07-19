@@ -131,3 +131,23 @@ sort(vif(model_2))
 # Model 3 : after removing boreratio
 model_3 <- lm(price~symboling+fueltype+aspiration+doornumber+enginelocation+wheelbase+carlength+carwidth+carheight+curbweight+cylindernumber+enginesize+
               stroke+compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+drivewheelrwd+
+              enginetypeohcf+enginetypeohcv+enginetyperotor+fuelsystem2bbl+fuelsystemmfi+fuelsystemmpfi+fuelsystemspdi+companyaudi+companybmw+
+              companybuick+companychevrolet+companyhonda+companyisuzu+companyjaguar+companymazda+companynissan+companyporsche+companyrenault+
+              companysaab+companytoyota+companyvolkswagen+companyvolvo+hp2wRatio+bore,
+              data = cars.Train)
+summary(model_3)
+# R-squared: 0.9753 , Adjusted-R-squared:0.9635 . Hence not much change in result.
+sort(vif(model_3))
+# horsepower, fueltype, hp2wratio, compressionratio has high vif but still significant.
+# curbweight has high vif and less significant. Hence removing from next model.
+
+
+# Model 4 : after removing curbweight
+model_4 <- lm(price~symboling+fueltype+aspiration+doornumber+enginelocation+wheelbase+carlength+carwidth+carheight+cylindernumber+enginesize+
+                stroke+compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+drivewheelrwd+
+                enginetypeohcf+enginetypeohcv+enginetyperotor+fuelsystem2bbl+fuelsystemmfi+fuelsystemmpfi+fuelsystemspdi+companyaudi+companybmw+
+                companybuick+companychevrolet+companyhonda+companyisuzu+companyjaguar+companymazda+companynissan+companyporsche+companyrenault+
+                companysaab+companytoyota+companyvolkswagen+companyvolvo+hp2wRatio+bore,
+              data = cars.Train)
+summary(model_4)
+# R-squared: 0.9747 , Adjusted-R-squared:0.9631 . Hence not much change in result.
