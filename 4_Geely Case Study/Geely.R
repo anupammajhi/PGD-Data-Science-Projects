@@ -183,3 +183,24 @@ sort(vif(model_6))
 # horsepower, fueltype, hp2wratio, compressionratio, enginesize, fuelsystemmpfi, carlength, carbodysedan, fuelsystem2bbl, wheelbase has high vif but still significant.
 # carwidth has high vif and less significant. Hence removing from next model.
 
+
+# Model 7 : after removing carwidth
+model_7 <- lm(price~symboling+fueltype+aspiration+doornumber+enginelocation+wheelbase+carlength+carheight+enginesize+
+                compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+drivewheelrwd+
+                enginetypeohcf+enginetypeohcv+enginetyperotor+fuelsystem2bbl+fuelsystemmfi+fuelsystemmpfi+fuelsystemspdi+companyaudi+companybmw+
+                companybuick+companychevrolet+companyhonda+companyisuzu+companyjaguar+companymazda+companynissan+companyporsche+companyrenault+
+                companysaab+companytoyota+companyvolkswagen+companyvolvo+hp2wRatio+bore,
+              data = cars.Train)
+summary(model_7)
+# R-squared: 0.9732  Adjusted-R-squared:0.9620 . Hence not much change in result.
+sort(vif(model_7))
+# horsepower, fueltype, hp2wratio, compressionratio, enginesize, fuelsystemmpfi, carlength, carbodysedan, fuelsystem2bbl, wheelbase, carbodyhatchback, citympg, carbodywagon has high vif but still significant.
+# aspiration has high vif and less significant. Hence removing from next model.
+
+
+# Model 8 : after removing aspiration
+model_8 <- lm(price~symboling+fueltype+doornumber+enginelocation+wheelbase+carlength+carheight+enginesize+
+                compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+drivewheelrwd+
+                enginetypeohcf+enginetypeohcv+enginetyperotor+fuelsystem2bbl+fuelsystemmfi+fuelsystemmpfi+fuelsystemspdi+companyaudi+companybmw+
+                companybuick+companychevrolet+companyhonda+companyisuzu+companyjaguar+companymazda+companynissan+companyporsche+companyrenault+
+                companysaab+companytoyota+companyvolkswagen+companyvolvo+hp2wRatio+bore,
