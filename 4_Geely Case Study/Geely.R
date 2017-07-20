@@ -236,6 +236,3 @@ model_10 <- lm(price~symboling+fueltype+doornumber+enginelocation+wheelbase+carl
 summary(model_10)
 # R-squared: 0.9709  Adjusted-R-squared:0.9600 . Hence not much change in result.
 sort(vif(model_10))
-# horsepower, fueltype, hp2wratio, compressionratio, enginesize, carlength, carbodysedan, wheelbase, carbodyhatchback, citympg, carbodywagon, symboling, carheight has high vif but still significant.
-# fuelsystemmpfi has high vif and less significant. Hence removing from next model.
-
