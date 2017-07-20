@@ -223,5 +223,3 @@ summary(model_9)
 # R-squared: 0.9720  Adjusted-R-squared:0.9611 . Hence not much change in result.
 sort(vif(model_9))
 # horsepower, fueltype, hp2wratio, compressionratio, enginesize, fuelsystemmpfi, carlength, carbodysedan, wheelbase, carbodyhatchback, citympg, carbodywagon, symboling, enginetypeohcv has high vif but still significant.
-# fuelsystem2bbl has high vif and less significant. Hence removing from next model.
-
