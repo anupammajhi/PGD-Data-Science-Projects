@@ -248,6 +248,3 @@ model_11 <- lm(price~symboling+fueltype+doornumber+enginelocation+wheelbase+carl
                  companysaab+companytoyota+companyvolkswagen+companyvolvo+hp2wRatio+bore,
                data = cars.Train)
 summary(model_11)
-# R-squared: 0.9703  Adjusted-R-squared:0.9596 . Hence not much change in result.
-sort(vif(model_11))
-# horsepower, fueltype, hp2wratio, compressionratio, enginesize  has high vif but still significant.
