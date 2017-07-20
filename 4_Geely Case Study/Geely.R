@@ -223,3 +223,19 @@ summary(model_9)
 # R-squared: 0.9720  Adjusted-R-squared:0.9611 . Hence not much change in result.
 sort(vif(model_9))
 # horsepower, fueltype, hp2wratio, compressionratio, enginesize, fuelsystemmpfi, carlength, carbodysedan, wheelbase, carbodyhatchback, citympg, carbodywagon, symboling, enginetypeohcv has high vif but still significant.
+# fuelsystem2bbl has high vif and less significant. Hence removing from next model.
+
+
+# Model 10 : after removing fuelsystem2bbl
+model_10 <- lm(price~symboling+fueltype+doornumber+enginelocation+wheelbase+carlength+carheight+enginesize+
+                compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                enginetypeohcf+enginetypeohcv+enginetyperotor+fuelsystemmfi+fuelsystemmpfi+fuelsystemspdi+companyaudi+companybmw+
+                companybuick+companychevrolet+companyhonda+companyisuzu+companyjaguar+companymazda+companynissan+companyporsche+companyrenault+
+                companysaab+companytoyota+companyvolkswagen+companyvolvo+hp2wRatio+bore,
+              data = cars.Train)
+summary(model_10)
+# R-squared: 0.9709  Adjusted-R-squared:0.9600 . Hence not much change in result.
+sort(vif(model_10))
+# horsepower, fueltype, hp2wratio, compressionratio, enginesize, carlength, carbodysedan, wheelbase, carbodyhatchback, citympg, carbodywagon, symboling, carheight has high vif but still significant.
+# fuelsystemmpfi has high vif and less significant. Hence removing from next model.
+
