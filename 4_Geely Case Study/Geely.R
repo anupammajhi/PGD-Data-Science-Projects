@@ -294,6 +294,3 @@ summary(model_14)
 sort(vif(model_14))
 # horsepower, fueltype, hp2wratio, compressionratio, enginesize, carbodysedan, carbosyhatchback, carbodywagon, wheelbase,citympg and many others have high vif but still significant.
 # companytoyota has high vif and less significant. Hence removing from next model.
-
-
-# Model 15 : after removing companytoyota
