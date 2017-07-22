@@ -375,6 +375,3 @@ model_20 <- lm(price~fueltype+enginelocation+wheelbase+carheight+enginesize+
                data = cars.Train)
 summary(model_20)
 # R-squared: 0.9635  Adjusted-R-squared:0.9542 . Hence not much change in result.
-sort(vif(model_20))
-# horsepower, fueltype, hp2wratio, compressionratio, enginesize, carbodysedan, carbosyhatchback, carbodywagon, wheelbase,citympg and many others have high vif but still significant.
-# carheight has high vif and is less significant. Hence removing from next model.
