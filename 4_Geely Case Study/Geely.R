@@ -360,5 +360,3 @@ model_19 <- lm(price~fueltype+enginelocation+wheelbase+carheight+enginesize+
                  companysaab+companyvolkswagen+companyvolvo+hp2wRatio+bore,
                data = cars.Train)
 summary(model_19)
-# R-squared: 0.9645  Adjusted-R-squared:0.9551 . Hence not much change in result.
-sort(vif(model_19))
