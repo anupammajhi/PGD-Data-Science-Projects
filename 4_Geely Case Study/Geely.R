@@ -383,6 +383,3 @@ sort(vif(model_20))
 # Model 21 : after removing carheight
 model_21 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
                  compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
-                 enginetyperotor+fuelsystemmfi+companyaudi+companybmw+
-                 companybuick+companychevrolet+companyisuzu+companyjaguar+companymazda+companyporsche+companyrenault+
-                 companysaab+companyvolkswagen+companyvolvo+hp2wRatio+bore,
