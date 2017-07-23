@@ -414,6 +414,3 @@ model_23 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
                  enginetyperotor+companyaudi+companybmw+
                  companybuick+companyisuzu+companyjaguar+companymazda+companyporsche+companyrenault+
                  companysaab+companyvolkswagen+companyvolvo+hp2wRatio+bore,
-               data = cars.Train)
-summary(model_23)
-# R-squared: 0.9623  Adjusted-R-squared:0.9539 . Hence not much change in result.
