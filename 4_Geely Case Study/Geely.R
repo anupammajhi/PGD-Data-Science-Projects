@@ -408,5 +408,3 @@ sort(vif(model_22))
 # fuelsystemmfi is less significant. Hence removing from next model.
 
 
-# Model 23 : after removing fuelsystemmfi
-model_23 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
