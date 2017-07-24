@@ -410,5 +410,3 @@ sort(vif(model_22))
 
 # Model 23 : after removing fuelsystemmfi
 model_23 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
-                 compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
-                 enginetyperotor+companyaudi+companybmw+
