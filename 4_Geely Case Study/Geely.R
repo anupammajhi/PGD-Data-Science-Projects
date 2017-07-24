@@ -406,5 +406,3 @@ summary(model_22)
 sort(vif(model_22))
 # horsepower, fueltype, hp2wratio, compressionratio, enginesize, carbodysedan, carbosyhatchback, carbodywagon, wheelbase,citympg and many others have high vif but still significant.
 # fuelsystemmfi is less significant. Hence removing from next model.
-
-
