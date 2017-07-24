@@ -412,5 +412,3 @@ sort(vif(model_22))
 model_23 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
                  compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
                  enginetyperotor+companyaudi+companybmw+
-                 companybuick+companyisuzu+companyjaguar+companymazda+companyporsche+companyrenault+
-                 companysaab+companyvolkswagen+companyvolvo+hp2wRatio+bore,
