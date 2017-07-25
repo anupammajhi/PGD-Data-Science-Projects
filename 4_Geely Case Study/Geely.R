@@ -423,3 +423,24 @@ sort(vif(model_23))
 
 
 # Model 24 : after removing companyrenault
+model_24 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
+                 compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 enginetyperotor+companyaudi+companybmw+
+                 companybuick+companyisuzu+companyjaguar+companymazda+companyporsche+
+                 companysaab+companyvolkswagen+companyvolvo+hp2wRatio+bore,
+               data = cars.Train)
+summary(model_24)
+# R-squared: 0.9621  Adjusted-R-squared:0.9540 . Hence not much change in result.
+sort(vif(model_24))
+# horsepower, fueltype,hp2wratio, compressionratio, enginesize, carbodysedan, carbosyhatchback, carbodywagon, wheelbase,citympg and many others have high vif but still significant.
+# companyvolkswagen is less significant. Hence removing from next model.
+
+
+# Model 25 : after removing companyvolkswagen
+model_25 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
+                 compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 enginetyperotor+companyaudi+companybmw+
+                 companybuick+companyisuzu+companyjaguar+companymazda+companyporsche+
+                 companysaab+companyvolvo+hp2wRatio+bore,
+               data = cars.Train)
+summary(model_25)
