@@ -423,5 +423,3 @@ sort(vif(model_23))
 
 
 # Model 24 : after removing companyrenault
-model_24 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
-                 compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
