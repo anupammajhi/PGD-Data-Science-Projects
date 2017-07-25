@@ -441,6 +441,3 @@ model_25 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
                  compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
                  enginetyperotor+companyaudi+companybmw+
                  companybuick+companyisuzu+companyjaguar+companymazda+companyporsche+
-                 companysaab+companyvolvo+hp2wRatio+bore,
-               data = cars.Train)
-summary(model_25)
