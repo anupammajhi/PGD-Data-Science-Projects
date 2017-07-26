@@ -543,3 +543,19 @@ sort(vif(model_32))
 
 
 # Model 33 : after removing companysaab
+model_33 <- lm(price~enginelocation+wheelbase+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 companyaudi+companybmw+companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
+               data = cars.Train)
+summary(model_33)
+# R-squared: 0.9509  Adjusted-R-squared:0.9447 . Hence not much change in result.
+sort(vif(model_33))
+# citympg is less significant. Hence removing from next model.
+
+
+# Model 34 : after removing citympg
+model_34 <- lm(price~enginelocation+wheelbase+horsepower+peakrpm+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 companyaudi+companybmw+companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
+               data = cars.Train)
+summary(model_34)
+# R-squared: 0.9498  Adjusted-R-squared:0.9439 . Hence not much change in result.
+sort(vif(model_34))
