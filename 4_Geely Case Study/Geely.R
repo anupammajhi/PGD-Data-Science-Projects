@@ -509,3 +509,21 @@ model_30 <- lm(price~enginelocation+wheelbase+enginesize+
                  enginetyperotor+companyaudi+companybmw+
                  companybuick+companyjaguar+companymazda+companyporsche+
                  companysaab+hp2wRatio,
+               data = cars.Train)
+summary(model_30)
+# R-squared: 0.9548  Adjusted-R-squared:0.9479 . Hence not much change in result.
+sort(vif(model_30))
+# enginesize has hight vif and is less significant. Hence removing from next model.
+
+
+# Model 31 : after removing enginesize
+model_31 <- lm(price~enginelocation+wheelbase+
+                horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 enginetyperotor+companyaudi+companybmw+
+                 companybuick+companyjaguar+companymazda+companyporsche+
+                 companysaab+hp2wRatio,
+               data = cars.Train)
+summary(model_31)
+# R-squared: 0.9529  Adjusted-R-squared:0.9461 . Hence not much change in result.
+sort(vif(model_31))
+# enginetyperotor is less significant. Hence removing from next model.
