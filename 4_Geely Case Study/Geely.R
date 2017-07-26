@@ -555,5 +555,3 @@ sort(vif(model_33))
 # Model 34 : after removing citympg
 model_34 <- lm(price~enginelocation+wheelbase+horsepower+peakrpm+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
                  companyaudi+companybmw+companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
-               data = cars.Train)
-summary(model_34)
