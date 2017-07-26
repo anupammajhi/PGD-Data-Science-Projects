@@ -527,3 +527,21 @@ summary(model_31)
 # R-squared: 0.9529  Adjusted-R-squared:0.9461 . Hence not much change in result.
 sort(vif(model_31))
 # enginetyperotor is less significant. Hence removing from next model.
+
+
+# Model 32 : after removing enginetyperotor
+model_32 <- lm(price~enginelocation+wheelbase+
+                 horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 companyaudi+companybmw+
+                 companybuick+companyjaguar+companymazda+companyporsche+
+                 companysaab+hp2wRatio,
+               data = cars.Train)
+summary(model_32)
+# R-squared: 0.9520  Adjusted-R-squared:0.9455 . Hence not much change in result.
+sort(vif(model_32))
+# companysaab is less significant. Hence removing from next model.
+
+
+# Model 33 : after removing companysaab
+model_33 <- lm(price~enginelocation+wheelbase+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 companyaudi+companybmw+companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
