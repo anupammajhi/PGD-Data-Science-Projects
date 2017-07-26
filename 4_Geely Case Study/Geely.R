@@ -543,5 +543,3 @@ sort(vif(model_32))
 
 
 # Model 33 : after removing companysaab
-model_33 <- lm(price~enginelocation+wheelbase+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
-                 companyaudi+companybmw+companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
