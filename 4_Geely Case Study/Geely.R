@@ -468,3 +468,23 @@ sort(vif(model_26))
 model_27 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
                  compressionratio+horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
                  enginetyperotor+companyaudi+companybmw+
+                 companybuick+companyjaguar+companymazda+companyporsche+
+                 companysaab+companyvolvo+hp2wRatio,
+               data = cars.Train)
+summary(model_27)
+# R-squared: 0.9598  Adjusted-R-squared:0.9525 . Hence not much change in result.
+sort(vif(model_27))
+# compressionratio has high vif and is less significant. Hence removing from next model.
+
+
+# Model 28 : after removing compressionratio
+model_28 <- lm(price~fueltype+enginelocation+wheelbase+enginesize+
+                 horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 enginetyperotor+companyaudi+companybmw+
+                 companybuick+companyjaguar+companymazda+companyporsche+
+                 companysaab+companyvolvo+hp2wRatio,
+               data = cars.Train)
+summary(model_28)
+# R-squared: 0.9563  Adjusted-R-squared:0.9488 . Hence not much change in result.
+sort(vif(model_28))
+# fueltype is less significant. Hence removing from next model.
