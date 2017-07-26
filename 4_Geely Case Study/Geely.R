@@ -488,3 +488,24 @@ summary(model_28)
 # R-squared: 0.9563  Adjusted-R-squared:0.9488 . Hence not much change in result.
 sort(vif(model_28))
 # fueltype is less significant. Hence removing from next model.
+
+
+# Model 29 : after removing fueltype
+model_29 <- lm(price~enginelocation+wheelbase+enginesize+
+                 horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 enginetyperotor+companyaudi+companybmw+
+                 companybuick+companyjaguar+companymazda+companyporsche+
+                 companysaab+companyvolvo+hp2wRatio,
+               data = cars.Train)
+summary(model_29)
+# R-squared: 0.9562  Adjusted-R-squared:0.9491 . Hence not much change in result.
+sort(vif(model_29))
+# companyvolvo is less significant. Hence removing from next model.
+
+
+# Model 30 : after removing companyvolvo
+model_30 <- lm(price~enginelocation+wheelbase+enginesize+
+                 horsepower+peakrpm+citympg+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 enginetyperotor+companyaudi+companybmw+
+                 companybuick+companyjaguar+companymazda+companyporsche+
+                 companysaab+hp2wRatio,
