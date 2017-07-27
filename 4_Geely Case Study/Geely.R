@@ -559,5 +559,3 @@ model_34 <- lm(price~enginelocation+wheelbase+horsepower+peakrpm+carbodyhardtop+
 summary(model_34)
 # R-squared: 0.9498  Adjusted-R-squared:0.9439 . Hence not much change in result.
 sort(vif(model_34))
-# carbodyhardtop is less significant. Hence removing from next model.
-
