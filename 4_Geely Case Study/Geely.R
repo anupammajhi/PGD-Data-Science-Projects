@@ -561,5 +561,3 @@ summary(model_34)
 sort(vif(model_34))
 # carbodyhardtop is less significant. Hence removing from next model.
 
-
-# Model 35 : after removing carbodyhardtop
