@@ -550,6 +550,3 @@ summary(model_33)
 # R-squared: 0.9509  Adjusted-R-squared:0.9447 . Hence not much change in result.
 sort(vif(model_33))
 # citympg is less significant. Hence removing from next model.
-
-
-# Model 34 : after removing citympg
