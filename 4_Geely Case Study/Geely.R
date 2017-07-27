@@ -550,3 +550,18 @@ summary(model_33)
 # R-squared: 0.9509  Adjusted-R-squared:0.9447 . Hence not much change in result.
 sort(vif(model_33))
 # citympg is less significant. Hence removing from next model.
+
+
+# Model 34 : after removing citympg
+model_34 <- lm(price~enginelocation+wheelbase+horsepower+peakrpm+carbodyhardtop+carbodyhatchback+carbodysedan+carbodywagon+
+                 companyaudi+companybmw+companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
+               data = cars.Train)
+summary(model_34)
+# R-squared: 0.9498  Adjusted-R-squared:0.9439 . Hence not much change in result.
+sort(vif(model_34))
+# carbodyhardtop is less significant. Hence removing from next model.
+
+
+# Model 35 : after removing carbodyhardtop
+model_35 <- lm(price~enginelocation+wheelbase+horsepower+peakrpm+carbodyhatchback+carbodysedan+carbodywagon+
+                 companyaudi+companybmw+companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
