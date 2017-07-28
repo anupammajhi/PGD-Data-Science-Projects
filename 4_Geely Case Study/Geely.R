@@ -571,5 +571,3 @@ summary(model_35)
 sort(vif(model_35))
 # peakrpm is less significant. Hence removing from next model.
 
-
-# Model 36 : after removing peakrpm
