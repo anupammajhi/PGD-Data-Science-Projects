@@ -569,5 +569,3 @@ model_35 <- lm(price~enginelocation+wheelbase+horsepower+peakrpm+carbodyhatchbac
 summary(model_35)
 # R-squared: 0.9482  Adjusted-R-squared:0.9425 . Hence not much change in result.
 sort(vif(model_35))
-# peakrpm is less significant. Hence removing from next model.
-
