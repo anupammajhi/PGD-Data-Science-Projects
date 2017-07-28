@@ -586,5 +586,3 @@ sort(vif(model_36))
 model_37 <- lm(price~enginelocation+wheelbase+horsepower+carbodyhatchback+carbodywagon+companyaudi+companybmw+
                  companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
                data = cars.Train)
-summary(model_37)
-# R-squared: 0.9426  Adjusted-R-squared:0.9373 . Hence not much change in result.
