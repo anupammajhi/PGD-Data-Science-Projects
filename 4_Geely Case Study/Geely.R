@@ -606,3 +606,23 @@ sort(vif(model_38))
 model_39 <- lm(price~enginelocation+wheelbase+horsepower+companyaudi+companybmw+
                  companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
                data = cars.Train)
+summary(model_39)
+# R-squared: 0.9394  Adjusted-R-squared:0.9349 . Hence not much change in result.
+sort(vif(model_39))
+# wheelbase is less significant. Hence removing from next model.
+
+
+# Model 40 : after removing wheelbase
+model_40 <- lm(price~enginelocation+horsepower+companyaudi+companybmw+
+                 companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
+               data = cars.Train)
+summary(model_40)
+# R-squared: 0.9354  Adjusted-R-squared:0.9311 . Hence not much change in result.
+sort(vif(model_40))
+# companymazda is less significant. Hence removing from next model.
+
+
+# Model 41 : after removing companymazda
+model_41 <- lm(price~enginelocation+horsepower+companyaudi+companybmw+
+                 companybuick+companyjaguar+companyporsche+hp2wRatio,
+               data = cars.Train)
