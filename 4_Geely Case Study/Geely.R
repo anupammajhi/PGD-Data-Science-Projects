@@ -569,3 +569,22 @@ model_35 <- lm(price~enginelocation+wheelbase+horsepower+peakrpm+carbodyhatchbac
 summary(model_35)
 # R-squared: 0.9482  Adjusted-R-squared:0.9425 . Hence not much change in result.
 sort(vif(model_35))
+# peakrpm is less significant. Hence removing from next model.
+
+
+# Model 36 : after removing peakrpm
+model_36 <- lm(price~enginelocation+wheelbase+horsepower+carbodyhatchback+carbodysedan+carbodywagon+
+                 companyaudi+companybmw+companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
+               data = cars.Train)
+summary(model_36)
+# R-squared: 0.9452  Adjusted-R-squared:0.9398 . Hence not much change in result.
+sort(vif(model_36))
+# carbodysedan is less significant. Hence removing from next model.
+
+
+# Model 37 : after removing carbodysedan
+model_37 <- lm(price~enginelocation+wheelbase+horsepower+carbodyhatchback+carbodywagon+companyaudi+companybmw+
+                 companybuick+companyjaguar+companymazda+companyporsche+hp2wRatio,
+               data = cars.Train)
+summary(model_37)
+# R-squared: 0.9426  Adjusted-R-squared:0.9373 . Hence not much change in result.
