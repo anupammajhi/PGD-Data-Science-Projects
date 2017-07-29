@@ -642,3 +642,24 @@ sort(vif(model_42))
 # companyaudi is less significant. Hence removing from next model.
 
 
+# Model 43 : after removing companyaudi
+model_43 <- lm(price~enginelocation+horsepower+companybmw+
+                 companybuick+companyjaguar+hp2wRatio,
+               data = cars.Train)
+summary(model_43)
+# R-squared: 0.9210  Adjusted-R-squared:0.9176 . Hence not much change in result.
+sort(vif(model_43))
+# companyjaguar is less significant. Hence removing from next model.
+
+
+# Model 44 : after removing companyjaguar
+model_44 <- lm(price~enginelocation+horsepower+companybmw+
+                 companybuick+hp2wRatio,
+               data = cars.Train)
+summary(model_44)
+# R-squared: 0.9163  Adjusted-R-squared:0.9133 . Hence not much change in result.
+sort(vif(model_44))
+
+# Since all the variables are significant now, we will check and predict values from test set
+predict_1 <- predict(model_44,cars.Test[,names(cars.Test) != 'price'])
+
