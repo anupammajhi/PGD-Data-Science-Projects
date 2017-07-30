@@ -663,3 +663,12 @@ sort(vif(model_44))
 # Since all the variables are significant now, we will check and predict values from test set
 predict_1 <- predict(model_44,cars.Test[,names(cars.Test) != 'price'])
 
+cars.Test$test_price <- predict_1
+
+#Check correlation on test data
+r <- (cor(predict_1,cars.Test$price))^2
+r
+rsquared <- r^2
+rsquared
+
+# According to the model enginelocation,horsepower,companybmw,companybuick,hp2wRatio are the important variables that decide the price of the cars
