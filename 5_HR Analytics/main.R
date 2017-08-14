@@ -69,3 +69,33 @@ replace_NA_by_mean <- function(DFcolumn){
   
   
 # gen_data : Data Cleaning and Processing
+  
+  # Check for NA
+  sapply(gen_data, function(x){sum(is.na(x))}) # NA values found; NumCompaniesWorked:19, TotalWorkingYears:9
+  gen_data[which(is.na(gen_data$NumCompaniesWorked)),]
+  gen_data[which(is.na(gen_data$TotalWorkingYears)),]
+  
+  # Imputing NA values with median NumCompaniesWorked based on TotalWorkingYears
+  # To achieve this we take the value of TotalWorkingYears for the corresponding row of NA NumCompaniesWorked and compute the median of NumCompaniesWorked with all rows having same TotalWorkingYears
+  gen_data[which(is.na(gen_data$NumCompaniesWorked)),"NumCompaniesWorked"] <- sapply(gen_data[which(is.na(gen_data$NumCompaniesWorked)),"TotalWorkingYears"], function(x){
+    round(median(gen_data$NumCompaniesWorked[which(gen_data$TotalWorkingYears == x)],na.rm = T))
+  })
+  
+  # Imputing NA values with mean TotalWorkingYears based on NumCompaniesWorked
+  # To achieve this we take the value of NumCompaniesWorked for the corresponding row of NA TotalWorkingYears and compute the median of TotalWorkingYears with all rows having same NumCompaniesWorked
+  gen_data[which(is.na(gen_data$TotalWorkingYears)),"TotalWorkingYears"] <- sapply(gen_data[which(is.na(gen_data$TotalWorkingYears)),"NumCompaniesWorked"], function(x){
+    round(median(gen_data$TotalWorkingYears[which(gen_data$NumCompaniesWorked == x)],na.rm = T))
+  })
+  
+  # Check Data Validity
+  sapply(gen_data, function(x){levels(as.factor(x))}) # Levels are OK and within limit, No invalid data
+  
+# In_time and Out_time : Data Cleaning and Processing
+
+  # NA values in these simply mean the employee didn't come to office and the biometric was not registered, hence not imputing
+  
+  # Coverting time to POSIXlt data for easy calculation of times  
+  in_time_1 <- data.frame(sapply(in_time[,-1], function(x){ as.POSIXlt(x, format = "%Y-%m-%d %H:%M:%S")} ))
+  out_time_1 <- data.frame(sapply(out_time[,-1], function(x){ as.POSIXlt(x, format = "%Y-%m-%d %H:%M:%S")} ))
+
+
