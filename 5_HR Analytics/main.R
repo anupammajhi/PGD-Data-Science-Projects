@@ -145,12 +145,3 @@ replace_NA_by_mean <- function(DFcolumn){
 
 #======================== PLOTS ===========================
    
-  # Univariate
-  # Attrition, JobSatisfaction, WorkLifeBalance, YearsSinceLastPromotion
-  
-  # Bivariate
-  # MariatlStatus~Attrition , OverTime~Attrition , Business-Travel~Attrition , YearWithCurrManager~Attrition
-
-  # Attrition Frequency  
-  mainDF %>%
-    ggplot(aes(x = Attrition)) +
