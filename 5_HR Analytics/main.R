@@ -118,3 +118,48 @@ replace_NA_by_mean <- function(DFcolumn){
   # Derive Variable : out_of_office
   
   # calculating number of days on off/leave/out of office 
+  time_df$out_of_office <- rowSums(is.na(time_1))
+  
+  # Derive Variable : overtime_count
+  
+  # calculating number of days worked overtime
+  time_df$overtime_count <- rowSums(time_1 > 8,na.rm = T)
+  
+  # Derive Variable : undertime_count
+  
+  # calculating number of days worked undertime (less than 6 hours)
+  time_df$undertime_count <- rowSums(time_1 < 6,na.rm = T)
+  
+  # Check order of Employee ID before merging  
+  setdiff(time_df$EmployeeID,gen_data$EmployeeID)
+  
+# Merging all Data frames
+  
+  mainDF <- merge(gen_data,emp_survey,by = "EmployeeID")
+  mainDF <- merge(mainDF,manager_survey,by = "EmployeeID")
+  mainDF <- merge(mainDF,time_df,by = "EmployeeID")  
+
+# Checking for any remaining NA  
+  sapply(mainDF, function(x){sum(is.na(x))})  
+  
+
+#======================== PLOTS ===========================
+   
+  # Univariate
+  # Attrition, JobSatisfaction, WorkLifeBalance, YearsSinceLastPromotion
+  
+  # Bivariate
+  # MariatlStatus~Attrition , OverTime~Attrition , Business-Travel~Attrition , YearWithCurrManager~Attrition
+
+  # Attrition Frequency  
+  mainDF %>%
+    ggplot(aes(x = Attrition)) +
+    geom_bar(aes(y = (..count..), fill = Attrition)) +
+    geom_text(aes(y = (..count..), label = scales::percent((..count..)/sum(..count..))), stat = "count", vjust = -0.25) +
+    labs(title = "Attrition Frequency", y = "Count", x = "Attrition")+
+    scale_fill_manual(values = c("Yes" = "darkred", "No" = "darkgreen"))
+  
+  # There is an attrition of 16.1%
+  
+
+  # Job Satisfaction
