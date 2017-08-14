@@ -91,11 +91,3 @@ replace_NA_by_mean <- function(DFcolumn){
   sapply(gen_data, function(x){levels(as.factor(x))}) # Levels are OK and within limit, No invalid data
   
 # In_time and Out_time : Data Cleaning and Processing
-
-  # NA values in these simply mean the employee didn't come to office and the biometric was not registered, hence not imputing
-  
-  # Coverting time to POSIXlt data for easy calculation of times  
-  in_time_1 <- data.frame(sapply(in_time[,-1], function(x){ as.POSIXlt(x, format = "%Y-%m-%d %H:%M:%S")} ))
-  out_time_1 <- data.frame(sapply(out_time[,-1], function(x){ as.POSIXlt(x, format = "%Y-%m-%d %H:%M:%S")} ))
-
-
