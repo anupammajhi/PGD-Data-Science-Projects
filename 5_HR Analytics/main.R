@@ -118,9 +118,3 @@ replace_NA_by_mean <- function(DFcolumn){
   # Derive Variable : out_of_office
   
   # calculating number of days on off/leave/out of office 
-  time_df$out_of_office <- rowSums(is.na(time_1))
-  
-  # Derive Variable : overtime_count
-  
-  # calculating number of days worked overtime
-  time_df$overtime_count <- rowSums(time_1 > 8,na.rm = T)
