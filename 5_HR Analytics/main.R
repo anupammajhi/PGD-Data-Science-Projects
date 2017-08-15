@@ -145,3 +145,34 @@ replace_NA_by_mean <- function(DFcolumn){
 
 #======================== PLOTS ===========================
    
+  # Univariate
+  # Attrition, JobSatisfaction, WorkLifeBalance, YearsSinceLastPromotion
+  
+  # Bivariate
+  # MariatlStatus~Attrition , OverTime~Attrition , Business-Travel~Attrition , YearWithCurrManager~Attrition
+
+  # Attrition Frequency  
+  mainDF %>%
+    ggplot(aes(x = Attrition)) +
+    geom_bar(aes(y = (..count..), fill = Attrition)) +
+    geom_text(aes(y = (..count..), label = scales::percent((..count..)/sum(..count..))), stat = "count", vjust = -0.25) +
+    labs(title = "Attrition Frequency", y = "Count", x = "Attrition")+
+    scale_fill_manual(values = c("Yes" = "darkred", "No" = "darkgreen"))
+  
+  # There is an attrition of 16.1%
+  
+
+  # Job Satisfaction
+  mainDF %>%
+    ggplot(aes(x = as.factor(JobSatisfaction))) +
+    geom_bar(aes(y = (..count..), fill = JobSatisfaction)) +
+    geom_text(aes(y = (..count..), label = scales::percent((..count..)/sum(..count..))), stat = "count", vjust = -0.25) +
+    labs(title = "Job Satisfaction Score", y = "Count", x = "Job Satisfaction Levels")+
+    scale_fill_continuous(low = "darkred", high = "darkgreen")
+  
+  # Though Job Satisfaction seems to be quite good , still there are about 40% employees with 2 or lower Job satisfaction rating
+  
+  
+  # Work Life balance
+  mainDF %>%
+    ggplot(aes(x = as.factor(WorkLifeBalance))) +
