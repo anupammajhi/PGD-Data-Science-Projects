@@ -154,9 +154,3 @@ replace_NA_by_mean <- function(DFcolumn){
   # Attrition Frequency  
   mainDF %>%
     ggplot(aes(x = Attrition)) +
-    geom_bar(aes(y = (..count..), fill = Attrition)) +
-    geom_text(aes(y = (..count..), label = scales::percent((..count..)/sum(..count..))), stat = "count", vjust = -0.25) +
-    labs(title = "Attrition Frequency", y = "Count", x = "Attrition")+
-    scale_fill_manual(values = c("Yes" = "darkred", "No" = "darkgreen"))
-  
-  # There is an attrition of 16.1%
