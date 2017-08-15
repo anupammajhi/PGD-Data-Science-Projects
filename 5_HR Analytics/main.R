@@ -160,12 +160,3 @@ replace_NA_by_mean <- function(DFcolumn){
     scale_fill_manual(values = c("Yes" = "darkred", "No" = "darkgreen"))
   
   # There is an attrition of 16.1%
-  
-
-  # Job Satisfaction
-  mainDF %>%
-    ggplot(aes(x = as.factor(JobSatisfaction))) +
-    geom_bar(aes(y = (..count..), fill = JobSatisfaction)) +
-    geom_text(aes(y = (..count..), label = scales::percent((..count..)/sum(..count..))), stat = "count", vjust = -0.25) +
-    labs(title = "Job Satisfaction Score", y = "Count", x = "Job Satisfaction Levels")+
-    scale_fill_continuous(low = "darkred", high = "darkgreen")
