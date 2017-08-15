@@ -169,10 +169,3 @@ replace_NA_by_mean <- function(DFcolumn){
     geom_text(aes(y = (..count..), label = scales::percent((..count..)/sum(..count..))), stat = "count", vjust = -0.25) +
     labs(title = "Job Satisfaction Score", y = "Count", x = "Job Satisfaction Levels")+
     scale_fill_continuous(low = "darkred", high = "darkgreen")
-  
-  # Though Job Satisfaction seems to be quite good , still there are about 40% employees with 2 or lower Job satisfaction rating
-  
-  
-  # Work Life balance
-  mainDF %>%
-    ggplot(aes(x = as.factor(WorkLifeBalance))) +
