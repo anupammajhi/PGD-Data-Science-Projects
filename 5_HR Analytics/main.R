@@ -259,3 +259,46 @@ replace_NA_by_mean <- function(DFcolumn){
   
   boxplot(mainDF$StockOptionLevel)
   boxplot.stats(mainDF$StockOptionLevel)  
+  hist(mainDF$StockOptionLevel)  # Since the outliers are not extreme cases and data has considerable number of these, hence not treating outliers
+  
+  boxplot(mainDF$TotalWorkingYears)
+  boxplot.stats(mainDF$TotalWorkingYears)
+  hist(mainDF$TotalWorkingYears) # Since the outliers are not extreme cases and data shows a gradual change, hence not treating outliers
+  
+  boxplot(mainDF$TrainingTimesLastYear) # Since the outliers are not extreme cases and data has considerable number of these, hence not treating outliers
+  
+  boxplot(mainDF$YearsAtCompany)
+  boxplot.stats(mainDF$YearsAtCompany)
+  hist(mainDF$YearsAtCompany) # Need to cap outliers
+  mainDF[which(mainDF$YearsAtCompany > 22),"YearsAtCompany"] <- 22 # Capping to 22
+
+  boxplot(mainDF$YearsSinceLastPromotion)  
+  boxplot.stats(mainDF$YearsSinceLastPromotion) 
+  hist(mainDF$YearsSinceLastPromotion) # Since the outliers are not extreme cases and data has considerable number of these, hence not treating outliers  
+  
+  boxplot(mainDF$YearsWithCurrManager)  
+  boxplot.stats(mainDF$YearsWithCurrManager) # Since the outliers are not extreme cases and data has considerable number of these, hence not treating outliers
+  
+  boxplot(mainDF$PerformanceRating) 
+  hist(mainDF$PerformanceRating) # Since there are only 2 levels and both are quite significant, hence not treating outliers
+  
+  boxplot(mainDF$worked_hours_mean) # Since the outliers are not extreme cases and data has considerable number of these, hence not treating outliers
+  
+  boxplot(mainDF$undertime_count)
+  boxplot.stats(mainDF$undertime_count) # Since the data is significant and could be vital to the analysis, hence not treating the outliers
+
+
+#========================= MODEL BUILDING - PREPARATIONS =============================  
+    
+# Preparing Variables for Model
+
+  # Variables with only one value  
+  which(sapply(mainDF, function(x){length(levels(as.factor(x)))}) == 1)
+  # Since "EmployeeCount" "Over18" and "StandardHours" have only one variable in columns, hence removing them
+  mainDF <- mainDF[,-which(sapply(mainDF, function(x){length(levels(as.factor(x)))}) == 1)]
+  
+  # Find variables with binary values to convert to 1 and 0
+  which(sapply(mainDF, function(x){length(levels(as.factor(x)))}) == 2) # Attrition,Gender,PerformanceRating
+  
+  levels(mainDF$Attrition)
+  levels(mainDF$Attrition) <- c(0,1) # 1 indicates yes
