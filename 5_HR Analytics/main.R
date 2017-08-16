@@ -259,11 +259,3 @@ replace_NA_by_mean <- function(DFcolumn){
   
   boxplot(mainDF$StockOptionLevel)
   boxplot.stats(mainDF$StockOptionLevel)  
-  hist(mainDF$StockOptionLevel)  # Since the outliers are not extreme cases and data has considerable number of these, hence not treating outliers
-  
-  boxplot(mainDF$TotalWorkingYears)
-  boxplot.stats(mainDF$TotalWorkingYears)
-  hist(mainDF$TotalWorkingYears) # Since the outliers are not extreme cases and data shows a gradual change, hence not treating outliers
-  
-  boxplot(mainDF$TrainingTimesLastYear) # Since the outliers are not extreme cases and data has considerable number of these, hence not treating outliers
-  
