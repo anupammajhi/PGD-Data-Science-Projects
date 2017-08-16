@@ -267,10 +267,3 @@ replace_NA_by_mean <- function(DFcolumn){
   
   boxplot(mainDF$TrainingTimesLastYear) # Since the outliers are not extreme cases and data has considerable number of these, hence not treating outliers
   
-  boxplot(mainDF$YearsAtCompany)
-  boxplot.stats(mainDF$YearsAtCompany)
-  hist(mainDF$YearsAtCompany) # Need to cap outliers
-  mainDF[which(mainDF$YearsAtCompany > 22),"YearsAtCompany"] <- 22 # Capping to 22
-
-  boxplot(mainDF$YearsSinceLastPromotion)  
-  boxplot.stats(mainDF$YearsSinceLastPromotion) 
