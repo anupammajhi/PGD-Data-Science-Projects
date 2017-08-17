@@ -436,10 +436,3 @@ replace_NA_by_mean <- function(DFcolumn){
   # Removing StockOptionLevel to low significance
   
   model_10 <- glm(Attrition ~ BusinessTravel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
-                   EducationField.xTechnical.Degree+JobRole.xManager+JobRole.xManufacturing.Director+
-                   MaritalStatus.xMarried+MaritalStatus.xSingle+Age+NumCompaniesWorked+TotalWorkingYears+TrainingTimesLastYear+
-                   YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
-                 data = train , family = "binomial")
-  
-  summary(model_10) # AIC:2100 
-  sort(vif(model_10))
