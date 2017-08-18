@@ -422,11 +422,3 @@ replace_NA_by_mean <- function(DFcolumn){
   summary(model_8) # AIC:2099    
   sort(vif(model_8))
 
-  # Removing JobRole.xSales.Representative due to low significance
-  
-  model_9 <- glm(Attrition ~ BusinessTravel+StockOptionLevel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
-                   EducationField.xTechnical.Degree+JobRole.xManager+JobRole.xManufacturing.Director+
-                   MaritalStatus.xMarried+MaritalStatus.xSingle+Age+NumCompaniesWorked+TotalWorkingYears+TrainingTimesLastYear+
-                   YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
-                 data = train , family = "binomial")
-  
