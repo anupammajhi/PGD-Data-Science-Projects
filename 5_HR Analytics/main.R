@@ -481,12 +481,3 @@ replace_NA_by_mean <- function(DFcolumn){
   
   model_14 <- glm(Attrition ~ BusinessTravel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
                     JobRole.xManufacturing.Director+MaritalStatus.xSingle+
-                    Age+NumCompaniesWorked+TotalWorkingYears+
-                    YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
-                  data = train , family = "binomial")
-  
-  summary(model_14)  # AIC:2113   
-  sort(vif(model_14))
-
-  # All values are significant and AIC seems to be within expected value hence finalizing model  
-    
