@@ -490,11 +490,3 @@ replace_NA_by_mean <- function(DFcolumn){
 
   # All values are significant and AIC seems to be within expected value hence finalizing model  
     
-  final_model <- model_14
-  summary(final_model)
-  
-#========================== MODEL EVALUATION - TESTING MODEL ==========================
-  
-  # Predicted probabilities for test data
-  
-  test_pred = predict(final_model, type = "response", newdata = test[-1])
