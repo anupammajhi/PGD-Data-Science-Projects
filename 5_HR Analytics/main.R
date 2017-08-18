@@ -430,9 +430,3 @@ replace_NA_by_mean <- function(DFcolumn){
                    YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
                  data = train , family = "binomial")
   
-  summary(model_9) # AIC:2099
-  sort(vif(model_9))
-  
-  # Removing StockOptionLevel to low significance
-  
-  model_10 <- glm(Attrition ~ BusinessTravel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
