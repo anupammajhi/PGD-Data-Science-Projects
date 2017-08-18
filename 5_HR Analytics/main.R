@@ -516,3 +516,44 @@ replace_NA_by_mean <- function(DFcolumn){
   
   # Measuring sensitivity, specificity and accuracy with graph
 
+  perform_cutoff_reg <- function(cutoff) 
+  {
+    predicted_attrition <- factor(ifelse(test_pred >= cutoff, "Yes", "No"))
+    conf <- confusionMatrix(predicted_attrition, test_actual_attrition, positive = "Yes")
+    accu <- conf$overall[1]
+    sens <- conf$byClass[1]
+    spec <- conf$byClass[2]
+    out <- t(as.matrix(c(sens, spec, accu))) 
+    colnames(out) <- c("sensitivity", "specificity", "accuracy")
+    return(out)
+  }
+  
+    
+  # Creating 100 x 3 matrix of cutoffs ranging from 0.01 to 0.90
+  
+  s_100 = seq(.01,.90,length=100) # creating a sequence of 100 periods between 0.01 and 0.90
+
+  Out_Mat = matrix(0,100,3)  # Creating a matrix of 100x3
+
+  # filling up matrix with values at different cutoffs
+  for(i in 1:100){
+    Out_Mat[i,] = perform_cutoff_reg(s_100[i])
+  } 
+
+  # plot sensitivity, specificity, accuracy graph
+  plot(s_100, Out_Mat[,1],xlab="Cutoff",ylab="Value",cex.lab=1.5,cex.axis=1.5,ylim=c(0,1),type="l",lwd=2,axes=FALSE,col=2)
+  axis(1,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1.5)
+  axis(2,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1.5)
+  lines(s_100,Out_Mat[,2],col="green",lwd=2)
+  lines(s_100,Out_Mat[,3],col=4,lwd=2)
+  box()
+  legend(0,.50,col=c(2,"green",4,"red"),lwd=c(2,2,2,2),c("Sensitivity","Specificity","Accuracy"))
+
+  # finding intersecting values 
+  cutoff <- s_100[which(abs(Out_Mat[,1]-Out_Mat[,2])<0.02)]
+  # 0.18 is optimal as per calculation based on the intersection
+  
+  test_cutoff_attrition <- factor(ifelse(test_pred >= 0.18, "Yes", "No"))
+  confusionMatrix(test_cutoff_attrition, test_actual_attrition, positive = "Yes") # Accuracy : 0.75 , Sensitivity : 0.76 , Specificity : 0.75, Balanced Accuracy : 0.75
+
+  # Cutoff depends on the business scenario. We will settle at 0.2 since that gives us better sensitivity and specificity and has a good Balanced Accuracy
