@@ -473,11 +473,3 @@ replace_NA_by_mean <- function(DFcolumn){
                     Age+NumCompaniesWorked+TotalWorkingYears+TrainingTimesLastYear+
                     YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
                   data = train , family = "binomial")
-  
-  summary(model_13) # AIC:2104
-  sort(vif(model_13))
-
-  # Removing TrainingTimesLastYear due to low significance    
-  
-  model_14 <- glm(Attrition ~ BusinessTravel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
-                    JobRole.xManufacturing.Director+MaritalStatus.xSingle+
