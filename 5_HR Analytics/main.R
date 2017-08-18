@@ -467,3 +467,34 @@ replace_NA_by_mean <- function(DFcolumn){
   sort(vif(model_12))
 
   # Removing MaritalStatus.xMarried due to low significance
+  
+  model_13 <- glm(Attrition ~ BusinessTravel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
+                    JobRole.xManufacturing.Director+MaritalStatus.xSingle+
+                    Age+NumCompaniesWorked+TotalWorkingYears+TrainingTimesLastYear+
+                    YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
+                  data = train , family = "binomial")
+  
+  summary(model_13) # AIC:2104
+  sort(vif(model_13))
+
+  # Removing TrainingTimesLastYear due to low significance    
+  
+  model_14 <- glm(Attrition ~ BusinessTravel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
+                    JobRole.xManufacturing.Director+MaritalStatus.xSingle+
+                    Age+NumCompaniesWorked+TotalWorkingYears+
+                    YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
+                  data = train , family = "binomial")
+  
+  summary(model_14)  # AIC:2113   
+  sort(vif(model_14))
+
+  # All values are significant and AIC seems to be within expected value hence finalizing model  
+    
+  final_model <- model_14
+  summary(final_model)
+  
+#========================== MODEL EVALUATION - TESTING MODEL ==========================
+  
+  # Predicted probabilities for test data
+  
+  test_pred = predict(final_model, type = "response", newdata = test[-1])
