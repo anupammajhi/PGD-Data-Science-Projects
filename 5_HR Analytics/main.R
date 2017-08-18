@@ -422,3 +422,48 @@ replace_NA_by_mean <- function(DFcolumn){
   summary(model_8) # AIC:2099    
   sort(vif(model_8))
 
+  # Removing JobRole.xSales.Representative due to low significance
+  
+  model_9 <- glm(Attrition ~ BusinessTravel+StockOptionLevel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
+                   EducationField.xTechnical.Degree+JobRole.xManager+JobRole.xManufacturing.Director+
+                   MaritalStatus.xMarried+MaritalStatus.xSingle+Age+NumCompaniesWorked+TotalWorkingYears+TrainingTimesLastYear+
+                   YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
+                 data = train , family = "binomial")
+  
+  summary(model_9) # AIC:2099
+  sort(vif(model_9))
+  
+  # Removing StockOptionLevel to low significance
+  
+  model_10 <- glm(Attrition ~ BusinessTravel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
+                   EducationField.xTechnical.Degree+JobRole.xManager+JobRole.xManufacturing.Director+
+                   MaritalStatus.xMarried+MaritalStatus.xSingle+Age+NumCompaniesWorked+TotalWorkingYears+TrainingTimesLastYear+
+                   YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
+                 data = train , family = "binomial")
+  
+  summary(model_10) # AIC:2100 
+  sort(vif(model_10))
+  
+  # Removing JobRole.xManager due to low significance
+  
+  model_11 <- glm(Attrition ~ BusinessTravel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
+                    EducationField.xTechnical.Degree+JobRole.xManufacturing.Director+
+                    MaritalStatus.xMarried+MaritalStatus.xSingle+Age+NumCompaniesWorked+TotalWorkingYears+TrainingTimesLastYear+
+                    YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
+                  data = train , family = "binomial")
+  
+  summary(model_11) # AIC:2100
+  sort(vif(model_11))
+
+  # Removing EducationField.xTechnical.Degree due to low significance    
+  
+  model_12 <- glm(Attrition ~ BusinessTravel+EnvironmentSatisfaction+JobSatisfaction+WorkLifeBalance+
+                    JobRole.xManufacturing.Director+MaritalStatus.xMarried+MaritalStatus.xSingle+
+                    Age+NumCompaniesWorked+TotalWorkingYears+TrainingTimesLastYear+
+                    YearsSinceLastPromotion+YearsWithCurrManager+overtime_count,
+                  data = train , family = "binomial")
+  
+  summary(model_12)  # AIC:2102  
+  sort(vif(model_12))
+
+  # Removing MaritalStatus.xMarried due to low significance
