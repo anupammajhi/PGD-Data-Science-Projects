@@ -548,12 +548,3 @@ replace_NA_by_mean <- function(DFcolumn){
   lines(s_100,Out_Mat[,3],col=4,lwd=2)
   box()
   legend(0,.50,col=c(2,"green",4,"red"),lwd=c(2,2,2,2),c("Sensitivity","Specificity","Accuracy"))
-
-  # finding intersecting values 
-  cutoff <- s_100[which(abs(Out_Mat[,1]-Out_Mat[,2])<0.02)]
-  # 0.18 is optimal as per calculation based on the intersection
-  
-  test_cutoff_attrition <- factor(ifelse(test_pred >= 0.18, "Yes", "No"))
-  confusionMatrix(test_cutoff_attrition, test_actual_attrition, positive = "Yes") # Accuracy : 0.75 , Sensitivity : 0.76 , Specificity : 0.75, Balanced Accuracy : 0.75
-
-  # Cutoff depends on the business scenario. We will settle at 0.2 since that gives us better sensitivity and specificity and has a good Balanced Accuracy
