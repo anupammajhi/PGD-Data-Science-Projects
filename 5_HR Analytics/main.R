@@ -577,3 +577,23 @@ replace_NA_by_mean <- function(DFcolumn){
   plot(performance_measures_test,main=paste0(' KS=',round(max(ks_table_test*100,1)),'%'), colorize = T)
   lines(x=c(0,1),y=c(0,1))
 
+  # Area under the curve
+  auc <- performance(pred_object_test, "auc")
+  auc@y.values[[1]] # 0.7524349
+  
+  
+  # Lift and Gain Chart
+  
+  performance_measures_test <- performance(pred_object_test, "lift", "rpp")
+  plot(performance_measures_test)
+  
+  lift <- function(labels,predicted_prob,groups=10){
+    if(is.factor(labels)){labels <- as.integer(as.character(labels))}
+    if(is.factor(predicted_prob)){predicted_prob <- as.integer(as.character(predicted_prob))}
+    helper = data.frame(cbind(labels,predicted_prob))
+    helper[,"bucket"] = ntile(-helper[,"predicted_prob"],groups)
+    gaintable = helper %>% group_by(bucket) %>%
+      summarise_at(vars(labels ),funs(total = n(),totalresp=sum(., na.rm = TRUE))) %>%
+      mutate(Cumresp = cumsum(totalresp),Gain=Cumresp/sum(totalresp)*100,Cumlift=Gain/(bucket*(100/groups))) 
+    return(gaintable)
+  }
