@@ -589,11 +589,3 @@ replace_NA_by_mean <- function(DFcolumn){
   
   lift <- function(labels,predicted_prob,groups=10){
     if(is.factor(labels)){labels <- as.integer(as.character(labels))}
-    if(is.factor(predicted_prob)){predicted_prob <- as.integer(as.character(predicted_prob))}
-    helper = data.frame(cbind(labels,predicted_prob))
-    helper[,"bucket"] = ntile(-helper[,"predicted_prob"],groups)
-    gaintable = helper %>% group_by(bucket) %>%
-      summarise_at(vars(labels ),funs(total = n(),totalresp=sum(., na.rm = TRUE))) %>%
-      mutate(Cumresp = cumsum(totalresp),Gain=Cumresp/sum(totalresp)*100,Cumlift=Gain/(bucket*(100/groups))) 
-    return(gaintable)
-  }
