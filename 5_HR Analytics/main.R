@@ -541,10 +541,3 @@ replace_NA_by_mean <- function(DFcolumn){
   } 
 
   # plot sensitivity, specificity, accuracy graph
-  plot(s_100, Out_Mat[,1],xlab="Cutoff",ylab="Value",cex.lab=1.5,cex.axis=1.5,ylim=c(0,1),type="l",lwd=2,axes=FALSE,col=2)
-  axis(1,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1.5)
-  axis(2,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1.5)
-  lines(s_100,Out_Mat[,2],col="green",lwd=2)
-  lines(s_100,Out_Mat[,3],col=4,lwd=2)
-  box()
-  legend(0,.50,col=c(2,"green",4,"red"),lwd=c(2,2,2,2),c("Sensitivity","Specificity","Accuracy"))
