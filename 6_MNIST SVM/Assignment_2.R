@@ -21,3 +21,4 @@ mnistTestDF = read.csv("mnist_test.csv",header = F)
 
 sapply(mnistTrainDF,function(x){sum(is.na(x))}) #No NA Value found
 sapply(mnistTestDF,function(x){sum(is.na(x))}) #No NA Value found
+
