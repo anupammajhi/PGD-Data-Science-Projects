@@ -28,3 +28,9 @@ colnames(mnistTestDF)[1] <- "number"
 
 # Remaining columns contain the pixel values
 
+# Converting the number to factor
+mnistTrainDF$number <- as.factor(mnistTrainDF$number)
+mnistTestDF$number <- as.factor(mnistTestDF$number)
+
+#===== Preparing Train and Test data =====
+
