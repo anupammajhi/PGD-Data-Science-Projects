@@ -22,3 +22,9 @@ mnistTestDF = read.csv("mnist_test.csv",header = F)
 sapply(mnistTrainDF,function(x){sum(is.na(x))}) #No NA Value found
 sapply(mnistTestDF,function(x){sum(is.na(x))}) #No NA Value found
 
+# Renaming first column as number
+colnames(mnistTrainDF)[1] <- "number"
+colnames(mnistTestDF)[1] <- "number"
+
+# Remaining columns contain the pixel values
+
