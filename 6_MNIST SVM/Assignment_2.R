@@ -36,3 +36,4 @@ mnistTestDF$number <- as.factor(mnistTestDF$number)
 
 set.seed(100)
 
+# sampling the train data to 20% (12000 rows) as the train dataset is huge, to make the computation faster
