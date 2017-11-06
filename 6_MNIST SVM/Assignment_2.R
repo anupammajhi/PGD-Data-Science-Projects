@@ -40,3 +40,4 @@ set.seed(100)
 
 trainIndices <- sample(1:nrow(mnistTrainDF),0.20*nrow(mnistTrainDF))
 train <- mnistTrainDF[trainIndices,]
+
