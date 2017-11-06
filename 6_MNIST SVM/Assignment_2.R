@@ -47,3 +47,4 @@ train <- mnistTrainDF[trainIndices,]
 modelLinear <- ksvm(number~., data=train, scale= FALSE, kernel = "vanilladot")
 predictLinear <- predict(modelLinear, mnistTestDF)
 
+confusionMatrix(predictLinear,mnistTestDF$number)   # Accuracy : 0.9181
