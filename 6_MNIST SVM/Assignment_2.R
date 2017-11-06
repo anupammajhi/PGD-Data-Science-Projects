@@ -35,3 +35,4 @@ mnistTestDF$number <- as.factor(mnistTestDF$number)
 #===== Preparing Train and Test data =====
 
 set.seed(100)
+
