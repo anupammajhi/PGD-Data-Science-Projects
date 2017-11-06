@@ -39,3 +39,4 @@ set.seed(100)
 # sampling the train data to 20% (12000 rows) as the train dataset is huge, to make the computation faster
 
 trainIndices <- sample(1:nrow(mnistTrainDF),0.20*nrow(mnistTrainDF))
+train <- mnistTrainDF[trainIndices,]
