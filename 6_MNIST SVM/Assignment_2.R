@@ -41,3 +41,9 @@ set.seed(100)
 trainIndices <- sample(1:nrow(mnistTrainDF),0.20*nrow(mnistTrainDF))
 train <- mnistTrainDF[trainIndices,]
 
+#===== Constructing the model =====
+
+# Using Linear Kernel
+modelLinear <- ksvm(number~., data=train, scale= FALSE, kernel = "vanilladot")
+predictLinear <- predict(modelLinear, mnistTestDF)
+
