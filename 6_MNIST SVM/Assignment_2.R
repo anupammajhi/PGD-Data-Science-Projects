@@ -48,3 +48,4 @@ modelLinear <- ksvm(number~., data=train, scale= FALSE, kernel = "vanilladot")
 predictLinear <- predict(modelLinear, mnistTestDF)
 
 confusionMatrix(predictLinear,mnistTestDF$number)   # Accuracy : 0.9181
+# The accuracy is good enough in linear but since this is a 28x28 pixel data, we may get better accuracy with a RBF kernel
