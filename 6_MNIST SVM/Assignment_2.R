@@ -59,3 +59,10 @@ confusionMatrix(predictRBF,mnistTestDF$number)    # Accuracy : 0.9615
 # The accuracy is much better with RBF Kernel
 
 
+# Using Polynomial kernel
+modelPoly <- ksvm(number~., data=train, scale= FALSE, kernel = "polydot")
+predictPoly <- predict(modelPoly, mnistTestDF)
+
+confusionMatrix(predictPoly,mnistTestDF$number)    # Accuracy : 0.9181
+# The accuracy is good
+
