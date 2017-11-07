@@ -58,3 +58,4 @@ predictRBF <- predict(modelRBF, mnistTestDF)
 confusionMatrix(predictRBF,mnistTestDF$number)    # Accuracy : 0.9615
 # The accuracy is much better with RBF Kernel
 
+
