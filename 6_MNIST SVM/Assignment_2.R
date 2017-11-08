@@ -73,3 +73,4 @@ confusionMatrix(predictPoly,mnistTestDF$number)    # Accuracy : 0.9181
 trainControl <- trainControl(method="cv", number=5)
 metric <- "Accuracy"
 
+set.seed(200)
