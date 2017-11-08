@@ -72,3 +72,4 @@ confusionMatrix(predictPoly,mnistTestDF$number)    # Accuracy : 0.9181
 # using cross validation method in 5 folds and Accuracy metric
 trainControl <- trainControl(method="cv", number=5)
 metric <- "Accuracy"
+
