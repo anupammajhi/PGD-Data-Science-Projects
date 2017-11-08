@@ -75,3 +75,10 @@ metric <- "Accuracy"
 
 set.seed(200)
 
+# ----- LINEAR KERNEL
+# computing results with above setting and Linear kernel
+gridLinear <- expand.grid(.C=c(1,2,3,4,5))
+tuningSvmLinear <- train(number~., data=train, method="svmLinear", metric=metric,tuneGrid=gridLinear, trControl=trainControl)
+#No difference for different C values
+
+print(tuningSvmLinear)
