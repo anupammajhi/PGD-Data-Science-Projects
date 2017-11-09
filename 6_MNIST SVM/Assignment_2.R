@@ -92,3 +92,12 @@ plot(tuningSvmLinear)
 gridRadial <- expand.grid(.sigma=c(0.025, 0.05), .C=c(0.1,0.5,1,2) )
 
 # computing results with above setting and Radial kernel
+tuningSvmRadial <- train(number~., data=train, method="svmRadial", metric=metric,tuneGrid=gridRadial, trControl=trainControl)
+# Accuracy : 0.1136
+# There is no significant difference for different sigma and c values
+
+print(tuningSvmRadial)
+
+plot(tuningSvmRadial)
+
+
