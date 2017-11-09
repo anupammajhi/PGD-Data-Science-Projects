@@ -83,3 +83,12 @@ tuningSvmLinear <- train(number~., data=train, method="svmLinear", metric=metric
 
 print(tuningSvmLinear)
 
+plot(tuningSvmLinear)
+#Accuracy : 0.9103
+
+
+# ----- RADIAL KERNEL
+# preparing grid in combination of s=(0.025 and 0.05) and c=(0.1, 0.5, 1 and 2) to find best combination
+gridRadial <- expand.grid(.sigma=c(0.025, 0.05), .C=c(0.1,0.5,1,2) )
+
+# computing results with above setting and Radial kernel
