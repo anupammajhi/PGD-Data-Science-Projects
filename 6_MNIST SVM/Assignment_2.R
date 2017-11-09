@@ -82,3 +82,4 @@ tuningSvmLinear <- train(number~., data=train, method="svmLinear", metric=metric
 #No difference for different C values
 
 print(tuningSvmLinear)
+
