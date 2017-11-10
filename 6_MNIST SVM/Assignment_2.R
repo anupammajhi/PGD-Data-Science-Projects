@@ -101,3 +101,11 @@ print(tuningSvmRadial)
 plot(tuningSvmRadial)
 
 
+# ----- POLY KERNEL
+# computing results with above setting and Poly kernel
+gridPoly <- expand.grid(.scale=c(0.01,0.02,0.03,0.04,0.05), .C=c(0.1,0.5,1,2,3), .degree=c(1,2,3))
+tuningSvmPoly <- train(number~., data=train, method="svmPoly", metric=metric,tuneGrid=gridPoly, trControl=trainControl)
+# There is no significant difference for different degree and c values
+
+print(tuningSvmPoly)
+
