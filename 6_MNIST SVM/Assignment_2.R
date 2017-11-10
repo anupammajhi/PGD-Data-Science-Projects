@@ -109,4 +109,3 @@ tuningSvmPoly <- train(number~., data=train, method="svmPoly", metric=metric,tun
 
 print(tuningSvmPoly)
 
-plot(tuningSvmPoly)
