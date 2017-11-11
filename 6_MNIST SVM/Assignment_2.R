@@ -110,3 +110,7 @@ tuningSvmPoly <- train(number~., data=train, method="svmPoly", metric=metric,tun
 print(tuningSvmPoly)
 
 plot(tuningSvmPoly)
+
+
+# We can see that a Linear Kernel gives the best result for accuracy when we cross validate.
+# Hence we should go with the linear Model 
