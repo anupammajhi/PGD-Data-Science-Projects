@@ -34,3 +34,37 @@ length(levels(store$Market))
 str(store$Order.Date)
 
 
+
+#------------------------
+#  DATA CLEANING
+#------------------------
+
+
+#Converting Order.Date to a date time object
+
+store$Order.Date <- as.Date(store$Order.Date, format = '%d-%m-%Y')
+
+store$Date <- floor_date(store$Order.Date, unit = 'month')
+
+str(store$Date)
+
+
+# Checking for NA values
+
+sort(sapply(store, function(x) sum(is.na(x))), decreasing = T)
+
+# There are missing Values in Postal Code. There are no missing values in our variables of interest, 'Sales', 'Quantity' and 'Profit'.
+# Therefore, there is no need to treat the missing values
+
+
+# Checking for Outliers
+
+quantile(store$Sales, seq(0,1,0.01))
+
+sales_out <- data.frame(store[which(store$Sales > 4000), ])
+
+quantile(store$Quantity, seq(0,1,0.01))
+quantile(store$Profit, seq(0,1,0.01))
+
+profit_out <- data.frame(store[which(store$Profit > 2000),])
+
