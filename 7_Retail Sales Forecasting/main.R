@@ -34,15 +34,3 @@ length(levels(store$Market))
 str(store$Order.Date)
 
 
-
-#------------------------
-#  DATA CLEANING
-#------------------------
-
-
-#Converting Order.Date to a date time object
-
-store$Order.Date <- as.Date(store$Order.Date, format = '%d-%m-%Y')
-
-store$Date <- floor_date(store$Order.Date, unit = 'month')
-
