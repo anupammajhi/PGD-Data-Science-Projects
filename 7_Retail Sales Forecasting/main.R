@@ -143,12 +143,3 @@ ts.plot(APAC.Consumer, gpars = list(col = rainbow(5)), main = 'APAC Consumer')
 #____________________________________________________________________________-
 
 
-#---------------------------------------------
-#   Forecasting for Sales - APAC.Consumer
-#---------------------------------------------
-
-
-
-#Naming Convention 
-
-# This is the naming convention that will be used to name the data frames
