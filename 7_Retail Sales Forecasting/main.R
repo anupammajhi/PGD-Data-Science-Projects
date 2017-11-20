@@ -102,12 +102,3 @@ list2env(s, .GlobalEnv)
 
 
 #Creating multiple time series objects
-
-tslist <- ts(s)
-
-
-
-#Finding the Coeeficient of Variation for the 21 buckets. We calculate CV on Profits to detrmine the most profitable zones
-
-cv <- lapply(s, function(x) {100*sd(x$Profit)/mean(x$Profit)})
-
