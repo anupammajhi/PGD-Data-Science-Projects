@@ -134,3 +134,49 @@ write.csv(EU.Consumer, 'EU.Consumer.csv')
 #   2. EU.Consumer
 
 
+
+#Quick View of Both segments
+ts.plot(EU.Consumer, gpars = list(col = rainbow(4)), main = 'EU Consumer')
+ts.plot(APAC.Consumer, gpars = list(col = rainbow(5)), main = 'APAC Consumer')
+
+
+#____________________________________________________________________________-
+
+
+#---------------------------------------------
+#   Forecasting for Sales - APAC.Consumer
+#---------------------------------------------
+
+
+
+#Naming Convention 
+
+# This is the naming convention that will be used to name the data frames
+
+# APAC.Consumer Sales - apacs
+# APAC.Consumer Quantity - apacq
+# EU.Consumer Sales - eus
+# EU.Consumer Quantity - euq
+
+
+# So we need to create 8 models.
+# We will start by by predicting Sales for APAC Consumer
+
+apacs <- data.frame(cbind(as.numeric(1:nrow(APAC.Consumer)),APAC.Consumer$Sales))
+
+colnames(apacs) <- c('Months', 'Sales')
+
+apacs_total <- ts(apacs$Sales)
+apacs_in <- apacs[1:42,]
+apacs_out <- apacs[43:48,]
+
+apacs_ts <- ts(apacs_in$Sales)
+plot(apacs_ts)
+
+
+
+#Smoothing the series - Moving Average Smoothing
+
+w <- 1
+apacs_smooth <- filter(apacs_ts, 
+                         filter=rep(1/(2*w+1),(2*w+1)), 
