@@ -68,3 +68,46 @@ quantile(store$Profit, seq(0,1,0.01))
 
 profit_out <- data.frame(store[which(store$Profit > 2000),])
 
+
+# We will Impute the Outliers in Sales and Profit with appropriate values
+
+store_clean <- store
+store_clean[which(store_clean$Sales > 4000), 'Sales'] <- 4000
+quantile(store_clean$Sales, seq(0,1,0.01))
+
+
+store_clean[which(store_clean$Profit > 1500), 'Profit'] <- 1500
+quantile(store_clean$Profit, seq(0,1,0.02))
+
+
+
+# Splitting for the 3 levels of Segment, for each of the 7 levels of Market
+
+
+seg <- split(store_clean, interaction(store_clean$Market,store_clean$Segment))
+
+list2env(seg, .GlobalEnv)   #shows the datasets present in the list in the Global Environment
+
+
+
+
+
+# Aggregating Profit, Quantity, Sales, monthwise across the list
+
+s <-lapply(seg, function(x) {aggregate(cbind(Profit,Quantity,Sales) ~ Date, data = x, sum)})
+
+s
+
+list2env(s, .GlobalEnv)
+
+
+#Creating multiple time series objects
+
+tslist <- ts(s)
+
+
+
+#Finding the Coeeficient of Variation for the 21 buckets. We calculate CV on Profits to detrmine the most profitable zones
+
+cv <- lapply(s, function(x) {100*sd(x$Profit)/mean(x$Profit)})
+
