@@ -398,15 +398,3 @@ colnames(apacq) <- c('Months', 'Quantity')
 apacq_total <- ts(apacq$Quantity)
 apacq_in <- apacq[1:42,]
 apacq_out <- apacq[43:48,]
-
-apacq_ts <- ts(apacq_in$Quantity)
-plot(apacq_ts)
-
-
-
-#Smoothing the series - Moving Average Smoothing
-
-w <- 1
-apacq_smooth <- filter(apacq_ts, 
-                       filter=rep(1/(2*w+1),(2*w+1)), 
-                       method='convolution', sides=2)
