@@ -216,14 +216,3 @@ for (i in seq(1,length(alphas))) {
                                   beta=FALSE, gamma=FALSE)
     
     lines(fitted(apacs_smoothhw)[,1], col=cols[i], lwd=2)
-}
-
-legend("bottomleft", labels, col=cols, lwd=2)
-
-plot(apacs_ts)
-apacs_smoothhw <- HoltWinters(apacs_ts, alpha=0.5,
-                            beta=FALSE, gamma=FALSE)
-
-lines(fitted(apacs_smoothhw)[,1], col='red', lwd=2)
-
-
