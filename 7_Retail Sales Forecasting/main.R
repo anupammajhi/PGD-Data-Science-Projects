@@ -390,11 +390,3 @@ rect(xleft = 49, xright= 54, ybottom = 10000, ytop = 85000, density = 10, col = 
 # 2) Forecasting for APAC.Consumer - Quantity
 #--------------------------------------------------
 
-
-apacq <- data.frame(cbind(as.numeric(1:nrow(APAC.Consumer)),APAC.Consumer$Quantity))
-
-colnames(apacq) <- c('Months', 'Quantity')
-
-apacq_total <- ts(apacq$Quantity)
-apacq_in <- apacq[1:42,]
-apacq_out <- apacq[43:48,]
