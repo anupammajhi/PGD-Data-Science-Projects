@@ -362,3 +362,51 @@ f_fut <- f_local$pred[7:12]
 
 future <- data.frame(Months = 49:54)
 
+global <- predict(lmfit, future)
+
+
+# Final Model = Local + Global
+
+Forecast <- global +f_fut
+
+final_forecast_apacs <- data.frame(cbind(Months = 49:54, Forecast))
+
+
+# Visualising the Forecasted Sales
+
+colnames(final_forecast_apacs)[2] <- 'Sales'
+final <- rbind(apacs, final_forecast_apacs)
+plot(final, type = 'l', main = 'Forecasted Sales for APAC Consumer')
+rect(xleft = 49, xright= 54, ybottom = 10000, ytop = 85000, density = 10, col = 'red')
+
+
+
+
+
+
+#___________________________________________________________________________
+#
+#--------------------------------------------------
+# 2) Forecasting for APAC.Consumer - Quantity
+#--------------------------------------------------
+
+
+apacq <- data.frame(cbind(as.numeric(1:nrow(APAC.Consumer)),APAC.Consumer$Quantity))
+
+colnames(apacq) <- c('Months', 'Quantity')
+
+apacq_total <- ts(apacq$Quantity)
+apacq_in <- apacq[1:42,]
+apacq_out <- apacq[43:48,]
+
+apacq_ts <- ts(apacq_in$Quantity)
+plot(apacq_ts)
+
+
+
+#Smoothing the series - Moving Average Smoothing
+
+w <- 1
+apacq_smooth <- filter(apacq_ts, 
+                       filter=rep(1/(2*w+1),(2*w+1)), 
+                       method='convolution', sides=2)
