@@ -264,3 +264,52 @@ resi <- local_pred-fitted(armafit)
 adf.test(resi,alternative = "stationary")
 kpss.test(resi)
 
+# Both tests confirm the series is Strongly stationary
+
+#Now, let's evaluate the model using MAPE
+#First, let's make a prediction for the last 6 months
+
+timevals_out <- apacs_out[-2]
+
+# Local Component 
+
+# We add the local modelled component(model from arimafit) back to the global predicted part to predict final forecast
+
+armafit
+f_local <-  predict(armafit, n.ahead = 6)
+f_local[[2]]
+
+
+global_pred_out <- predict(lmfit,timevals_out) 
+global_pred_out1 <- global_pred_out+f_local[[1]]
+fcast <- global_pred_out1
+
+
+#Now, let's compare our prediction with the actual values, using MAPE
+
+MAPE_class_dec <- accuracy(fcast,apacs_out[,2])[5]
+MAPE_class_dec
+
+#Mape Value - 26.73
+#             -----
+
+
+#Let's also plot the predictions along with original values, to
+#get a visual feel of the fit
+
+class_dec_pred <- c(ts(global_pred),ts(global_pred_out1))
+plot(apacs_total, col = "black", main = "Forecast for Sales - APAC.Consumer", ylab = 'Sales', xlab = 'Months')
+lines(class_dec_pred, col = "green")
+rect(xleft = 42, xright= 48, ybottom = 10000, ytop = 85000, density = 10, col = 'grey')
+
+
+# These are the forecasted Sales for the last six Months.
+
+
+
+
+#So, that was classical decomposition, now let's do an ARIMA fit
+
+autoarima <- auto.arima(apacs_ts)
+autoarima
+tsdiag(autoarima)
