@@ -480,3 +480,53 @@ lines(timevals_in, global_pred, col='blue', lwd=2)
 #We will model it as an ARMA series
 
 local_pred <- apacq_in$Quantity-global_pred
+plot(local_pred, col='red', type = "l")
+acf(local_pred)
+acf(local_pred, type="partial")
+armafit <- auto.arima(local_pred)
+
+tsdiag(armafit)
+armafit
+
+#We'll check if the residual series is white noise
+
+resi <- local_pred-fitted(armafit)
+adf.test(resi,alternative = "stationary")
+kpss.test(resi)
+
+# Both tests confirm the series is Strongly stationary
+
+#Now, let's evaluate the model using MAPE
+#First, let's make a prediction for the last 6 months
+
+timevals_out <- apacq_out[-2]
+
+# Local Component 
+
+# We add the local modelled component(model from arimafit) back to the global predicted part to predict final forecast
+
+
+armafit
+f_local <-  predict(armafit, n.ahead = 6)
+f_local[[2]]
+
+
+global_pred_out <- predict(lmfit,timevals_out) 
+global_pred_out1 <- global_pred_out+f_local[[1]]
+fcast <- global_pred_out1
+
+
+#Now, let's compare our prediction with the actual values, using MAPE
+
+MAPE_class_dec <- accuracy(fcast,apacq_out[,2])[5]
+MAPE_class_dec
+
+
+#Mape Value - 29.98
+#             -----
+
+
+#Let's also plot the predictions along with original values, to
+#get a visual feel of the fit
+
+class_dec_pred <- c(ts(global_pred),ts(global_pred_out1))
