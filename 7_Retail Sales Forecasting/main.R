@@ -557,11 +557,3 @@ kpss.test(resi_auto_arima)
 
 #Also, let's evaluate the model using MAPE
 fcast_auto_arima <- predict(autoarima, n.ahead = 6)
-
-MAPE_auto_arima <- accuracy(fcast_auto_arima$pred,apacq_out[,2])[5]
-MAPE_auto_arima
-
-#Mape Value - 26.24
-#             -----
-
-
