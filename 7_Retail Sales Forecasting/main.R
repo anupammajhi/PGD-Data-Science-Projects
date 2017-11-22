@@ -530,3 +530,38 @@ MAPE_class_dec
 #get a visual feel of the fit
 
 class_dec_pred <- c(ts(global_pred),ts(global_pred_out1))
+plot(apacq_total, col = "black", main = "Forecast for Quantity - APAC.Consumer", ylab = 'Quantity', xlab = 'Months')
+lines(class_dec_pred, col = "green")
+rect(xleft = 42, xright= 48, ybottom = 100, ytop = 900, density = 10, col = 'grey')
+
+
+# These are the forecasted quantities for the last six months.
+
+
+
+
+#So, that was classical decomposition, now let's do an ARIMA fit
+
+autoarima <- auto.arima(apacq_ts)
+autoarima
+tsdiag(autoarima)
+plot(autoarima$x, col="black")
+lines(fitted(autoarima), col="red")
+
+#Again, let's check if the residual series is white noise
+
+resi_auto_arima <- apacq_ts - fitted(autoarima)
+
+adf.test(resi_auto_arima,alternative = "stationary")
+kpss.test(resi_auto_arima)
+
+#Also, let's evaluate the model using MAPE
+fcast_auto_arima <- predict(autoarima, n.ahead = 6)
+
+MAPE_auto_arima <- accuracy(fcast_auto_arima$pred,apacq_out[,2])[5]
+MAPE_auto_arima
+
+#Mape Value - 26.24
+#             -----
+
+
