@@ -680,12 +680,3 @@ alphas <- c(0.02, 0.1, 0.3,0.5,0.8)
 labels <- c(paste("alpha =", alphas), "Original")
 for (i in seq(1,length(alphas))) {
     euq_smoothhw <- HoltWinters(euq_ts, alpha=alphas[i],
-                                beta=FALSE, gamma=FALSE)
-    
-    lines(fitted(euq_smoothhw)[,1], col=cols[i], lwd=2)
-}
-
-legend("bottomleft", labels, col=cols, lwd=2)
-
-plot(euq_ts)
-euq_smoothhw <- HoltWinters(euq_ts, alpha=0.7,
