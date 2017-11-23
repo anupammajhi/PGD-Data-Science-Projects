@@ -595,3 +595,46 @@ f_fut <- f_local$pred[7:12]
 
 # Global Component
 
+future <- data.frame(Months = 49:54)
+
+global <- predict(lmfit, future)
+
+# Final Model = Local + Global
+
+Forecast <- global +f_fut
+
+
+final_forecast_apacq <- data.frame(cbind(Months = 49:54, Forecast))
+
+
+# Visualising the Forecasted Quantity
+
+colnames(final_forecast_apacq)[2] <- 'Quantity'
+final <- rbind(apacq, final_forecast_apacq)
+plot(final, type = 'l', main = 'Forecasted Quantity for APAC Consumer')
+rect(xleft = 49, xright= 54, ybottom = 100, ytop = 950, density = 10, col = 'red')
+
+
+
+
+#___________________________________________________________________________
+
+
+
+
+
+
+#--------------------------------------------------
+# 3) Forecasting for EU.Consumer - Quantity
+#--------------------------------------------------
+
+
+euq <- data.frame(cbind(as.numeric(1:nrow(EU.Consumer)),EU.Consumer$Quantity))
+
+colnames(euq) <- c('Months', 'Quantity')
+
+euq_total <- ts(euq$Quantity)
+euq_in <- euq[1:42,]
+euq_out <- euq[43:48,]
+
+euq_ts <- ts(euq_in$Quantity)
