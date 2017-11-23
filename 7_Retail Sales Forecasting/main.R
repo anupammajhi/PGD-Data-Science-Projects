@@ -638,3 +638,54 @@ euq_in <- euq[1:42,]
 euq_out <- euq[43:48,]
 
 euq_ts <- ts(euq_in$Quantity)
+plot(euq_ts)
+
+
+
+#Smoothing the series - Moving Average Smoothing
+
+w <- 0.6
+euq_smooth <- filter(euq_ts, 
+                       filter=rep(1/(2*w+1),(2*w+1)), 
+                       method='convolution', sides=2)
+
+#Smoothing left end of the time series
+
+diff <- euq_smooth[w+2] - euq_smooth[w+1]
+for (i in seq(w,1,1)) {
+    euq_smooth[i] <- euq_smooth[i+1] - diff
+}
+
+#Smoothing right end of the time series
+
+n <- length(euq_ts)
+diff <- euq_smooth[n-w] - euq_smooth[n-w-1]
+for (i in seq(n-w+1, n)) {
+    euq_smooth[i] <- euq_smooth[i-1] + diff
+}
+
+#Plot the smoothed time series
+
+timevals_in <- euq_in$Months
+
+lines(euq_smooth, col="yellow", lwd=2)
+
+
+#Trying Holt Winters
+
+plot(euq_ts)
+
+cols <- c("red", "blue", "green", "black", "grey")
+alphas <- c(0.02, 0.1, 0.3,0.5,0.8)
+labels <- c(paste("alpha =", alphas), "Original")
+for (i in seq(1,length(alphas))) {
+    euq_smoothhw <- HoltWinters(euq_ts, alpha=alphas[i],
+                                beta=FALSE, gamma=FALSE)
+    
+    lines(fitted(euq_smoothhw)[,1], col=cols[i], lwd=2)
+}
+
+legend("bottomleft", labels, col=cols, lwd=2)
+
+plot(euq_ts)
+euq_smoothhw <- HoltWinters(euq_ts, alpha=0.7,
