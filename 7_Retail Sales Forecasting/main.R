@@ -698,14 +698,3 @@ vals <- as.data.frame(fitted(euq_smoothhw))
 euq_smoothhw_total  <- data.frame(c(euq_in[1,2], (vals[,2])))
 
 #  MA does better smoothing as compared to HW, so we will use MA smoothing.
-
-
-#Building a model on the smoothed time series using classical decomposition
-#First, let's convert the time series to a dataframe
-
-euq_smoothdf <- as.data.frame(cbind(timevals_in, as.vector(euq_smooth)))
-colnames(euq_smoothdf) <- c('Months', 'Quantity')
-
-#Now, let's fit a  model with trend and seasonality to the data
-#There appears to be little seasonality in the data. Trying various degree equations
-
