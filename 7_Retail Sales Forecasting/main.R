@@ -687,14 +687,3 @@ for (i in seq(1,length(alphas))) {
 
 legend("bottomleft", labels, col=cols, lwd=2)
 
-plot(euq_ts)
-euq_smoothhw <- HoltWinters(euq_ts, alpha=0.7,
-                            beta=FALSE, gamma=FALSE)
-
-lines(fitted(euq_smoothhw)[,1], col='green', lwd=2)
-
-vals <- as.data.frame(fitted(euq_smoothhw))
-
-euq_smoothhw_total  <- data.frame(c(euq_in[1,2], (vals[,2])))
-
-#  MA does better smoothing as compared to HW, so we will use MA smoothing.
