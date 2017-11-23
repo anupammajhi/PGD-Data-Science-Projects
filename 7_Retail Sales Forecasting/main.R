@@ -670,3 +670,42 @@ timevals_in <- euq_in$Months
 
 lines(euq_smooth, col="yellow", lwd=2)
 
+
+#Trying Holt Winters
+
+plot(euq_ts)
+
+cols <- c("red", "blue", "green", "black", "grey")
+alphas <- c(0.02, 0.1, 0.3,0.5,0.8)
+labels <- c(paste("alpha =", alphas), "Original")
+for (i in seq(1,length(alphas))) {
+    euq_smoothhw <- HoltWinters(euq_ts, alpha=alphas[i],
+                                beta=FALSE, gamma=FALSE)
+    
+    lines(fitted(euq_smoothhw)[,1], col=cols[i], lwd=2)
+}
+
+legend("bottomleft", labels, col=cols, lwd=2)
+
+plot(euq_ts)
+euq_smoothhw <- HoltWinters(euq_ts, alpha=0.7,
+                            beta=FALSE, gamma=FALSE)
+
+lines(fitted(euq_smoothhw)[,1], col='green', lwd=2)
+
+vals <- as.data.frame(fitted(euq_smoothhw))
+
+euq_smoothhw_total  <- data.frame(c(euq_in[1,2], (vals[,2])))
+
+#  MA does better smoothing as compared to HW, so we will use MA smoothing.
+
+
+#Building a model on the smoothed time series using classical decomposition
+#First, let's convert the time series to a dataframe
+
+euq_smoothdf <- as.data.frame(cbind(timevals_in, as.vector(euq_smooth)))
+colnames(euq_smoothdf) <- c('Months', 'Quantity')
+
+#Now, let's fit a  model with trend and seasonality to the data
+#There appears to be little seasonality in the data. Trying various degree equations
+
