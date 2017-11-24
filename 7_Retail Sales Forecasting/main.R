@@ -705,14 +705,3 @@ euq_smoothhw_total  <- data.frame(c(euq_in[1,2], (vals[,2])))
 
 euq_smoothdf <- as.data.frame(cbind(timevals_in, as.vector(euq_smooth)))
 colnames(euq_smoothdf) <- c('Months', 'Quantity')
-
-#Now, let's fit a  model with trend and seasonality to the data
-#There appears to be little seasonality in the data. Trying various degree equations
-
-lmfit <- lm(Quantity ~  (sin(0.5*Months) * poly(Months,2) + cos(0.5*Months) * poly(Months,2))
-            *exp(0.00005*Months),data=euq_smoothdf)
-
-
-global_pred <- predict(lmfit, Months=timevals_in)
-summary(global_pred)
-
