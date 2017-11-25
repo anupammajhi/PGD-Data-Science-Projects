@@ -894,15 +894,3 @@ eus_smooth <- filter(eus_ts,
 
 diff <- eus_smooth[w+2] - eus_smooth[w+1]
 for (i in seq(w,1,1)) {
-    eus_smooth[i] <- eus_smooth[i+1] - diff
-}
-
-#Smoothing right end of the time series
-
-n <- length(eus_ts)
-diff <- eus_smooth[n-w] - eus_smooth[n-w-1]
-for (i in seq(n-w+1, n)) {
-    eus_smooth[i] <- eus_smooth[i-1] + diff
-}
-
-#Plot the smoothed time series
