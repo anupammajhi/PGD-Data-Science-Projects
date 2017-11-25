@@ -783,3 +783,52 @@ rect(xleft = 42, xright= 48, ybottom = 100, ytop = 950, density = 10, col = 'gre
 
 
 
+#So, that was classical decomposition, now let's do an ARIMA fit
+
+autoarima <- auto.arima(euq_ts)
+autoarima
+tsdiag(autoarima)
+plot(autoarima$x, col="black")
+lines(fitted(autoarima), col="red")
+
+#Again, let's check if the residual series is white noise
+
+resi_auto_arima <- euq_ts - fitted(autoarima)
+
+adf.test(resi_auto_arima,alternative = "stationary")
+kpss.test(resi_auto_arima)
+
+#Also, let's evaluate the model using MAPE
+fcast_auto_arima <- predict(autoarima, n.ahead = 6)
+
+MAPE_auto_arima <- accuracy(fcast_auto_arima$pred,euq_out[,2])[5]
+MAPE_auto_arima
+
+#Mape Value - 30.13
+#             -----
+
+
+#Lastly, let's plot the predictions along with original values, to
+#get a visual feel of the fit
+
+auto_arima_pred <- c(fitted(autoarima),ts(fcast_auto_arima$pred))
+
+
+plot(euq_total, col = "black", main = "Forecast for Quantity - EU.Consumer", ylab = 'Quantity', xlab = 'Months')
+lines(auto_arima_pred, col = "red")
+rect(xleft = 42, xright= 48, ybottom = 100, ytop = 950, density = 10, col = 'grey')
+
+
+# The Red Line in the grey rectangle predicts the Quantity for the last six months. 
+
+
+# The fit from Classical Decomposition looks better, so we will use the results of classical decomposition for the final forecast.
+
+
+# Forecasting for the next 6 Months
+
+#Local Component
+
+f_local <-  predict(armafit, n.ahead = 12)  
+
+f_local$pred
