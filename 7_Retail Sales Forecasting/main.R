@@ -694,3 +694,48 @@ euq_smoothhw <- HoltWinters(euq_ts, alpha=0.7,
 lines(fitted(euq_smoothhw)[,1], col='green', lwd=2)
 
 vals <- as.data.frame(fitted(euq_smoothhw))
+
+euq_smoothhw_total  <- data.frame(c(euq_in[1,2], (vals[,2])))
+
+#  MA does better smoothing as compared to HW, so we will use MA smoothing.
+
+
+#Building a model on the smoothed time series using classical decomposition
+#First, let's convert the time series to a dataframe
+
+euq_smoothdf <- as.data.frame(cbind(timevals_in, as.vector(euq_smooth)))
+colnames(euq_smoothdf) <- c('Months', 'Quantity')
+
+#Now, let's fit a  model with trend and seasonality to the data
+#There appears to be little seasonality in the data. Trying various degree equations
+
+lmfit <- lm(Quantity ~  (sin(0.5*Months) * poly(Months,2) + cos(0.5*Months) * poly(Months,2))
+            *exp(0.00005*Months),data=euq_smoothdf)
+
+
+global_pred <- predict(lmfit, Months=timevals_in)
+summary(global_pred)
+
+plot(euq_ts)
+lines(timevals_in, global_pred, col='green', lwd=2)
+
+#Now, let's look at the locally predictable series
+#We will model it as an ARMA series
+
+local_pred <- euq_in$Quantity-global_pred
+plot(local_pred, col='red', type = "l")
+acf(local_pred)
+acf(local_pred, type="partial")
+armafit <- auto.arima(local_pred)
+
+tsdiag(armafit)
+armafit
+
+#We'll check if the residual series is white noise
+
+resi <- local_pred-fitted(armafit)
+adf.test(resi,alternative = "stationary")
+kpss.test(resi)
+qqnorm(resi) 
+
+
