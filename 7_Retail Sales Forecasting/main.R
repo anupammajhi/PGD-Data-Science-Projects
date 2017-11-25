@@ -871,3 +871,38 @@ rect(xleft = 49, xright= 54, ybottom = 100, ytop = 950, density = 10, col = 'red
 
 
 eus <- data.frame(cbind(as.numeric(1:nrow(EU.Consumer)),EU.Consumer$Sales))
+
+colnames(eus) <- c('Months', 'Sales')
+
+eus_total <- ts(eus$Sales)
+eus_in <- eus[1:42,]
+eus_out <- eus[43:48,]
+
+eus_ts <- ts(eus_in$Sales)
+plot(eus_ts)
+
+
+
+#Smoothing the series - Moving Average Smoothing
+
+w <- 0.7
+eus_smooth <- filter(eus_ts, 
+                     filter=rep(1/(2*w+1),(2*w+1)), 
+                     method='convolution', sides=2)
+
+#Smoothing left end of the time series
+
+diff <- eus_smooth[w+2] - eus_smooth[w+1]
+for (i in seq(w,1,1)) {
+    eus_smooth[i] <- eus_smooth[i+1] - diff
+}
+
+#Smoothing right end of the time series
+
+n <- length(eus_ts)
+diff <- eus_smooth[n-w] - eus_smooth[n-w-1]
+for (i in seq(n-w+1, n)) {
+    eus_smooth[i] <- eus_smooth[i-1] + diff
+}
+
+#Plot the smoothed time series
