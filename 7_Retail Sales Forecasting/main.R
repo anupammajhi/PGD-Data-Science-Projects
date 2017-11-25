@@ -823,12 +823,3 @@ rect(xleft = 42, xright= 48, ybottom = 100, ytop = 950, density = 10, col = 'gre
 
 
 # The fit from Classical Decomposition looks better, so we will use the results of classical decomposition for the final forecast.
-
-
-# Forecasting for the next 6 Months
-
-#Local Component
-
-f_local <-  predict(armafit, n.ahead = 12)  
-
-f_local$pred
