@@ -823,3 +823,51 @@ rect(xleft = 42, xright= 48, ybottom = 100, ytop = 950, density = 10, col = 'gre
 
 
 # The fit from Classical Decomposition looks better, so we will use the results of classical decomposition for the final forecast.
+
+
+# Forecasting for the next 6 Months
+
+#Local Component
+
+f_local <-  predict(armafit, n.ahead = 12)  
+
+f_local$pred
+
+f_fut <- f_local$pred[7:12]
+
+
+# Global Component
+
+future <- data.frame(Months = 49:54)
+
+global <- predict(lmfit, future)
+
+# Final Model = Local + Global
+
+Forecast <- global +f_fut
+
+
+final_forecast_euq <- data.frame(cbind(Months = 49:54, Forecast))
+
+
+# Visualising the Forecasted Quantity
+
+colnames(final_forecast_euq)[2] <- 'Quantity'
+final <- rbind(euq, final_forecast_euq)
+plot(final, type = 'l', main = 'Forecasted Quantity for EU Consumer')
+rect(xleft = 49, xright= 54, ybottom = 100, ytop = 950, density = 10, col = 'red')
+
+
+
+
+#______________________________________________________________________________
+
+
+
+
+#--------------------------------------------------
+# 4) Forecasting for EU.Consumer - Sales
+#--------------------------------------------------
+
+
+eus <- data.frame(cbind(as.numeric(1:nrow(EU.Consumer)),EU.Consumer$Sales))
