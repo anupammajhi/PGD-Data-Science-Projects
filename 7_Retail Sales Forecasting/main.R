@@ -921,13 +921,3 @@ alphas <- c(0.02, 0.1, 0.3,0.5,0.8)
 labels <- c(paste("alpha =", alphas), "Original")
 for (i in seq(1,length(alphas))) {
     eus_smoothhw <- HoltWinters(eus_ts, alpha=alphas[i],
-                                beta=FALSE, gamma=FALSE)
-    
-    lines(fitted(eus_smoothhw)[,1], col=cols[i], lwd=2)
-}
-
-legend("bottomleft", labels, col=cols, lwd=2)
-
-plot(eus_ts)
-eus_smoothhw <- HoltWinters(eus_ts, alpha=0.6,
-                            beta=FALSE, gamma=FALSE)
