@@ -911,13 +911,3 @@ timevals_in <- eus_in$Months
 
 lines(eus_smooth, col="yellow", lwd=2)
 
-
-#Trying Holt Winters
-
-plot(eus_ts)
-
-cols <- c("red", "blue", "green", "black", "grey")
-alphas <- c(0.02, 0.1, 0.3,0.5,0.8)
-labels <- c(paste("alpha =", alphas), "Original")
-for (i in seq(1,length(alphas))) {
-    eus_smoothhw <- HoltWinters(eus_ts, alpha=alphas[i],
