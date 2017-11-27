@@ -930,3 +930,37 @@ legend("bottomleft", labels, col=cols, lwd=2)
 
 plot(eus_ts)
 eus_smoothhw <- HoltWinters(eus_ts, alpha=0.6,
+                            beta=FALSE, gamma=FALSE)
+
+lines(fitted(eus_smoothhw)[,1], col='red', lwd=2)
+
+
+# Again, Moving average does better smoothing as compared to Holt Winter, so we will use Moving Average smoothing.
+
+
+#Building a model on the smoothed time series using classical decomposition
+#First, let's convert the time series to a dataframe
+
+eus_smoothdf <- as.data.frame(cbind(timevals_in, as.vector(eus_smooth)))
+colnames(eus_smoothdf) <- c('Months', 'Sales')
+
+#Now, let's fit a  model with trend and seasonality to the data
+#There appears to be little seasonality in the data. Trying various degree equations
+
+lmfit <- lm(Sales ~  sin(0.5*Months) * poly(Months,3) + cos(0.5*Months) * poly(Months,2)
+                       + sin(0.5*Months)*exp(0.0008*Months) + cos(0.5*Months)*exp(0.0008*Months),data=eus_smoothdf)
+
+global_pred <- predict(lmfit, Months=timevals_in)
+summary(global_pred)
+
+plot(eus_ts)
+lines(timevals_in, global_pred, col='green', lwd=2)
+
+#Now, let's look at the locally predictable series
+#We will model it as an ARMA series
+
+local_pred <- eus_in$Sales-global_pred
+plot(local_pred, col='red', type = "l")
+acf(local_pred)
+acf(local_pred, type="partial")
+armafit <- auto.arima(local_pred)
