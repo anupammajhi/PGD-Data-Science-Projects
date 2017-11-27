@@ -944,11 +944,3 @@ lines(fitted(eus_smoothhw)[,1], col='red', lwd=2)
 eus_smoothdf <- as.data.frame(cbind(timevals_in, as.vector(eus_smooth)))
 colnames(eus_smoothdf) <- c('Months', 'Sales')
 
-#Now, let's fit a  model with trend and seasonality to the data
-#There appears to be little seasonality in the data. Trying various degree equations
-
-lmfit <- lm(Sales ~  sin(0.5*Months) * poly(Months,3) + cos(0.5*Months) * poly(Months,2)
-                       + sin(0.5*Months)*exp(0.0008*Months) + cos(0.5*Months)*exp(0.0008*Months),data=eus_smoothdf)
-
-global_pred <- predict(lmfit, Months=timevals_in)
-summary(global_pred)
