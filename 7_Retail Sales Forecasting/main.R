@@ -930,12 +930,3 @@ legend("bottomleft", labels, col=cols, lwd=2)
 
 plot(eus_ts)
 eus_smoothhw <- HoltWinters(eus_ts, alpha=0.6,
-                            beta=FALSE, gamma=FALSE)
-
-lines(fitted(eus_smoothhw)[,1], col='red', lwd=2)
-
-
-# Again, Moving average does better smoothing as compared to Holt Winter, so we will use Moving Average smoothing.
-
-
-#Building a model on the smoothed time series using classical decomposition
