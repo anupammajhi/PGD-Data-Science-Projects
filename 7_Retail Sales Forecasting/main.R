@@ -960,13 +960,3 @@ lines(timevals_in, global_pred, col='green', lwd=2)
 #We will model it as an ARMA series
 
 local_pred <- eus_in$Sales-global_pred
-plot(local_pred, col='red', type = "l")
-acf(local_pred)
-acf(local_pred, type="partial")
-armafit <- auto.arima(local_pred)
-
-tsdiag(armafit)
-armafit
-
-#We'll check if the residual series is white noise
-
