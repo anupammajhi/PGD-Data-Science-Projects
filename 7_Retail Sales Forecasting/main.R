@@ -952,3 +952,38 @@ lmfit <- lm(Sales ~  sin(0.5*Months) * poly(Months,3) + cos(0.5*Months) * poly(M
 
 global_pred <- predict(lmfit, Months=timevals_in)
 summary(global_pred)
+
+plot(eus_ts)
+lines(timevals_in, global_pred, col='green', lwd=2)
+
+#Now, let's look at the locally predictable series
+#We will model it as an ARMA series
+
+local_pred <- eus_in$Sales-global_pred
+plot(local_pred, col='red', type = "l")
+acf(local_pred)
+acf(local_pred, type="partial")
+armafit <- auto.arima(local_pred)
+
+tsdiag(armafit)
+armafit
+
+#We'll check if the residual series is white noise
+
+resi <- local_pred-fitted(armafit)
+adf.test(resi,alternative = "stationary")
+kpss.test(resi)
+
+qqnorm(resi)
+
+# We see that the KPSS test Fails. Therefore, we use another test, the qq plot, and we can see that the plot is along the 45 degree line
+
+# Two tests confirm the series is Strongly stationary
+
+#Now, let's evaluate the model using MAPE
+#First, let's make a prediction for the last 6 months
+
+timevals_out <- eus_out[-2]
+
+# Local Component 
+
