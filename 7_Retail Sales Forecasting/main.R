@@ -952,11 +952,3 @@ lmfit <- lm(Sales ~  sin(0.5*Months) * poly(Months,3) + cos(0.5*Months) * poly(M
 
 global_pred <- predict(lmfit, Months=timevals_in)
 summary(global_pred)
-
-plot(eus_ts)
-lines(timevals_in, global_pred, col='green', lwd=2)
-
-#Now, let's look at the locally predictable series
-#We will model it as an ARMA series
-
-local_pred <- eus_in$Sales-global_pred
