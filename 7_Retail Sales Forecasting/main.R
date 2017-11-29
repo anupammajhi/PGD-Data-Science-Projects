@@ -975,15 +975,3 @@ adf.test(resi,alternative = "stationary")
 kpss.test(resi)
 
 qqnorm(resi)
-
-# We see that the KPSS test Fails. Therefore, we use another test, the qq plot, and we can see that the plot is along the 45 degree line
-
-# Two tests confirm the series is Strongly stationary
-
-#Now, let's evaluate the model using MAPE
-#First, let's make a prediction for the last 6 months
-
-timevals_out <- eus_out[-2]
-
-# Local Component 
-
