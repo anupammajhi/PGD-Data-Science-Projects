@@ -965,13 +965,3 @@ acf(local_pred)
 acf(local_pred, type="partial")
 armafit <- auto.arima(local_pred)
 
-tsdiag(armafit)
-armafit
-
-#We'll check if the residual series is white noise
-
-resi <- local_pred-fitted(armafit)
-adf.test(resi,alternative = "stationary")
-kpss.test(resi)
-
-qqnorm(resi)
