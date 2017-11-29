@@ -990,3 +990,37 @@ timevals_out <- eus_out[-2]
 # We add the local modelled component(model from arimafit) back to the global predicted part to predict final forecast
 
 armafit
+f_local <-  predict(armafit, n.ahead = 6)
+f_local[[2]]
+
+
+global_pred_out <- predict(lmfit,timevals_out) 
+global_pred_out1 <- global_pred_out+f_local[[1]]
+fcast <- global_pred_out1
+
+
+#Now, let's compare our prediction with the actual values, using MAPE
+
+MAPE_class_dec <- accuracy(fcast,eus_out[,2])[5]
+MAPE_class_dec
+
+#Let's also plot the predictions along with original values, to
+#get a visual feel of the fit
+
+class_dec_pred <- c(ts(global_pred),ts(global_pred_out1))
+plot(eus_total, col = "black", main = "Forecast for Sales - EU.Consumer", ylab = 'Sales', xlab = 'Months')
+lines(class_dec_pred, col = "green")
+rect(xleft = 42, xright= 48, ybottom = 8000, ytop = 70000, density = 10, col = 'grey')
+
+
+
+
+
+#So, that was classical decomposition, now let's do an ARIMA fit
+
+autoarima <- auto.arima(eus_ts)
+autoarima
+tsdiag(autoarima)
+plot(autoarima$x, col="black")
+lines(fitted(autoarima), col="red")
+
