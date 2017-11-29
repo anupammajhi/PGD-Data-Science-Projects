@@ -1015,12 +1015,3 @@ rect(xleft = 42, xright= 48, ybottom = 8000, ytop = 70000, density = 10, col = '
 
 
 
-
-#So, that was classical decomposition, now let's do an ARIMA fit
-
-autoarima <- auto.arima(eus_ts)
-autoarima
-tsdiag(autoarima)
-plot(autoarima$x, col="black")
-lines(fitted(autoarima), col="red")
-
