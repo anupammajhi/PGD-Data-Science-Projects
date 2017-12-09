@@ -1,0 +1,27 @@
+#####################################################################################################################
+# UNDERSTANDING GIVEN DATA AND CREATING HIVE TABLE TO STORE
+#####################################################################################################################
+
+
+## We will create an external table to dump all available data to understand the data 
+## Drop existing table NYCYellowTaxiDump (if any) before loading 
+
+DROP TABLE NYCYellowTaxiDump;
+
+
+## Create External Table to Dump the Data and understand the structure.
+
+CREATE EXTERNAL TABLE IF NOT EXISTS NYCYellowTaxiDump (csv_string STRING) LOCATION 's3://data-science-am/NYCYellowTaxi';
+
+
+## View Data in Dump and get an idea of the structure of data
+
+SELECT csv_string FROM NYCYellowTaxiDump LIMIT 10;
+
+
+## Columns/Headers found : VendorID,tpep_pickup_datetime,tpep_dropoff_datetime,passenger_count,trip_distance,RatecodeID,store_and_fwd_flag,PULocationID,DOLocationID,payment_type,fare_amount,extra,mta_tax,tip_amount,tolls_amount,improvement_surcharge,total_amount
+## Both the csv files have same header
+## The first 2 lines in the files need to be skipped for header as the first line is header values and second line is a blank row
+
+
+## We will create an external table with appropriate columns based on our understanding from previous step
