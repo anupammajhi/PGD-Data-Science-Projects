@@ -25,3 +25,29 @@ SELECT csv_string FROM NYCYellowTaxiDump LIMIT 10;
 
 
 ## We will create an external table with appropriate columns based on our understanding from previous step
+## Drop existing table NycYellowTaxi (if any) before loading 
+
+DROP TABLE NycYellowTaxi;
+
+
+## CREATE External TABLE with columns seperated from the give CSV files
+## We consider appropriate column names and data types with delimited row format where fields are seperated by comma and rows separated by new line character.
+## We use tblproperties to skip first 2 lines in header
+
+CREATE EXTERNAL TABLE IF NOT EXISTS NycYellowTaxi 
+(VendorID INT, 
+Pickup_DateTime STRING,
+Drop_DateTime STRING,
+Passenger_Count INT,
+Trip_Distance FLOAT,
+RateCode INT,
+StoreNFwd VARCHAR(1),
+PULocationID INT,
+DOLocationID INT,
+Pay_Type INT,
+Fare FLOAT,
+Extra FLOAT,
+MTA_Tax FLOAT,
+Tip FLOAT,
+Toll FLOAT,
+Improvement_Charge FLOAT,
