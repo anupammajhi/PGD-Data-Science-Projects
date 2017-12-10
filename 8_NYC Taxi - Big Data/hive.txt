@@ -81,3 +81,22 @@ SELECT vendorid,count(vendorid) AS Num_of_Records FROM nycyellowtaxi
 GROUP BY vendorid
 ORDER BY vendorid;
 
+## Answer : 
+## 1	8447149 	#(Creative Mobile Technologies, LLC)
+## 2	10345930	#(VeriFone Inc.)
+
+
+#####################################################################################################################
+###### PART 1 - Q2 - The data provided is for months November and December only. Check whether the data is consistent, and if not, identify the data quality issues. Mention all data quality issues in comments.
+
+## We take the distinct months and years to find this out
+
+SELECT DISTINCT month(pickup_datetime) AS MONTH, year(pickup_datetime) AS YEAR 
+FROM nycyellowtaxi
+ORDER BY YEAR,MONTH;
+
+## Answer :
+## 	month	year
+##	1		2001
+##	1		2003
+##	12		2008
