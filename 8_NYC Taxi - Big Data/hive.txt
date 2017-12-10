@@ -38,3 +38,28 @@ CREATE EXTERNAL TABLE IF NOT EXISTS NycYellowTaxi
 (VendorID INT, 
 Pickup_DateTime STRING,
 Drop_DateTime STRING,
+Passenger_Count INT,
+Trip_Distance FLOAT,
+RateCode INT,
+StoreNFwd VARCHAR(1),
+PULocationID INT,
+DOLocationID INT,
+Pay_Type INT,
+Fare FLOAT,
+Extra FLOAT,
+MTA_Tax FLOAT,
+Tip FLOAT,
+Toll FLOAT,
+Improvement_Charge FLOAT,
+Total_Amt FLOAT
+)
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+LOCATION 's3://data-science-am/NYCYellowTaxi'
+tblproperties ("skip.header.line.count"="2");
+
+
+## View data in created external table
+
+SELECT * FROM nycyellowtaxi LIMIT 100;
