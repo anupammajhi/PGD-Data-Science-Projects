@@ -81,5 +81,3 @@ SELECT vendorid,count(vendorid) AS Num_of_Records FROM nycyellowtaxi
 GROUP BY vendorid
 ORDER BY vendorid;
 
-## Answer : 
-## 1	8447149 	#(Creative Mobile Technologies, LLC)
