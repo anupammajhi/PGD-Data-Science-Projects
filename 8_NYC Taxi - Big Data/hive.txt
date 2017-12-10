@@ -97,6 +97,3 @@ ORDER BY YEAR,MONTH;
 
 ## Answer :
 ## 	month	year
-##	1		2001
-##	1		2003
-##	12		2008
