@@ -38,5 +38,3 @@ CREATE EXTERNAL TABLE IF NOT EXISTS NycYellowTaxi
 (VendorID INT, 
 Pickup_DateTime STRING,
 Drop_DateTime STRING,
-Passenger_Count INT,
-Trip_Distance FLOAT,
