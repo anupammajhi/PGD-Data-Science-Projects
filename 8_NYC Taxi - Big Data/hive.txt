@@ -63,3 +63,23 @@ tblproperties ("skip.header.line.count"="2");
 ## View data in created external table
 
 SELECT * FROM nycyellowtaxi LIMIT 100;
+
+## The data is inserted as required
+
+
+
+#####################################################################################################################
+# PART 1 - Basic Data Quality Checks
+#####################################################################################################################
+
+#####################################################################################################################
+###### PART 1 - Q1 - How many records has each TPEP provider provided? Write a query that summarises the number of records of each provider.
+
+## We take a count of vendorid grouped by vendorid to find the number of recors provided by each vendor 
+
+SELECT vendorid,count(vendorid) AS Num_of_Records FROM nycyellowtaxi 
+GROUP BY vendorid
+ORDER BY vendorid;
+
+## Answer : 
+## 1	8447149 	#(Creative Mobile Technologies, LLC)
