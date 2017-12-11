@@ -97,3 +97,27 @@ ORDER BY YEAR,MONTH;
 
 ## Answer :
 ## 	month	year
+##	1		2001
+##	1		2003
+##	12		2008
+##	1		2009
+##	10		2017
+##	11		2017
+##	12		2017
+##	1		2018
+##	2		2018
+##	3		2018
+##	11		2041
+
+## There are values in the given data which are not from months November and December also. Hence data is not consistent.
+## There are also a lot of rows with wrong year
+
+
+## Finding other data quality issues
+## We are looking for minimum and maximum values of numerical data to see any inconsistency
+
+SELECT 
+min(passenger_count) AS min_passenger,
+max(passenger_count) AS max_passenger,
+min(trip_distance) AS min_trip,
+max(trip_distance) AS max_trip,
