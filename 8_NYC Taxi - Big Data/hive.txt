@@ -121,3 +121,26 @@ min(passenger_count) AS min_passenger,
 max(passenger_count) AS max_passenger,
 min(trip_distance) AS min_trip,
 max(trip_distance) AS max_trip,
+min(ratecode) AS min_ratecode,
+max(ratecode) AS max_ratecode,
+min(fare) AS min_fare,
+max(fare) AS max_fare,
+min(pay_type) AS min_paytype,
+max(pay_type) AS max_paytype,
+min(extra) AS min_extra,
+max(extra) AS max_extra,
+min(MTA_Tax) AS min_MTA,
+max(MTA_Tax) AS max_MTA,
+min(tip) AS min_tip,
+max(tip) AS max_tip,
+min(toll) AS min_toll,
+max(toll) AS max_toll,
+min(improvement_charge) AS min_imp_charge,
+max(improvement_charge) AS max_imp_charge,
+min(total_amt) AS min_total,
+max(total_amt) AS max_total
+FROM nycyellowtaxi;
+
+## min_passenger	0			# 0 passenger_count is errornous iff metered
+## max_passenger	192			# 192 cannot be true for a yellow taxi
+## min_trip			0			# trip distance 0 should not be metered
