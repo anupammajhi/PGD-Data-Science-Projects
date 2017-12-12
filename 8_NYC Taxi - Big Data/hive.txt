@@ -164,5 +164,3 @@ FROM nycyellowtaxi;
 ## min_total		-499.3		# Invalid as cannot be negative
 ## max_total		393222.3	# OK : possible but clearly an outlier
 
-
-## Checking if errornous value for StoreNFwd found
