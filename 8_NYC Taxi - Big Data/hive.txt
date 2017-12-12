@@ -161,3 +161,30 @@ FROM nycyellowtaxi;
 ## max_toll			1018.95		# OK : possible but clearly an outlier
 ## min_imp_charge	-0.3		# Invalid as cannot be negative
 ## max_imp_charge	1			# Invalid as it can only be 0.3
+## min_total		-499.3		# Invalid as cannot be negative
+## max_total		393222.3	# OK : possible but clearly an outlier
+
+
+## Checking if errornous value for StoreNFwd found
+
+SELECT StoreNFwd,COUNT(StoreNFwd) AS COUNT
+FROM nycyellowtaxi
+GROUP BY StoreNFwd;
+
+## Only N and Y values. Data is OK.
+
+
+## Checking if passenger count is consistent
+
+SELECT Passenger_Count,COUNT(Passenger_Count) AS COUNT
+FROM nycyellowtaxi
+GROUP BY Passenger_Count
+ORDER BY passenger_count;
+
+## Passenger count has values from 0 to 9 and also a vlue 192
+## Since we do not know the capacity of cabs here hence we are considering 1 to 9 as valid data.
+## However trips with 0 passenger is errornous and also 192 is impossible
+
+
+## Checking if ratecodes are valid values
+
