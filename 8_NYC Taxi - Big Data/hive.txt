@@ -229,6 +229,3 @@ WHERE
 passenger_count > 9 OR
 (passenger_count = 0 AND total_amt <> 0) OR
 (trip_distance = 0 AND total_amt <> 0) OR
-ratecode NOT IN (1,2,3,4,5,6) OR
-fare < 0 OR
-pay_type NOT IN (1,2,3,4,5,6) OR
