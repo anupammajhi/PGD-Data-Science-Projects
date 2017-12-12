@@ -186,5 +186,3 @@ ORDER BY passenger_count;
 ## However trips with 0 passenger is errornous and also 192 is impossible
 
 
-## Checking if ratecodes are valid values
-
