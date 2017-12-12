@@ -209,3 +209,26 @@ ORDER BY Improvement_Charge;
 ## Checking if tip is consistent as tip can be only be there for Credit Card payments
 
 SELECT pay_type,COUNT(tip) AS COUNT
+FROM nycyellowtaxi
+WHERE tip <> 0
+GROUP BY pay_type
+ORDER BY pay_type;
+
+## There are values for tips under other payment methods too which is a data quality issue.
+
+
+#####################################################################################################################
+###### PART 1 - Q3 - You might have encountered unusual or erroneous rows in the dataset. Can you conclude which vendor is doing a bad job in providing the records?
+
+## We incorporate all data quality issues in the following query and look for the count by grouping by vendorid.
+
+SELECT vendorid, count(vendorid) AS Num_Of_Error
+FROM nycyellowtaxi
+WHERE 
+(month(pickup_datetime) NOT IN (11,12) AND year(pickup_datetime) <> 2017) OR
+passenger_count > 9 OR
+(passenger_count = 0 AND total_amt <> 0) OR
+(trip_distance = 0 AND total_amt <> 0) OR
+ratecode NOT IN (1,2,3,4,5,6) OR
+fare < 0 OR
+pay_type NOT IN (1,2,3,4,5,6) OR
