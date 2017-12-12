@@ -161,6 +161,3 @@ FROM nycyellowtaxi;
 ## max_toll			1018.95		# OK : possible but clearly an outlier
 ## min_imp_charge	-0.3		# Invalid as cannot be negative
 ## max_imp_charge	1			# Invalid as it can only be 0.3
-## min_total		-499.3		# Invalid as cannot be negative
-## max_total		393222.3	# OK : possible but clearly an outlier
-
