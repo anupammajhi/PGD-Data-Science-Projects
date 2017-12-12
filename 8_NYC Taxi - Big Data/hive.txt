@@ -186,3 +186,26 @@ ORDER BY passenger_count;
 ## However trips with 0 passenger is errornous and also 192 is impossible
 
 
+## Checking if ratecodes are valid values
+
+SELECT ratecode,COUNT(ratecode) AS COUNT
+FROM nycyellowtaxi
+GROUP BY ratecode
+ORDER BY ratecode;
+
+## ratecode is invalid as it also contains value 99 which is not in the range [1,6]
+
+
+## Checking if Improvement_Charge are consistent
+
+SELECT Improvement_Charge,COUNT(Improvement_Charge) AS COUNT
+FROM nycyellowtaxi
+GROUP BY Improvement_Charge
+ORDER BY Improvement_Charge;
+
+## There are multiple values which are not the acceptable value of 0 or 0.3. The errornous values include negative values and also invalid values which do not match the acceptable values.
+
+
+## Checking if tip is consistent as tip can be only be there for Credit Card payments
+
+SELECT pay_type,COUNT(tip) AS COUNT
