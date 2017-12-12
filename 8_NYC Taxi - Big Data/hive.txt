@@ -144,3 +144,25 @@ FROM nycyellowtaxi;
 ## min_passenger	0			# 0 passenger_count is errornous iff metered
 ## max_passenger	192			# 192 cannot be true for a yellow taxi
 ## min_trip			0			# trip distance 0 should not be metered
+## max_trip			702.5		# OK
+## min_ratecode		1			# OK
+## max_ratecode		99			# Invalid ratecode. Not between [1,6]
+## min_fare			-499		# Negative fare is errornous
+## max_fare			393221.5	# OK : Too huge still possible. Clearly an outlier.
+## min_paytype		1			# OK
+## max_paytype		4			# OK
+## min_extra		-48.64		# Invalid as it should be positive 
+## max_extra		69.8		# OK : could be 0.5, 1 or positive night charges
+## min_mta			-0.5		# Invalid as cannot be negative
+## max_mta			117.85		# OK
+## min_tip			-218		# Invalid as cannot be negative
+## max_tip			496			# OK
+## min_toll			-19			# Invalid as cannot be negative
+## max_toll			1018.95		# OK : possible but clearly an outlier
+## min_imp_charge	-0.3		# Invalid as cannot be negative
+## max_imp_charge	1			# Invalid as it can only be 0.3
+## min_total		-499.3		# Invalid as cannot be negative
+## max_total		393222.3	# OK : possible but clearly an outlier
+
+
+## Checking if errornous value for StoreNFwd found
