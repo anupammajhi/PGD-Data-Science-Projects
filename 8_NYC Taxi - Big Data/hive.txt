@@ -224,5 +224,3 @@ ORDER BY pay_type;
 
 SELECT vendorid, count(vendorid) AS Num_Of_Error
 FROM nycyellowtaxi
-WHERE 
-(month(pickup_datetime) NOT IN (11,12) AND year(pickup_datetime) <> 2017) OR
