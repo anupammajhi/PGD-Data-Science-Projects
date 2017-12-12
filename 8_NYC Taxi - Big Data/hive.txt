@@ -226,6 +226,3 @@ SELECT vendorid, count(vendorid) AS Num_Of_Error
 FROM nycyellowtaxi
 WHERE 
 (month(pickup_datetime) NOT IN (11,12) AND year(pickup_datetime) <> 2017) OR
-passenger_count > 9 OR
-(passenger_count = 0 AND total_amt <> 0) OR
-(trip_distance = 0 AND total_amt <> 0) OR
