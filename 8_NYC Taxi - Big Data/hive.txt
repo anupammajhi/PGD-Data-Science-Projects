@@ -221,6 +221,3 @@ ORDER BY pay_type;
 ###### PART 1 - Q3 - You might have encountered unusual or erroneous rows in the dataset. Can you conclude which vendor is doing a bad job in providing the records?
 
 ## We incorporate all data quality issues in the following query and look for the count by grouping by vendorid.
-
-SELECT vendorid, count(vendorid) AS Num_Of_Error
-FROM nycyellowtaxi
