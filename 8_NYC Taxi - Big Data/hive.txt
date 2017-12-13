@@ -260,5 +260,3 @@ DROP TABLE NycYellowTaxi_partition_Y_M;
 
 ## We partition based on year and month
 ## We use SNAPPY compression with ORC file format for better efficiency
-
-CREATE EXTERNAL TABLE IF NOT EXISTS NycYellowTaxi_partition_Y_M
