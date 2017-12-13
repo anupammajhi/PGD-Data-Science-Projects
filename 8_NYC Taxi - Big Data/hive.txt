@@ -264,5 +264,3 @@ DROP TABLE NycYellowTaxi_partition_Y_M;
 CREATE EXTERNAL TABLE IF NOT EXISTS NycYellowTaxi_partition_Y_M
 (
 VendorID INT, 
-Pickup_DateTime STRING,
-Drop_DateTime STRING,
