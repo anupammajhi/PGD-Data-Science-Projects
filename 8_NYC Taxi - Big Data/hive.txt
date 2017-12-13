@@ -244,3 +244,25 @@ ORDER BY vendorid;
 
 
 ## 1	175613 		#(Creative Mobile Technologies, LLC)
+## 2	57677		#(VeriFone Inc.)
+
+## VendorID 1 (Creative Mobile Technologies, LLC) is the bad Vendor
+
+
+#####################################################################################################################
+# PARTITIONING BASED ON YEAR AND MONTH
+#####################################################################################################################
+
+## Drop existing table NycYellowTaxi_partition_Y_M (if any) before loading 
+
+DROP TABLE NycYellowTaxi_partition_Y_M;
+
+
+## We partition based on year and month
+## We use SNAPPY compression with ORC file format for better efficiency
+
+CREATE EXTERNAL TABLE IF NOT EXISTS NycYellowTaxi_partition_Y_M
+(
+VendorID INT, 
+Pickup_DateTime STRING,
+Drop_DateTime STRING,
