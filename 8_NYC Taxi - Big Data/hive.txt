@@ -262,5 +262,3 @@ DROP TABLE NycYellowTaxi_partition_Y_M;
 ## We use SNAPPY compression with ORC file format for better efficiency
 
 CREATE EXTERNAL TABLE IF NOT EXISTS NycYellowTaxi_partition_Y_M
-(
-VendorID INT, 
