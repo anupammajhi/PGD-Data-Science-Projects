@@ -364,5 +364,3 @@ FROM nycyellowtaxi_partition_y_m
 WHERE month IN (11,12) AND year = 2017
 GROUP BY pay_type
 ORDER BY pay_type;
-
-## 	pay_type	count
