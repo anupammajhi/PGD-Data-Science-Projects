@@ -347,3 +347,25 @@ ORDER BY passenger_count;
 ##	2				2800618
 ##	3				806863
 ##	4				396715
+##	5				872019
+##	6				529314
+##	7				27
+##	8				24
+##	9				25
+
+## We can clearly see that, Most people travel solo
+
+
+#####################################################################################################################
+###### PART 2 - Q3 - Which is the most preferred mode of payment?
+
+SELECT pay_type , count(pay_type) AS COUNT
+FROM nycyellowtaxi_partition_y_m
+WHERE month IN (11,12) AND year = 2017
+GROUP BY pay_type
+ORDER BY pay_type;
+
+## 	pay_type	count
+##  1			12519360 	# CREDIT CARD IS THE MOST PREFERRED payment method
+## 	2			5939094
+## 	3			77571
