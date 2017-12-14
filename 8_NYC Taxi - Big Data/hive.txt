@@ -274,3 +274,30 @@ PULocationID INT,
 DOLocationID INT,
 Pay_Type INT,
 Fare FLOAT,
+Extra FLOAT,
+MTA_Tax FLOAT,
+Tip FLOAT,
+Toll FLOAT,
+Improvement_Charge FLOAT,
+Total_Amt FLOAT
+) 
+PARTITIONED BY (year INT,month INT)
+stored as orc 
+LOCATION 's3://data-science-am/NYCYellowTaxi_Partition_Y_M'
+tblproperties ("orc.compress"="SNAPPY");
+
+SET hive.exec.dynamic.partition=true;
+set hive.exec.dynamic.partition.mode=nonstrict;
+
+
+## Insert values from nycyellowtaxi table
+## We also remove the data quality issues from the rows 
+
+INSERT OVERWRITE TABLE nycyellowtaxi_partition_y_m 
+PARTITION(year,month)
+SELECT VendorID,Pickup_DateTime,Drop_DateTime,Passenger_Count,Trip_Distance,RateCode,StoreNFwd,PULocationID,DOLocationID,Pay_Type,Fare,Extra,MTA_Tax,Tip,Toll,Improvement_Charge,Total_Amt,
+year(pickup_datetime) AS year ,month(pickup_datetime) AS month
+FROM nycyellowtaxi
+WHERE
+passenger_count <= 9 AND
+passenger_count > 0 AND
