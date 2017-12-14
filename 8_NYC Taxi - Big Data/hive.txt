@@ -325,3 +325,25 @@ SELECT month,avg(fare) AS AVG_FARE
 FROM nycyellowtaxi_partition_y_m
 WHERE month IN (11,12) AND year = 2017
 GROUP BY month;
+
+## 	month	avg_fare
+##	12		12.891796164436117
+##	11		13.0546053368371
+
+
+#####################################################################################################################
+###### PART 2 - Q2 - Explore the ‘number of passengers per trip’ - how many trips are made by each level of ‘Passenger_count’? Do most people travel solo or with other people?
+
+## We select the passenger_count per trip and count the total grouped by passenger_count
+
+SELECT passenger_count, count(passenger_count) AS COUNT
+FROM nycyellowtaxi_partition_y_m
+WHERE month IN (11,12) AND year = 2017
+GROUP BY passenger_count
+ORDER BY passenger_count;
+
+##  passenger_count	count
+##  1				13152097
+##	2				2800618
+##	3				806863
+##	4				396715
