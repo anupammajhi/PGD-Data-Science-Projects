@@ -366,6 +366,3 @@ GROUP BY pay_type
 ORDER BY pay_type;
 
 ## 	pay_type	count
-##  1			12519360 	# CREDIT CARD IS THE MOST PREFERRED payment method
-## 	2			5939094
-## 	3			77571
