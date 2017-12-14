@@ -301,3 +301,27 @@ FROM nycyellowtaxi
 WHERE
 passenger_count <= 9 AND
 passenger_count > 0 AND
+trip_distance > 0 AND
+ratecode IN (1,2,3,4,5,6) AND
+fare >= 0 AND
+((tip = 0 AND pay_type <> 1) OR (tip >= 0 AND pay_type = 1)) AND
+extra >= 0 AND
+mta_tax >= 0 AND
+toll >= 0 AND
+improvement_charge IN (0,0.30) AND
+total_amt >= 0;
+
+
+#####################################################################################################################
+# Analysis-I
+#####################################################################################################################
+
+#####################################################################################################################
+###### PART 2 - Q1 - Compare the average fare for November and December.
+
+## We take the average of fare and group by month
+
+SELECT month,avg(fare) AS AVG_FARE
+FROM nycyellowtaxi_partition_y_m
+WHERE month IN (11,12) AND year = 2017
+GROUP BY month;
