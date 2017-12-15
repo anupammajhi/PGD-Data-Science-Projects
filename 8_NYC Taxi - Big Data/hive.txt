@@ -390,3 +390,25 @@ WHERE month IN (11,12) AND year = 2017;
 ###### PART 2 - Q5 - Explore the ‘Extra’ (charge) variable - what is the fraction of total trips where an extra charge is levied?
 
 ## We calculate the sum when extra charge is levied and divide it by total entries to find the fraction
+
+SELECT SUM(IF(extra == 0, 0, 1)) / COUNT(*) AS FRACTION
+FROM nycyellowtaxi_partition_y_m
+WHERE month IN (11,12) AND year = 2017;
+
+## Answer : 0.46332331449227926 	# About 46% 
+
+#####################################################################################################################
+# Analysis-II
+#####################################################################################################################
+
+#####################################################################################################################
+###### PART 3 - Q1 - What is the correlation between the number of passengers and tip paid? Do multiple travellers pay more compared to solo travellers?
+
+## We use the UDF corr to find the correlation
+
+SELECT corr(passenger_count,tip) AS Correlation
+FROM nycyellowtaxi_partition_y_m
+WHERE month IN (11,12) AND year = 2017;
+
+## Correlation = -0.004351294433748041 . Hence there is no correlation between passenger_count and tip paid.
+
