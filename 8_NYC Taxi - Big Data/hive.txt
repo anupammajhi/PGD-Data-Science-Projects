@@ -409,6 +409,3 @@ WHERE month IN (11,12) AND year = 2017;
 SELECT corr(passenger_count,tip) AS Correlation
 FROM nycyellowtaxi_partition_y_m
 WHERE month IN (11,12) AND year = 2017;
-
-## Correlation = -0.004351294433748041 . Hence there is no correlation between passenger_count and tip paid.
-
