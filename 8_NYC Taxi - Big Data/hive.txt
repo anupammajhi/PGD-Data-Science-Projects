@@ -409,3 +409,23 @@ WHERE month IN (11,12) AND year = 2017;
 SELECT corr(passenger_count,tip) AS Correlation
 FROM nycyellowtaxi_partition_y_m
 WHERE month IN (11,12) AND year = 2017;
+
+## Correlation = -0.004351294433748041 . Hence there is no correlation between passenger_count and tip paid.
+
+
+#####################################################################################################################
+###### PART 3 - Q2 - Create five buckets of ‘tip paid’: [0-5), [5-10), [10-15) , [15-20) and >=20. Calculate the percentage share of each bucket (i.e. the fraction of trips falling in each bucket).
+
+## We create the bins by taking counting (with sum everytime the if condition matches) and dividing that with the total entries and finding out the percentage value by multiplying 100.
+
+SELECT
+    (SUM(IF(tip >= 0 AND tip < 5, 1, 0)) / COUNT(*))*100 AS Bin_0_5,
+    (SUM(IF(tip >= 5 AND tip < 10, 1, 0)) / COUNT(*))*100 AS Bin_5_10,
+    (SUM(IF(tip >= 10 AND tip < 15, 1, 0)) / COUNT(*))*100 AS Bin_10_15,
+    (SUM(IF(tip >= 15 AND tip < 20, 1, 0)) / COUNT(*))*100 AS Bin_15_20,
+    (SUM(IF(tip >= 20, 1, 0)) / COUNT(*))*100 AS Bin_GT_20
+FROM nycyellowtaxi_partition_y_m
+WHERE month IN (11,12) AND year = 2017;
+
+## Answers : 
+## 	bin_0_5	            bin_5_10	        bin_10_15	        bin_15_20	            bin_gt_20
