@@ -364,3 +364,29 @@ FROM nycyellowtaxi_partition_y_m
 WHERE month IN (11,12) AND year = 2017
 GROUP BY pay_type
 ORDER BY pay_type;
+
+## 	pay_type	count
+##  1			12519360 	# CREDIT CARD IS THE MOST PREFERRED payment method
+## 	2			5939094
+## 	3			77571
+## 	4			21677
+
+
+#####################################################################################################################
+###### PART 2 - Q4 - What is the average tip paid? Compare the average tip with the 25th, 50th and 75th percentiles and comment whether the ‘average tip’ is a representative statistic (of the central tendency) of ‘tip amount paid’.
+
+## We use avg UDF to find out the average and percentile_approx to find approx percentile as the values are decimal values and not integers.
+
+SELECT avg(tip) AS Average, percentile_approx(tip,0.25) AS PERCENTILE_25, percentile_approx(tip,0.50) AS PERCENTILE_50, percentile_approx(tip,0.75)  AS PERCENTILE_75
+FROM  nycyellowtaxi_partition_y_m
+WHERE month IN (11,12) AND year = 2017;
+
+## Average              PERCENTILE_25   PERCENTILE_50       PERCENTILE_75
+## 1.8463779750295601	0	            1.3593059230036195	2.450000047683716
+## Average tip can be used as the representative statistic as it is not very skewed from the center.
+
+
+#####################################################################################################################
+###### PART 2 - Q5 - Explore the ‘Extra’ (charge) variable - what is the fraction of total trips where an extra charge is levied?
+
+## We calculate the sum when extra charge is levied and divide it by total entries to find the fraction
