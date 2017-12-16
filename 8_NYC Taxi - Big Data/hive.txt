@@ -466,3 +466,15 @@ WHERE
 
 ## We find the avg speed in the special dates by filtering pickup time by the dates and grouping by those dates
 
+SELECT  
+    day(pickup_datetime) AS Spl_Day,
+    avg(trip_distance/(unix_timestamp(drop_datetime) - unix_timestamp(pickup_datetime)))*(60*60) AS AVG_SPEED
+FROM
+    nycyellowtaxi_partition_y_m
+WHERE
+    to_date(pickup_datetime) IN ("2017-12-25", "2017-12-31")
+GROUP BY Spl_Day;
+
+
+##  spl_day	avg_speed
+##	31	    14.077994958980131
