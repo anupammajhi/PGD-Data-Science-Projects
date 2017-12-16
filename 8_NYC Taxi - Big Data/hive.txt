@@ -446,3 +446,23 @@ GROUP BY month;
 ##	12		12.736554823741507
 ##	11		12.797507086111318
 
+
+#####################################################################################################################
+###### PART 4 - Q4 - Analyse the average speed of the most happening days of the year i.e. 31st December (New year’s eve) and 25th December (Christmas Eve) and compare it with the overall average.  
+
+## We find overall avegare by finding out speed with distance and trip time and taking an average of that for both nov and dec
+
+SELECT  
+    avg(trip_distance/(unix_timestamp(drop_datetime) - unix_timestamp(pickup_datetime)))*(60*60) AS AVG_OVERALL
+FROM
+    nycyellowtaxi_partition_y_m
+WHERE 
+    month IN (11,12) AND
+    year = 2017;
+    
+## avg_overall
+## 12.766675571265205
+
+
+## We find the avg speed in the special dates by filtering pickup time by the dates and grouping by those dates
+
