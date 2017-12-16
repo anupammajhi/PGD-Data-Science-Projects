@@ -429,3 +429,22 @@ WHERE month IN (11,12) AND year = 2017;
 
 ## Answers : 
 ## 	bin_0_5	            bin_5_10	        bin_10_15	        bin_15_20	            bin_gt_20
+##	92.20267142990011	5.641878504138067	1.834424326891336	0.22842267862691187	    0.09260306044358294
+
+
+#####################################################################################################################
+###### PART 3 - Q3 - Which month has a greater average ‘speed’ - November or December? Note that the variable ‘speed’ will have to be derived from other metrics.
+
+## We calculate the speed by taking the trip distance divide that with trip time (drop time minus pickup time) and take an average to find the solution
+
+SELECT month,avg(trip_distance/(unix_timestamp(drop_datetime) - unix_timestamp(pickup_datetime)))*(60*60) AS AVG_SPEED
+FROM nycyellowtaxi_partition_y_m
+WHERE month IN (11,12) AND year = 2017
+GROUP BY month;
+
+## 	month	avg_speed
+##	12		12.736554823741507
+##	11		12.797507086111318
+
+
+#####################################################################################################################
