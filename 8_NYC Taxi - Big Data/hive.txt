@@ -478,3 +478,6 @@ GROUP BY Spl_Day;
 
 ##  spl_day	avg_speed
 ##	31	    14.077994958980131
+##	25	    16.8595859110867
+
+## We see that the average speed is more during these special days
