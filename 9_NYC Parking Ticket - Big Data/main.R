@@ -16,3 +16,4 @@ NYCParking_2016 <- SparkR::read.df("s3://nycparkinghari/Parking_Violations_Issue
 NYCParking_2017 <- SparkR::read.df("s3://nycparkinghari/Parking_Violations_Issued_-_Fiscal_Year_2017.csv",source="csv",header="true",inferSchema="true")
 
 # Examining structure
+str(NYCParking_2015) # 51 variables
