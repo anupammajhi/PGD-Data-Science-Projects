@@ -15,3 +15,4 @@ NYCParking_2015 <- SparkR::read.df("s3://nycparkinghari/Parking_Violations_Issue
 NYCParking_2016 <- SparkR::read.df("s3://nycparkinghari/Parking_Violations_Issued_-_Fiscal_Year_2016.csv",source="csv",header="true",inferSchema="true")
 NYCParking_2017 <- SparkR::read.df("s3://nycparkinghari/Parking_Violations_Issued_-_Fiscal_Year_2017.csv",source="csv",header="true",inferSchema="true")
 
+# Examining structure
