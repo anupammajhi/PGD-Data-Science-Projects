@@ -18,3 +18,4 @@ NYCParking_2017 <- SparkR::read.df("s3://nycparkinghari/Parking_Violations_Issue
 # Examining structure
 str(NYCParking_2015) # 51 variables
 str(NYCParking_2016) # 51 variables
+str(NYCParking_2017) # 43 variables
