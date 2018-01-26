@@ -68,3 +68,22 @@ columns(NYCParking_2015)
 
 NYCParking_2016 <- NYCParking_2016[,1:40]
 columns(NYCParking_2016)
+
+NYCParking_2017 <- NYCParking_2017[,1:40]
+columns(NYCParking_2017)
+
+# Adding ParsedIssue Date and a column for Fiscal Year to combine all 3 years data
+
+NYCParking_2015 <- NYCParking_2015 %>% withColumn("Issue Date Parsed", to_date(NYCParking_2015$`Issue Date`,  "MM/dd/yyyy")) %>% 
+  withColumn("Fiscal Year", "2015")
+
+str(NYCParking_2015)
+
+NYCParking_2016 <- NYCParking_2016 %>% withColumn("Issue Date Parsed", to_date(NYCParking_2016$`Issue Date`,  "MM/dd/yyyy")) %>% 
+  withColumn("Fiscal Year", "2016")
+
+str(NYCParking_2016)
+
+NYCParking_2017 <- NYCParking_2017 %>% withColumn("Issue Date Parsed", to_date(NYCParking_2017$`Issue Date`,  "MM/dd/yyyy")) %>% 
+  withColumn("Fiscal Year", "2017")
+
