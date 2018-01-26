@@ -52,3 +52,19 @@ NYCParking_2016_sample_R <- collect(NYCParking_2016_sample)
 
 NYCParking_2017_sample <- sample(NYCParking_2017,withReplacement = F,fraction = 0.01) 
 NYCParking_2017_sample_R <- collect(NYCParking_2017_sample)
+
+# Checking columns for number of missing values
+
+sapply(NYCParking_2015_sample_R, function(x) sum(is.na(x)))
+sapply(NYCParking_2016_sample_R, function(x) sum(is.na(x)))
+sapply(NYCParking_2017_sample_R, function(x) sum(is.na(x)))
+
+# We can see that columns from 'No Standing or Stopping Violation' are empty in all three datasets.
+# Therefore, we need to remove them
+# Hence we will only use columns 1 to 40
+
+NYCParking_2015 <- NYCParking_2015[,1:40]
+columns(NYCParking_2015)
+
+NYCParking_2016 <- NYCParking_2016[,1:40]
+columns(NYCParking_2016)
