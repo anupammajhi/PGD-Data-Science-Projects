@@ -105,3 +105,4 @@ NYCParking_2015 <- SparkR::sql("SELECT * FROM NYC_2015_View WHERE (YEAR(`Issue D
 NYCParking_2016 <- SparkR::sql("SELECT * FROM NYC_2016_View WHERE (YEAR(`Issue Date Parsed`) = 2015 and MONTH(`Issue Date Parsed`) >= 7) or (YEAR(`Issue Date Parsed`) = 2016 and MONTH(`Issue Date Parsed`) <= 6)")
 NYCParking_2017 <- SparkR::sql("SELECT * FROM NYC_2017_View WHERE (YEAR(`Issue Date Parsed`) = 2016 and MONTH(`Issue Date Parsed`) >= 7) or (YEAR(`Issue Date Parsed`) = 2017 and MONTH(`Issue Date Parsed`) <= 6)")
 
+# Creating view for sql
