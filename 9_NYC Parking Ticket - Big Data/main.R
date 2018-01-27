@@ -138,3 +138,22 @@ Num_of_Tickets
 #        2016              10396894                       
 #        2017              10539563                       
 
+
+########### 2. Find out how many unique states the cars which got parking tickets came from.
+
+unique_states <- SparkR::sql("SELECT `Fiscal Year`,count(distinct(`Registration State`)) as Count_State \
+                             FROM NYC_All_View \
+                             GROUP BY `Fiscal Year` \
+                             ORDER BY `Fiscal Year` ") %>% collect()
+unique_states
+
+#   Fiscal Year                   Count_State
+#     2015                            69
+#     2016                            68
+#     2017                            67
+
+########### 3. Some parking tickets don’t have addresses on them, which is cause for concern. Find out how many such tickets there are.
+
+empty_address <- SparkR::sql("SELECT `Fiscal Year`,count(`Fiscal Year`) as Frequency_InvalidAddress \
+                             FROM NYC_All_View \
+                             WHERE `House Number` IS NULL \
