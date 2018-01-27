@@ -107,3 +107,18 @@ NYCParking_2017 <- SparkR::sql("SELECT * FROM NYC_2017_View WHERE (YEAR(`Issue D
 
 # Creating view for sql
 createOrReplaceTempView(NYCParking_2015,"NYC_2015_View") 
+createOrReplaceTempView(NYCParking_2016,"NYC_2016_View") 
+createOrReplaceTempView(NYCParking_2017,"NYC_2017_View") 
+
+# Combining all 3 Fiscal years data into single dataframe
+NYCParking_All <- SparkR::rbind(NYCParking_2015,NYCParking_2016)
+NYCParking_All <- SparkR::rbind(NYCParking_All,NYCParking_2017)
+
+nrow(NYCParking_All)
+str(NYCParking_All)
+
+#Creating view for sql
+createOrReplaceTempView(NYCParking_All,"NYC_All_View")
+
+
+#######################################################################################################
