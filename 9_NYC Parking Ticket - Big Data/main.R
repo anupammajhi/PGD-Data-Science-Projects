@@ -123,3 +123,17 @@ createOrReplaceTempView(NYCParking_All,"NYC_All_View")
 
 #######################################################################################################
 ########################################## Examine the data. ##########################################
+
+
+########### 1. Find total number of tickets for each year.
+
+Num_of_Tickets <- SparkR::sql("SELECT `Fiscal Year`,count(`Summons Number`) as count_SummonsNumber \
+                              FROM NYC_All_View \
+                              GROUP BY `Fiscal Year`
+                              ORDER BY `Fiscal Year`") %>% collect()
+Num_of_Tickets
+
+#      Fiscal Year    count_SummonsNumber     
+#        2015              10598036                       
+#        2016              10396894                       
+#        2017              10539563                       
