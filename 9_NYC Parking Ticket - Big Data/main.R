@@ -157,3 +157,4 @@ unique_states
 empty_address <- SparkR::sql("SELECT `Fiscal Year`,count(`Fiscal Year`) as Frequency_InvalidAddress \
                              FROM NYC_All_View \
                              WHERE `House Number` IS NULL \
+                             AND `Street Name` IS NULL \
