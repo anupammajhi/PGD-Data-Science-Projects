@@ -177,3 +177,23 @@ empty_address1 <- SparkR::sql("SELECT `Fiscal Year`,count(`Fiscal Year`) as Freq
                              GROUP BY `Fiscal Year` \
                              ORDER BY `Fiscal Year` ") %>% collect()
 
+empty_address1
+
+#     Fiscal Year   Frequency_InvalidAddress
+#        2015               3759
+#        2016               2788
+#        2017               2553 
+
+#######################################################################################################
+########################################## Aggregation tasks ##########################################
+
+########### 1. How often does each violation code occur? (frequency of violation codes - find the top 5)
+
+NYC_All_Violation_Grouped <- SparkR::sql("SELECT `Fiscal Year`,`Violation Code`,count(`Violation Code`) AS Violation_Frequency \ 
+                                         FROM NYC_All_View \
+                                         GROUP BY `Fiscal Year`,`Violation Code`")
+
+createOrReplaceTempView(NYC_All_Violation_Grouped,"NYC_All_Violation_Grouped_View")
+
+NYC_All_Violation_top5_peryear <- SparkR::sql("SELECT `Fiscal Year`,`Violation Code`, Violation_Frequency \
+                                              FROM ( SELECT `Fiscal Year`,`Violation Code`, Violation_Frequency, \
