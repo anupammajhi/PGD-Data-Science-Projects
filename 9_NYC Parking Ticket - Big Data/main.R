@@ -176,3 +176,4 @@ empty_address1 <- SparkR::sql("SELECT `Fiscal Year`,count(`Fiscal Year`) as Freq
                              AND `Street Name` IS NULL \
                              GROUP BY `Fiscal Year` \
                              ORDER BY `Fiscal Year` ") %>% collect()
+
