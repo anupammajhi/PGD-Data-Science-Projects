@@ -158,3 +158,21 @@ empty_address <- SparkR::sql("SELECT `Fiscal Year`,count(`Fiscal Year`) as Frequ
                              FROM NYC_All_View \
                              WHERE `House Number` IS NULL \
                              AND `Street Name` IS NULL \
+                             AND `Intersecting Street` IS NULL \
+                             GROUP BY `Fiscal Year` \
+                             ORDER BY `Fiscal Year` ") %>% collect()
+
+empty_address
+
+#     Fiscal Year   Frequency_InvalidAddress
+#        2015               3696
+#        2016               2640
+#        2017               2418 
+
+#Assuming that Intersecting Street is not part of Address.
+empty_address1 <- SparkR::sql("SELECT `Fiscal Year`,count(`Fiscal Year`) as Frequency_InvalidAddress \
+                             FROM NYC_All_View \
+                             WHERE `House Number` IS NULL \
+                             AND `Street Name` IS NULL \
+                             GROUP BY `Fiscal Year` \
+                             ORDER BY `Fiscal Year` ") %>% collect()
