@@ -197,3 +197,4 @@ createOrReplaceTempView(NYC_All_Violation_Grouped,"NYC_All_Violation_Grouped_Vie
 
 NYC_All_Violation_top5_peryear <- SparkR::sql("SELECT `Fiscal Year`,`Violation Code`, Violation_Frequency \
                                               FROM ( SELECT `Fiscal Year`,`Violation Code`, Violation_Frequency, \
+                                              dense_rank() OVER(PARTITION BY `Fiscal Year` ORDER BY Violation_Frequency DESC) AS rank \
