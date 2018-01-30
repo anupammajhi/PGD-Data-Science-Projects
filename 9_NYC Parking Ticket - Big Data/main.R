@@ -198,3 +198,19 @@ createOrReplaceTempView(NYC_All_Violation_Grouped,"NYC_All_Violation_Grouped_Vie
 NYC_All_Violation_top5_peryear <- SparkR::sql("SELECT `Fiscal Year`,`Violation Code`, Violation_Frequency \
                                               FROM ( SELECT `Fiscal Year`,`Violation Code`, Violation_Frequency, \
                                               dense_rank() OVER(PARTITION BY `Fiscal Year` ORDER BY Violation_Frequency DESC) AS rank \
+                                              FROM NYC_All_Violation_Grouped_View) \
+                                              WHERE rank <= 5") %>% collect()
+
+NYC_All_Violation_top5_peryear
+
+    # Fiscal Year    Violation Code    Violation_Frequency
+#         2016             21             1497269
+#         2016             36             1232952
+#         2016             38             1126835
+#         2016             14              860045
+#         2016             37              677805
+#         2017             21             1500396
+#         2017             36             1345237
+#         2017             38             1050418
+#         2017             14              880152
+#         2017             20              609231
