@@ -214,3 +214,23 @@ NYC_All_Violation_top5_peryear
 #         2017             38             1050418
 #         2017             14              880152
 #         2017             20              609231
+#         2015             21             1469228
+#         2015             38             1305007
+#         2015             14              908418
+#         2015             36              747098
+#         2015             37              735600
+
+# Plot
+
+NYC_All_Body_top5_peryear %>% ggplot(aes(as.character(`Vehicle Body Type`),Frequency)) +
+  geom_bar(aes(fill=as.character(`Vehicle Body Type`)),stat="identity") + 
+  facet_grid(.~`Fiscal Year`) +
+  labs(x="Vehicle Body Type", fill="Vehicle Body Type",title="Frequency of Vehicle Body Type getting parking tickets")
+
+
+###########  2. How often does each vehicle body type get a parking ticket? How about the vehicle make? (find the top 5 for both)
+
+# For Vehicle Body Type
+
+NYC_All_Body_Grouped <- SparkR::sql("SELECT `Fiscal Year`,`Vehicle Body Type`,count(`Vehicle Body Type`) AS Frequency \ 
+                                    FROM NYC_All_View \
