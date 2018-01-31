@@ -306,3 +306,4 @@ NYC_All_Make_top5_peryear
 # Plot
 
 NYC_All_Make_top5_peryear %>% ggplot(aes(as.character(`Vehicle Make`),Frequency)) +
+  geom_bar(aes(fill=as.character(`Vehicle Make`)),stat="identity") + 
