@@ -276,3 +276,19 @@ NYC_All_Make_Grouped <- SparkR::sql("SELECT `Fiscal Year`,`Vehicle Make`,count(`
                                     FROM NYC_All_View \
                                     GROUP BY `Fiscal Year`,`Vehicle Make`")
 
+createOrReplaceTempView(NYC_All_Make_Grouped ,"NYC_All_Make_Grouped_View")
+
+NYC_All_Make_top5_peryear <- SparkR::sql("SELECT `Fiscal Year`,`Vehicle Make`, Frequency \
+                                         FROM ( SELECT `Fiscal Year`,`Vehicle Make`, Frequency, \
+                                         dense_rank() OVER(PARTITION BY `Fiscal Year` ORDER BY Frequency DESC) AS rank \
+                                         FROM NYC_All_Make_Grouped_View) \
+                                         WHERE rank <= 5") %>% collect()
+
+NYC_All_Make_top5_peryear
+
+#   Fiscal Year Vehicle Make Frequency
+#         2016         FORD   1297363
+#         2016        TOYOT   1128909
+#         2016        HONDA    991735
+#         2016        NISSA    815963
+#         2016        CHEVR    743416
