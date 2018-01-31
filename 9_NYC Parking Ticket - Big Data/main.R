@@ -275,3 +275,4 @@ NYC_All_Body_top5_peryear %>% ggplot(aes(as.character(`Vehicle Body Type`),Frequ
 NYC_All_Make_Grouped <- SparkR::sql("SELECT `Fiscal Year`,`Vehicle Make`,count(`Vehicle Make`) AS Frequency \ 
                                     FROM NYC_All_View \
                                     GROUP BY `Fiscal Year`,`Vehicle Make`")
+
