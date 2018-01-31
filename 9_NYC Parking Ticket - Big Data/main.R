@@ -254,3 +254,24 @@ NYC_All_Body_top5_peryear
 #         2016               SDN    401750
 #         2017              SUBN   3632003
 #         2017              4DSD   3017372
+#         2017               VAN   1384121
+#         2017              DELV    672123
+#         2017               SDN    414984
+#         2015              SUBN   3341110
+#         2015              4DSD   3001810
+#         2015               VAN   1570227
+#         2015              DELV    822041
+#         2015               SDN    428571
+
+# Plot
+
+NYC_All_Body_top5_peryear %>% ggplot(aes(as.character(`Vehicle Body Type`),Frequency)) +
+  geom_bar(aes(fill=as.character(`Vehicle Body Type`)),stat="identity") + 
+  facet_grid(.~`Fiscal Year`) +
+  labs(x="Vehicle Body Type", fill="Vehicle Body Type",title="Frequency of Vehicle Body Type getting parking tickets")
+
+# For Vehicle Make
+
+NYC_All_Make_Grouped <- SparkR::sql("SELECT `Fiscal Year`,`Vehicle Make`,count(`Vehicle Make`) AS Frequency \ 
+                                    FROM NYC_All_View \
+                                    GROUP BY `Fiscal Year`,`Vehicle Make`")
