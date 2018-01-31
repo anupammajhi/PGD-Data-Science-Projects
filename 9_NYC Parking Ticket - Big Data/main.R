@@ -235,3 +235,21 @@ NYC_All_Body_top5_peryear %>% ggplot(aes(as.character(`Vehicle Body Type`),Frequ
 NYC_All_Body_Grouped <- SparkR::sql("SELECT `Fiscal Year`,`Vehicle Body Type`,count(`Vehicle Body Type`) AS Frequency \ 
                                     FROM NYC_All_View \
                                     GROUP BY `Fiscal Year`,`Vehicle Body Type`")
+
+createOrReplaceTempView(NYC_All_Body_Grouped,"NYC_All_Body_Grouped_View")
+
+NYC_All_Body_top5_peryear <- SparkR::sql("SELECT `Fiscal Year`,`Vehicle Body Type`, Frequency \
+                                         FROM ( SELECT `Fiscal Year`,`Vehicle Body Type`, Frequency, \
+                                         dense_rank() OVER(PARTITION BY `Fiscal Year` ORDER BY Frequency DESC) AS rank \
+                                         FROM NYC_All_Body_Grouped_View) \
+                                         WHERE rank <= 5") %>% collect()
+
+NYC_All_Body_top5_peryear
+
+#   Fiscal Year Vehicle Body Type Frequency
+#         2016              SUBN   3393838
+#         2016              4DSD   2936729
+#         2016               VAN   1489924
+#         2016              DELV    738747
+#         2016               SDN    401750
+#         2017              SUBN   3632003
