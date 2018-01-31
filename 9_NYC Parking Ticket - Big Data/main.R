@@ -292,3 +292,17 @@ NYC_All_Make_top5_peryear
 #         2016        HONDA    991735
 #         2016        NISSA    815963
 #         2016        CHEVR    743416
+#         2017         FORD   1250777
+#         2017        TOYOT   1179265
+#         2017        HONDA   1052006
+#         2017        NISSA    895225
+#         2017        CHEVR    698024
+#         2015         FORD   1373157
+#         2015        TOYOT   1082206
+#         2015        HONDA    982130
+#         2015        CHEVR    811659
+#         2015        NISSA    805572
+
+# Plot
+
+NYC_All_Make_top5_peryear %>% ggplot(aes(as.character(`Vehicle Make`),Frequency)) +
