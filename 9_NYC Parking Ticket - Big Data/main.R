@@ -330,3 +330,4 @@ NYC_All_Viol_Precinct_top5_peryear
 
 #  Fiscal Year Violation Precinct Frequency
 #         2016                  0   1807139
+#         2016                 19    545669
