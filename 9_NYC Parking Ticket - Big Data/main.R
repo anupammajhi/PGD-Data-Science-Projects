@@ -352,3 +352,4 @@ NYC_All_Viol_Precinct_top5_peryear %>% ggplot(aes(as.character(`Violation Precin
   facet_grid(.~`Fiscal Year`) +
   labs(x="Violation Precinct", fill="Violation Precinct",title="Frequency of Violation Precinct getting parking tickets")
   
+
