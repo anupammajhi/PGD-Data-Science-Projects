@@ -331,3 +331,23 @@ NYC_All_Viol_Precinct_top5_peryear
 #  Fiscal Year Violation Precinct Frequency
 #         2016                  0   1807139
 #         2016                 19    545669
+#         2016                 18    325559
+#         2016                 14    318193
+#         2016                  1    299074
+#         2017                  0   1950083
+#         2017                 19    528317
+#         2017                 14    347736
+#         2017                  1    326961
+#         2017                 18    302008
+#         2015                  0   1455166
+#         2015                 19    550797
+#         2015                 18    393802
+#         2015                 14    377750
+#         2015                  1    302737
+
+# Plot
+
+NYC_All_Viol_Precinct_top5_peryear %>% ggplot(aes(as.character(`Violation Precinct`),Frequency)) +
+  geom_bar(aes(fill=as.character(`Violation Precinct`)),stat="identity") + 
+  facet_grid(.~`Fiscal Year`) +
+  labs(x="Violation Precinct", fill="Violation Precinct",title="Frequency of Violation Precinct getting parking tickets")
