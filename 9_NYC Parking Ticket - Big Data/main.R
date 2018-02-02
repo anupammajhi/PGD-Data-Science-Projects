@@ -353,3 +353,18 @@ NYC_All_Viol_Precinct_top5_peryear %>% ggplot(aes(as.character(`Violation Precin
   labs(x="Violation Precinct", fill="Violation Precinct",title="Frequency of Violation Precinct getting parking tickets")
   
 
+###########  3b. Issuing Precincts (this is the precinct that issued the ticket)
+
+NYC_All_Issue_Precinct_Grouped <- SparkR::sql("SELECT `Fiscal Year`,`Issuer Precinct`,count(`Issuer Precinct`) AS Frequency \ 
+                                              FROM NYC_All_View \
+                                              GROUP BY `Fiscal Year`,`Issuer Precinct`")
+
+createOrReplaceTempView(NYC_All_Issue_Precinct_Grouped ,"NYC_All_Issue_Precinct_Grouped_View")
+
+NYC_All_Issue_Precinct_top5_peryear <- SparkR::sql("SELECT `Fiscal Year`,`Issuer Precinct`, Frequency \
+                                                   FROM ( SELECT `Fiscal Year`,`Issuer Precinct`, Frequency, \
+                                                   dense_rank() OVER(PARTITION BY `Fiscal Year` ORDER BY Frequency DESC) AS rank \
+                                                   FROM NYC_All_Issue_Precinct_Grouped_View) \
+                                                   WHERE rank <= 5") %>% collect()
+
+NYC_All_Issue_Precinct_top5_peryear
