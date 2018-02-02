@@ -368,3 +368,21 @@ NYC_All_Issue_Precinct_top5_peryear <- SparkR::sql("SELECT `Fiscal Year`,`Issuer
                                                    WHERE rank <= 5") %>% collect()
 
 NYC_All_Issue_Precinct_top5_peryear
+
+#  Fiscal Year Issuer Precinct Frequency
+#         2016               0   2067219
+#         2016              19    532298
+#         2016              18    317451
+#         2016              14    309727
+#         2016               1    290472
+#         2017               0   2255086
+#         2017              19    514786
+#         2017              14    340862
+#         2017               1    316776
+#         2017              18    292237
+#         2015               0   1648671
+#         2015              19    536627
+#         2015              18    384863
+#         2015              14    363734
+#         2015               1    293942
+
