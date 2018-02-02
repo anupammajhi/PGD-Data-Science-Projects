@@ -409,3 +409,21 @@ NYC_All_Violation_Per_Precinct_Grouped <- SparkR::sql("SELECT `Fiscal Year`,`Iss
                                                       GROUP BY `Fiscal Year`,`Violation Code`,`Issuer Precinct`")
 
 createOrReplaceTempView(NYC_All_Violation_Per_Precinct_Grouped ,"NYC_All_Violation_Per_Precinct_Grouped_View")
+
+NYC_All_Violation_Per_Precinct_top5_peryear <- SparkR::sql("SELECT `Fiscal Year`,`Issuer Precinct`,`Violation Code`, Frequency \
+                                                           FROM ( SELECT `Fiscal Year`,`Issuer Precinct`,`Violation Code`, Frequency, \
+                                                           dense_rank() OVER(PARTITION BY `Fiscal Year`,`Issuer Precinct` ORDER BY Frequency DESC) AS rank \
+                                                           FROM NYC_All_Violation_Per_Precinct_Grouped_View \
+                                                           ) \
+                                                           WHERE rank <= 5") %>% head(num=70)
+
+NYC_All_Violation_Per_Precinct_top5_peryear
+
+# Fiscal Year Issuer Precinct Violation Code Frequency
+# 1         2017              14             14     73007
+# 2         2017              14             69     57316
+# 3         2017              14             31     39430
+# 4         2017              14             47     30200
+# 5         2017              14             42     20402
+# 6         2016              14             69     66874
+# 7         2016              14             14     61358
