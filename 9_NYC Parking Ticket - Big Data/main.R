@@ -408,3 +408,4 @@ NYC_All_Violation_Per_Precinct_Grouped <- SparkR::sql("SELECT `Fiscal Year`,`Iss
                                                       FROM NYC_All_View WHERE `Issuer Precinct` IN (0,19,14) \
                                                       GROUP BY `Fiscal Year`,`Violation Code`,`Issuer Precinct`")
 
+createOrReplaceTempView(NYC_All_Violation_Per_Precinct_Grouped ,"NYC_All_Violation_Per_Precinct_Grouped_View")
