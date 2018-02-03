@@ -499,3 +499,20 @@ NYCParking_All_2$`Violation Time` <- ifelse(isNull(NYCParking_All_2$`Violation T
 # We start by splitting the string
 
 NYCParking_All_2 <- NYCParking_All_2 %>% withColumn("Hour", substr(NYCParking_All_2$`Violation Time`,1,2)) %>% withColumn( "Minute", substr(NYCParking_All_2$`Violation Time`,4,5 ))%>% withColumn( "a_p", substr(NYCParking_All_2$`Violation Time`,6,6 ))
+str(NYCParking_All_2)
+
+# Next we concat the various strings
+NYCParking_All_2 <- NYCParking_All_2 %>% withColumn("Violation Time String", concat_ws( ':' ,cast(NYCParking_All_2$`Hour`, 'string'), NYCParking_All_2$`Minute` ))
+str(NYCParking_All_2)
+
+# We then convert to unix_timestamp
+NYCParking_All_2 <- NYCParking_All_2 %>% withColumn("Violation Time Parsed", unix_timestamp(NYCParking_All_2$`Violation Time String`, 'HH:mm'))
+str(NYCParking_All_2)
+
+# To get the correct hour, we use a condition to add 12 hours(12*60*60 in seconds)
+NYCParking_All_2 <- NYCParking_All_2 %>% withColumn("Actual Time Parsed", 
+                                                    ifelse(NYCParking_All_2$`a_p` == 'P', NYCParking_All_2$`Violation Time Parsed` + (12*60*60), NYCParking_All_2$`Violation Time Parsed`))
+str(NYCParking_All_2)
+
+# Finally we convert this to a timestamp format
+NYCParking_All_2 <- NYCParking_All_2 %>% withColumn("Actual Violation Time", cast(NYCParking_All_2$`Actual Time Parsed`, 'timestamp'))
