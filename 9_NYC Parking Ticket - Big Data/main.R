@@ -480,3 +480,22 @@ NYC_All_Violation_Per_Precinct_top5_peryear
 # 2015      0          36,07,21,05,66
 #          14          69,14,31,42,47
 #          19          38,37,14,16,21
+
+# Plot
+
+NYC_All_Violation_Per_Precinct_top5_peryear %>% ggplot(aes(as.character(`Violation Code`),Frequency)) +
+  geom_bar(aes(fill=as.character(`Violation Code`)),stat="identity") + 
+  facet_grid(`Issuer Precinct`~`Fiscal Year`) +
+  labs(x="Violation Code", fill="Violation Code",title="Frequency of Violation Code getting parking tickets")
+
+###########  5.You’d want to find out the properties of parking violations across different times of the day:
+###########  5a. The Violation Time field is specified in a strange format. Find a way to make this into a time attribute that you can use to divide into groups.
+#       AND  5b. Find a way to deal with missing values, if any.
+
+# If Violation Time is Null, we will replace that with "From Hours in Effect" column value
+NYCParking_All_2 <- NYCParking_All
+NYCParking_All_2$`Violation Time` <- ifelse(isNull(NYCParking_All_2$`Violation Time`) & NYCParking_All_2$`From Hours In Effect` != "ALL" ,NYCParking_All_2$`From Hours In Effect`,NYCParking_All_2$`Violation Time`)
+
+# We start by splitting the string
+
+NYCParking_All_2 <- NYCParking_All_2 %>% withColumn("Hour", substr(NYCParking_All_2$`Violation Time`,1,2)) %>% withColumn( "Minute", substr(NYCParking_All_2$`Violation Time`,4,5 ))%>% withColumn( "a_p", substr(NYCParking_All_2$`Violation Time`,6,6 ))
