@@ -554,3 +554,4 @@ topviol_across_time <- SparkR::sql("select `Fiscal Year` , `Time of Day` , `Viol
 createOrReplaceTempView(topviol_across_time, "topviol_across_time_view")
 
 topviol_across_time_top3 <- SparkR::sql("SELECT `Fiscal Year`,`Time of Day`, `Violation Code`,  Frequency 
+                                        FROM ( SELECT `Fiscal Year`,`Time of Day`, `Violation Code`,  Frequency, 
