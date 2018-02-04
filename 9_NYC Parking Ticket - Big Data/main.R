@@ -533,3 +533,4 @@ NYCParking_All_2 <- filter(NYCParking_All_2, isNotNull(NYCParking_All_2$`Actual 
 
 
 NYCParking_All_2 <- NYCParking_All_2 %>% withColumn("Time of Day", 
+                                                    ifelse(hour(NYCParking_All_2$`Actual Violation Time`) >= 2 & hour(NYCParking_All_2$`Actual Violation Time`) < 6, 'Early Morning',
