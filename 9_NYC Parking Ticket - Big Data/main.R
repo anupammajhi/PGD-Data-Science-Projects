@@ -531,3 +531,4 @@ NYCParking_All_2 <- filter(NYCParking_All_2, isNotNull(NYCParking_All_2$`Actual 
 
 # Splitting time into 6 bins
 
+
