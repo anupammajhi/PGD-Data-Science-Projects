@@ -534,3 +534,22 @@ NYCParking_All_2 <- filter(NYCParking_All_2, isNotNull(NYCParking_All_2$`Actual 
 
 NYCParking_All_2 <- NYCParking_All_2 %>% withColumn("Time of Day", 
                                                     ifelse(hour(NYCParking_All_2$`Actual Violation Time`) >= 2 & hour(NYCParking_All_2$`Actual Violation Time`) < 6, 'Early Morning',
+                                                           ifelse(hour(NYCParking_All_2$`Actual Violation Time`) >= 6 & hour(NYCParking_All_2$`Actual Violation Time`) < 10, 'Morning',
+                                                                  ifelse(hour(NYCParking_All_2$`Actual Violation Time`) >= 10 & hour(NYCParking_All_2$`Actual Violation Time`) < 14, 'Afternoon',
+                                                                         ifelse(hour(NYCParking_All_2$`Actual Violation Time`) >= 14 & hour(NYCParking_All_2$`Actual Violation Time`) < 18, 'Evening',
+                                                                                ifelse(hour(NYCParking_All_2$`Actual Violation Time`) >= 18 & hour(NYCParking_All_2$`Actual Violation Time`) < 22, 'Night', 'Late Night'
+                                                                                ))))))
+str(NYCParking_All_2)
+
+
+# Updating SQL View
+createOrReplaceTempView(NYCParking_All_2, "NYC_All_View_2")
+
+
+# Finding 3 most common violation across the time slots
+
+topviol_across_time <- SparkR::sql("select `Fiscal Year` , `Time of Day` , `Violation Code`, count(*) as Frequency from NYC_All_View_2 group by `Fiscal Year`, `Time of Day`, `Violation Code` " )
+
+
+createOrReplaceTempView(topviol_across_time, "topviol_across_time_view")
+
