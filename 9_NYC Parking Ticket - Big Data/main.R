@@ -556,3 +556,17 @@ createOrReplaceTempView(topviol_across_time, "topviol_across_time_view")
 topviol_across_time_top3 <- SparkR::sql("SELECT `Fiscal Year`,`Time of Day`, `Violation Code`,  Frequency 
                                         FROM ( SELECT `Fiscal Year`,`Time of Day`, `Violation Code`,  Frequency, 
                                         dense_rank() OVER(PARTITION BY `Fiscal Year`, `Time of Day` ORDER BY Frequency DESC) AS rank 
+                                        FROM topviol_across_time_view) 
+                                        WHERE rank <= 3") %>% collect()
+topviol_across_time_top3
+										
+# Obtained Output:
+# No.Fiscal Year Time of Day    Violation Code Frequency
+# 1         2017 Early Morning             40     50460
+# 2         2017 Early Morning             21     32248
+# 3         2017 Early Morning             14     26719
+# 4         2017    Late Night             36    204242
+# 5         2017    Late Night             21    186348
+# 6         2017    Late Night             38    110884
+# 7         2017       Evening             38    379239
+# 8         2017       Evening             37    284663
