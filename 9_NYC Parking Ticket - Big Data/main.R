@@ -516,3 +516,18 @@ str(NYCParking_All_2)
 
 # Finally we convert this to a timestamp format
 NYCParking_All_2 <- NYCParking_All_2 %>% withColumn("Actual Violation Time", cast(NYCParking_All_2$`Actual Time Parsed`, 'timestamp'))
+str(NYCParking_All_2)
+
+
+# Checking for NA's
+
+filter(NYCParking_All_2, isNull(NYCParking_All_2$`Actual Violation Time`)) %>% nrow()
+
+# We have 2684 Missing Values. We will Remove these rows
+NYCParking_All_2 <- filter(NYCParking_All_2, isNotNull(NYCParking_All_2$`Actual Violation Time`)) 
+
+
+###########  5c. Divide 24 hours into 6 equal discrete bins of time. The intervals you choose are at your discretion. For each of these groups, find the 3 most commonly occurring violations
+
+# Splitting time into 6 bins
+
