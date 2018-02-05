@@ -570,3 +570,24 @@ topviol_across_time_top3
 # 6         2017    Late Night             38    110884
 # 7         2017       Evening             38    379239
 # 8         2017       Evening             37    284663
+# 9         2017       Evening             14    235729
+# 10        2017       Morning             21    844285
+# 11        2017       Morning             36    353910
+# 12        2017       Morning             14    273567
+# 13        2015         Night              7    101896
+# 14        2015         Night             38    100776
+# 15        2015         Night             14     49055
+# 16        2015 Early Morning             40     40851
+# 17        2015 Early Morning             14     26663
+# 18        2015 Early Morning             21     24944
+# 19        2017     Afternoon             36    594090
+# 20        2017     Afternoon             21    436648
+# 21        2017     Afternoon             38    330862
+# 22        2016    Late Night             21    172421
+# 23        2016    Late Night             36    164171
+# 24        2016    Late Night             38    124295
+# 25        2016       Evening             38    384862
+# 26        2016       Evening             37    314841
+# 27        2016       Evening             36    256624
+# 28        2016 Early Morning             40     40224
+# 29        2016 Early Morning             14     28674
