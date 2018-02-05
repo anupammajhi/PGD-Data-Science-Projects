@@ -611,3 +611,19 @@ topviol_across_time_top3
 # 47        2016       Morning             36    336379
 # 48        2016       Morning             14    271737
 # 49        2017         Night              7     84112
+# 50        2017         Night             38     73387
+# 51        2017         Night             14     48595
+# 52        2015     Afternoon             21    456602
+# 53        2015     Afternoon             38    411271
+# 54        2015     Afternoon             36    289998									
+										
+
+#Summary of table above: 
+#   Year    Time of Day    Most Occuring Violation Codes in Descending order
+
+#   2017    Morning         21,36,14
+#           Afternoon       36,21,38
+#           Evening         38,37,14
+#           Night           07,38,14
+#           Late Night      36,21,38
+#           Early Morn      40,21,14
