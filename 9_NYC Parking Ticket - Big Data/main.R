@@ -629,3 +629,19 @@ topviol_across_time_top3
 #           Early Morn      40,21,14
 
 #   2016    Morning         21,36,14
+#           Afternoon       36,21,38
+#           Evening         38,37,36
+#           Night           38,07,14
+#           Late Night      21,36,38
+#           Early Morn      40,14,21
+
+#   2015    Morning         21,14,36
+#           Afternoon       21,38,36
+#           Evening         38,37,14
+#           Night           07,38,14
+#           Late Night      21,38,36
+#           Early Morn      40,14,21
+
+# We can see that the Violation Codes are fairly similar across all years for various times of day
+
+# Plot
