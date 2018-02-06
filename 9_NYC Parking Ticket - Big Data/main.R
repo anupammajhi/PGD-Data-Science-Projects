@@ -648,3 +648,4 @@ topviol_across_time_top3
 
 topviol_across_time_top3 %>% ggplot(aes(as.character(`Violation Code`),Frequency)) +
   geom_bar(aes(fill=as.character(`Violation Code`), alpha = 0.4),stat="identity") + 
+  facet_grid(`Time of Day`~`Fiscal Year` ) +
