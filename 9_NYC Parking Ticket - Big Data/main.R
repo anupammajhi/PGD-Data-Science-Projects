@@ -646,3 +646,4 @@ topviol_across_time_top3
 
 # Plot
 
+topviol_across_time_top3 %>% ggplot(aes(as.character(`Violation Code`),Frequency)) +
