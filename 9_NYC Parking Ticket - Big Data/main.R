@@ -670,3 +670,21 @@ toptime_across_viol_top5
 										
 #Obtained Output:
 # No.   Fiscal Year Violation Code   Time of Day Frequency
+# 1         2017             14       Morning    273567
+# 2         2017             14       Evening    235729
+# 3         2017             14     Afternoon    201580
+# 4         2017             14    Late Night     93952
+# 5         2017             14         Night     48595
+# 6         2016             14       Morning    271737
+# 7         2016             14       Evening    218313
+# 8         2016             14     Afternoon    198623
+# 9         2016             14    Late Night     96113
+# 10        2016             14         Night     46568
+# 11        2017             21       Morning    844285
+# 12        2017             21     Afternoon    436648
+# 13        2017             21    Late Night    186348
+# 14        2017             21 Early Morning     32248
+# 15        2017             21       Evening       548
+# 16        2015             14       Morning    280973
+# 17        2015             14       Evening    237059
+# 18        2015             14     Afternoon    214853
