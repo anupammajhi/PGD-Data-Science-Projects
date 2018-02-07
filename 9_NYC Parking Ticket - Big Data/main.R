@@ -708,3 +708,22 @@ toptime_across_viol_top5
 # 36        2015             38       Evening    445972
 # 37        2015             38     Afternoon    411271
 # 38        2015             38       Morning    205162
+# 39        2015             38    Late Night    141099
+# 40        2015             38         Night    100776
+# 41        2017             38       Evening    379239
+# 42        2017             38     Afternoon    330862
+# 43        2017             38       Morning    155623
+# 44        2017             38    Late Night    110884
+# 45        2017             38         Night     73387
+										
+																												
+#Summary of the table above.										
+# Year    Violation Code      Time of Day(most occuring, desc order)
+# 2017      14                M,E,A,LN,N
+#           21                M,A,LN,EM,E
+#           38                E,A,M,LN,N
+
+# 2016      14                M,E,A,LN,N
+#           21                M,A,LN,EM,E
+#           38                E,A,M,LN,N
+
