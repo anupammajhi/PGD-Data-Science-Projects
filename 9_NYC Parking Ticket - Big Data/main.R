@@ -666,3 +666,4 @@ toptime_across_viol_top5 <- SparkR::sql("SELECT `Fiscal Year`, `Violation Code`,
                                         dense_rank() OVER(PARTITION BY `Fiscal Year`, `Violation Code` ORDER BY Frequency DESC) AS rank 
                                         FROM toptime_across_viol_view) 
                                         WHERE rank <= 5") %>% collect()
+toptime_across_viol_top5
