@@ -668,3 +668,4 @@ toptime_across_viol_top5 <- SparkR::sql("SELECT `Fiscal Year`, `Violation Code`,
                                         WHERE rank <= 5") %>% collect()
 toptime_across_viol_top5
 										
+#Obtained Output:
