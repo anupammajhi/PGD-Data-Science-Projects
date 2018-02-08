@@ -743,3 +743,23 @@ toptime_across_viol_top5 %>% ggplot(aes(as.character(`Time of Day`),Frequency)) 
 										
 ###########  6. Let's try and find some seasonality in this data
 ###########  6a. First, divide the year into some number of seasons, and find frequencies of tickets for each season.
+
+NYCParking_All <- NYCParking_All %>% withColumn("Season", 
+                                                ifelse(month(NYCParking_All$`Issue Date Parsed`) >= 3 & month(NYCParking_All$`Issue Date Parsed`) < 6, 'Spring',
+                                                       ifelse(month(NYCParking_All$`Issue Date Parsed`) >= 6 & month(NYCParking_All$`Issue Date Parsed`) < 9, 'Summer',
+                                                              ifelse(month(NYCParking_All$`Issue Date Parsed`) >= 9 & month(NYCParking_All$`Issue Date Parsed`) < 12, 'Autumn', 'Winter'
+                                                              ))))
+
+# Updating SQL View
+
+createOrReplaceTempView(NYCParking_All, 'NYC_All_View')
+
+
+
+tickets_across_seasons <- SparkR::sql("select `Fiscal Year`,`Season` , count(*) as Frequency from NYC_All_View group by `Fiscal Year`,`Season` order by count(*) desc " )
+
+tickets_across_seasons_r <- collect(tickets_across_seasons)
+
+# Year    Season    Frequency
+
+# 2017    Summer    2353920
