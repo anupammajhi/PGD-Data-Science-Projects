@@ -727,3 +727,18 @@ toptime_across_viol_top5
 #           21                M,A,LN,EM,E
 #           38                E,A,M,LN,N
 
+# 2015      14                M,E,A,LN,N
+#           21                M,A,LN,EM,E
+#           38                E,A,M,LN,N
+
+# The most Ocurring Times of Day are exactly the same across all three years for given Violation Codes 										
+										
+# Plot
+
+toptime_across_viol_top5 %>% ggplot(aes(as.character(`Time of Day`),Frequency)) +
+  geom_bar(aes(fill=as.character(`Time of Day`), alpha = 0.4),stat="identity") + 
+  facet_grid(`Violation Code`~`Fiscal Year`) +
+  labs(x="Time of Day", fill="Time of Day", title="Frequency of Time of Day for top 3 Violation Codes")
+										
+										
+###########  6. Let's try and find some seasonality in this data
