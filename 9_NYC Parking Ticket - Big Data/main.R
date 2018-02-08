@@ -742,3 +742,4 @@ toptime_across_viol_top5 %>% ggplot(aes(as.character(`Time of Day`),Frequency)) 
 										
 										
 ###########  6. Let's try and find some seasonality in this data
+###########  6a. First, divide the year into some number of seasons, and find frequencies of tickets for each season.
