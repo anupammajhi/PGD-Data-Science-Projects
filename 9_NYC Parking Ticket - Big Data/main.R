@@ -797,3 +797,24 @@ topviol_across_season_top3 <- SparkR::sql("SELECT `Fiscal Year`,`Season`, `Viola
                                           FROM ( SELECT `Fiscal Year`,`Season`, `Violation Code`,  Frequency, \
                                           dense_rank() OVER(PARTITION BY `Fiscal Year`, `Season` ORDER BY Frequency DESC) AS rank \
                                           FROM topviol_across_season_view) \
+                                          WHERE rank <= 3") %>% collect()
+
+
+
+# Year    Season    Violation Code(most occuring, descending order)
+
+# 2017    Summer    21,38,14
+#         Autumn    36,21,38
+#         Winter    21,36,38
+#         Spring    21,36,38
+
+# 2016    Summer    21,38,14
+#         Autumn    36,21,38
+#         Winter    21,36,38
+#         Spring    21,36,38
+
+# 2015    Summer    21,38,14
+#         Autumn    21,38,14
+#         Winter    38,21,14
+#         Spring    21,38,14
+
