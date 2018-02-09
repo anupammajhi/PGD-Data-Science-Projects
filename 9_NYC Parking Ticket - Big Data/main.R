@@ -780,3 +780,20 @@ tickets_across_seasons_r <- collect(tickets_across_seasons)
 
 
 # Plot
+
+tickets_across_seasons_r %>% ggplot(aes(as.character(`Season`),Frequency)) +
+    geom_bar(aes(fill=as.character(`Season`), alpha = 0.4),stat="identity") + 
+    facet_grid(.~`Fiscal Year`) +
+    labs(x="Season", fill="Season", title="Frequency of Tickets Per Season")
+
+###########  6b. Then, find the 3 most common violations for each of these season
+
+topviol_across_season <- SparkR::sql("select `Fiscal Year` , `Season` , `Violation Code`, count(*) as Frequency from NYC_All_View group by `Fiscal Year`, `Season`, `Violation Code` " )
+
+
+createOrReplaceTempView(topviol_across_season, "topviol_across_season_view")
+
+topviol_across_season_top3 <- SparkR::sql("SELECT `Fiscal Year`,`Season`, `Violation Code`,  Frequency \
+                                          FROM ( SELECT `Fiscal Year`,`Season`, `Violation Code`,  Frequency, \
+                                          dense_rank() OVER(PARTITION BY `Fiscal Year`, `Season` ORDER BY Frequency DESC) AS rank \
+                                          FROM topviol_across_season_view) \
