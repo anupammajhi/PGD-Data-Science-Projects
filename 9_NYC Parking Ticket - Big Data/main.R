@@ -855,3 +855,4 @@ violcode_top4<- SparkR::sql("SELECT `Fiscal Year`,`Violation Code`, Frequency
 
 # As mentioned before, we will code fine amount of code 36 as 0 as the data is unavailable
 
+# Code    Average Fine
