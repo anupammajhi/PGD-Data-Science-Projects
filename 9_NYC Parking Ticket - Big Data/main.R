@@ -763,3 +763,20 @@ tickets_across_seasons_r <- collect(tickets_across_seasons)
 # Year    Season    Frequency
 
 # 2017    Summer    2353920
+#         Autumn    2829224
+#         Winter    2483036
+#         Spring    2873383
+
+# 2016    Summer    2214536
+#         Autumn    2971672
+#         Winter    2421620
+#         Spring    2789066
+
+# 2015    Summer    2838306
+#         Autumn    2718502
+#         Winter    2180241
+#         Spring    2860987
+
+
+
+# Plot
