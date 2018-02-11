@@ -911,3 +911,4 @@ Revenue %>% ggplot(aes(as.character(`Violation Code`),TotalCollected)) +
 
 
 ###########  7d. What can you intuitively infer from these findings?
+
