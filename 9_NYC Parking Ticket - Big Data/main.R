@@ -896,3 +896,20 @@ View(Revenue)
 #         21        80,807,540
 #         38        65,250,350
 #                   ----------
+#                  250,525,960
+
+
+#Plot
+
+Revenue %>% ggplot(aes(as.character(`Violation Code`),TotalCollected)) +
+    geom_bar(aes(fill=as.character(`Violation Code`), alpha = 0.4),stat="identity") +
+    facet_grid(. ~`Fiscal Year` ) +
+    labs(x="Violation Code", fill="Violation Code", title="Amount Collected Over Fiscal Years")
+
+
+# Violation Code 14 brings in the most Revenue
+
+
+###########  7d. What can you intuitively infer from these findings?
+
+
