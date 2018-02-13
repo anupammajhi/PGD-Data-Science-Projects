@@ -915,3 +915,4 @@ Revenue %>% ggplot(aes(as.character(`Violation Code`),TotalCollected)) +
 
 # - We can see that the revenue collected keeps decreasing every year
 # - Violation Code 14, brings the maximum Revenue every year
+
