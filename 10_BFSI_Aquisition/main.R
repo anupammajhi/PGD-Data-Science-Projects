@@ -13,6 +13,3 @@ str(bank_data)
 summary(bank_data)
 
 
-# Response rate of prospect customers
-
-response <- sum(bank_data$response == "yes")/nrow(bank_data)
