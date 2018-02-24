@@ -105,5 +105,3 @@ plot_response <- function(cat_var, var_name){
   count <- count[,-1]
   agg_response <- cbind(a, count)
   
-  colnames(agg_response) <- c(var_name, "response_rate","No.of_Prospect")
-  agg_response[, 2] <- format(round(agg_response[, 2], 2))
