@@ -85,5 +85,3 @@ Bank_data_age20 <- subset(bank_data,age <20)
 
 View(Bank_data_age20)
 summary(Bank_data_age20)
-
-
