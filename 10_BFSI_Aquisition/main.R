@@ -66,3 +66,24 @@ count <- data.frame(table(bank_data$binning.age))
 count <- count[,-1]
 agg_age <- cbind(agg_age,count)
 colnames(agg_age) <- c("age", "response_rate", "count_prospects","No.of_prospect")
+
+# Round Off the values
+
+agg_age$response_rate <- format(round(agg_age$response_rate, 2))
+agg_age
+
+# Checking the response rate of each age bucket in the plot
+
+ggplot(agg_age, aes(age, No.of_prospect,label = response_rate)) + 
+  geom_bar(stat = 'identity') + 
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) + 
+  geom_text(size = 3, vjust = -0.5)
+# Response rate is very high for age groups below 20 and above 60
+
+# Checking the dataset of age less than 20 years. 
+Bank_data_age20 <- subset(bank_data,age <20)
+
+View(Bank_data_age20)
+summary(Bank_data_age20)
+
+
