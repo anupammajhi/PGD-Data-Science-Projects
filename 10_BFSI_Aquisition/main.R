@@ -85,3 +85,28 @@ Bank_data_age20 <- subset(bank_data,age <20)
 
 View(Bank_data_age20)
 summary(Bank_data_age20)
+
+
+
+#===== Variable : Job
+
+# Checking the levels of the job
+
+levels(bank_data$job)
+
+
+# Plotting bar graph for job variable.
+
+# Writing a function "plot_response" to do the same task for each variable
+
+plot_response <- function(cat_var, var_name){
+  a <- aggregate(response~cat_var, bank_data, mean)
+  count <- data.frame(table(cat_var))
+  count <- count[,-1]
+  agg_response <- cbind(a, count)
+  
+  colnames(agg_response) <- c(var_name, "response_rate","No.of_Prospect")
+  agg_response[, 2] <- format(round(agg_response[, 2], 2))
+  
+  ggplot(agg_response, aes(agg_response[, 1], count, label = response_rate, fill = as.numeric(response_rate))) + 
+    geom_bar(stat = 'identity') + 
