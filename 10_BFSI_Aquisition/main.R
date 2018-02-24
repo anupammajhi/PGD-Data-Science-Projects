@@ -107,6 +107,3 @@ plot_response <- function(cat_var, var_name){
   
   colnames(agg_response) <- c(var_name, "response_rate","No.of_Prospect")
   agg_response[, 2] <- format(round(agg_response[, 2], 2))
-  
-  ggplot(agg_response, aes(agg_response[, 1], count, label = response_rate, fill = as.numeric(response_rate))) + 
-    geom_bar(stat = 'identity') + 
