@@ -68,5 +68,3 @@ agg_age <- cbind(agg_age,count)
 colnames(agg_age) <- c("age", "response_rate", "count_prospects","No.of_prospect")
 
 # Round Off the values
-
-agg_age$response_rate <- format(round(agg_age$response_rate, 2))
