@@ -132,3 +132,24 @@ summary(bank_data$marital)
 
 levels(bank_data$marital)[4] <- "married"
 
+# Plotting marital status
+
+plot_response(bank_data$marital,"marital")
+# The Respone rate for those that are Single, is slightly higher than the rest
+
+
+#===== Variable : Education
+# Let's see the education variables
+
+plot_response(bank_data$education,"Education")
+
+
+# Reducing the levels of education variable
+
+levels(bank_data$education)[c(1:3,5)] <- "Primary_Education"
+levels(bank_data$education)[2] <- "Secondary_Education"
+levels(bank_data$education)[4]<- "Tertiary_Education"
+
+# Let's again check the education plot
+
+plot_response(bank_data$education,"Education_levels")
