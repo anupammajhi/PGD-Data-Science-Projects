@@ -105,3 +105,32 @@ plot_response <- function(cat_var, var_name){
   count <- count[,-1]
   agg_response <- cbind(a, count)
   
+  colnames(agg_response) <- c(var_name, "response_rate","No.of_Prospect")
+  agg_response[, 2] <- format(round(agg_response[, 2], 2))
+  
+  ggplot(agg_response, aes(agg_response[, 1], count, label = response_rate, fill = as.numeric(response_rate))) + 
+    geom_bar(stat = 'identity') + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+    geom_text(size = 3, vjust = -0.5) + 
+    labs(x = var_name, fill = "Response Rate") +
+    scale_fill_gradient(low = "#ff0000", high = "#00ff00", space = "Lab", na.value = "grey50", guide = "colourbar")
+  
+}
+
+plot_response(bank_data$job, "job")
+
+# We can see that the response rate is the highest for Students and those that are Retired
+
+
+# Checking Marital status
+
+#===== Variable : Marital Status
+
+summary(bank_data$marital)
+
+# Assumtion : Replacing Unknown level to married as number is really low
+
+levels(bank_data$marital)[4] <- "married"
+
+# Plotting marital status
+
