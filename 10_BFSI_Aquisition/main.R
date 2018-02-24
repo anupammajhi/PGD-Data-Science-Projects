@@ -66,5 +66,3 @@ count <- data.frame(table(bank_data$binning.age))
 count <- count[,-1]
 agg_age <- cbind(agg_age,count)
 colnames(agg_age) <- c("age", "response_rate", "count_prospects","No.of_prospect")
-
-# Round Off the values
