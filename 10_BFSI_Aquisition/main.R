@@ -132,5 +132,3 @@ summary(bank_data$marital)
 
 levels(bank_data$marital)[4] <- "married"
 
-# Plotting marital status
-
