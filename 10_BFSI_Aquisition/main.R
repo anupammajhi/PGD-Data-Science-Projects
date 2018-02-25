@@ -169,6 +169,3 @@ bank_data <- bank_data[,-5]
 #===== Variable : housing
 
 summary(bank_data$housing)
-
-
-plot_response(bank_data$housing, "Housing")
