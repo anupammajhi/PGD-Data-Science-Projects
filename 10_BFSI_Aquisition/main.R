@@ -153,3 +153,26 @@ levels(bank_data$education)[4]<- "Tertiary_Education"
 # Let's again check the education plot
 
 plot_response(bank_data$education,"Education_levels")
+
+# 'Unknown' and 'Tertiary Education' have higher Response Rates
+
+#===== Variable : default
+
+table(bank_data$default)
+
+plot_response(bank_data$default, "Default")
+
+# The "default" variable provides us with no valuable insight. Therefore, we will remove it.
+
+bank_data <- bank_data[,-5]
+
+#===== Variable : housing
+
+summary(bank_data$housing)
+
+
+plot_response(bank_data$housing, "Housing")
+
+# The response rates are almost similar across all categories
+
+#===== Variable : loan
