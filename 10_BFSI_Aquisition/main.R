@@ -174,5 +174,3 @@ summary(bank_data$housing)
 plot_response(bank_data$housing, "Housing")
 
 # The response rates are almost similar across all categories
-
-#===== Variable : loan
