@@ -235,3 +235,33 @@ quantile(bank_data$duration,seq(0,1,0.01))
 bank_data[(which(bank_data$duration>1271.13)),]$duration <- 1271.13
 
 # Now, again plot the histogram 
+ggplot(bank_data,aes(duration))+geom_histogram()
+
+#===== Variable : campaign
+
+# Checking the summary of this variable 
+summary(bank_data$campaign)
+
+# Let's see the percentile distribution of this variable
+boxplot(bank_data$campaign)
+
+quantile(bank_data$campaign,seq(0,1,0.01))
+
+# We can see Outliers.Capping the value at 99% which is 14
+
+bank_data[which(bank_data$campaign>14),]$campaign <- 14
+
+# Plot campaign variable
+
+ggplot(bank_data,aes(campaign))+geom_histogram()
+
+
+#===== Variable : pdays
+
+#converting to factor type
+
+bank_data$pdays<- as.factor(bank_data$pdays)
+
+# Checking summary
+
+summary(bank_data$pdays)
