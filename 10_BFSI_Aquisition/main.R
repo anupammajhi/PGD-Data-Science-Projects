@@ -240,5 +240,3 @@ ggplot(bank_data,aes(duration))+geom_histogram()
 #===== Variable : campaign
 
 # Checking the summary of this variable 
-summary(bank_data$campaign)
-
