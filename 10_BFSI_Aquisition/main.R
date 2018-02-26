@@ -169,3 +169,31 @@ bank_data <- bank_data[,-5]
 #===== Variable : housing
 
 summary(bank_data$housing)
+
+
+plot_response(bank_data$housing, "Housing")
+
+# The response rates are almost similar across all categories
+
+#===== Variable : loan
+
+summary(bank_data$loan)
+
+plot_response(bank_data$loan, "Loan Status")
+
+# The response rates are almost similar across all categories
+
+
+#===== Variable : Contact
+
+summary(bank_data$contact)
+
+plot_response(bank_data$contact, "Contact")
+
+# Response rate for Cellular communication is significantly higher than those with telephone communication
+
+
+#===== Variable : month
+
+summary(bank_data$month)
+
