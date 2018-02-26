@@ -194,6 +194,3 @@ plot_response(bank_data$contact, "Contact")
 
 
 #===== Variable : month
-
-summary(bank_data$month)
-
