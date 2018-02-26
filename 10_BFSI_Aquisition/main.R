@@ -221,3 +221,24 @@ summary(bank_data$duration)
 bank_data$response_1 <- as.factor(bank_data$response)
 Avg_duration <- aggregate(duration~response_1,bank_data,mean)
 Avg_duration
+
+bank_data <- bank_data[,-22]
+
+# We have outliers present in the dataset
+# Checking the percentile distribution of duration 
+
+quantile(bank_data$duration,seq(0,1,0.01))
+
+
+# So, capping the duration seconds at 99% which is 1271.3sec 
+
+bank_data[(which(bank_data$duration>1271.13)),]$duration <- 1271.13
+
+# Now, again plot the histogram 
+ggplot(bank_data,aes(duration))+geom_histogram()
+
+#===== Variable : campaign
+
+# Checking the summary of this variable 
+summary(bank_data$campaign)
+
