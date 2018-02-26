@@ -235,5 +235,3 @@ quantile(bank_data$duration,seq(0,1,0.01))
 bank_data[(which(bank_data$duration>1271.13)),]$duration <- 1271.13
 
 # Now, again plot the histogram 
-ggplot(bank_data,aes(duration))+geom_histogram()
-
