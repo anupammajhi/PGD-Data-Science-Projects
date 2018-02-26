@@ -194,3 +194,30 @@ plot_response(bank_data$contact, "Contact")
 
 
 #===== Variable : month
+
+summary(bank_data$month)
+
+plot_response(bank_data$month, "Month")
+
+# The months of March, December,September and October show significantly higher Response Rates
+
+
+#===== Variable : day_of_week
+
+summary(bank_data$day_of_week)
+
+plot_response(bank_data$day_of_week, "Day")
+
+# The Response Rate is fairly similar across all the days of the week
+
+
+#===== Variable : duration
+
+ggplot(bank_data,aes(duration))+geom_histogram()
+
+summary(bank_data$duration)
+
+# Average duration 
+bank_data$response_1 <- as.factor(bank_data$response)
+Avg_duration <- aggregate(duration~response_1,bank_data,mean)
+Avg_duration
