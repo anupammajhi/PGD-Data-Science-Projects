@@ -285,5 +285,3 @@ plot_response(bank_data$pday,"Pday")
 # Number of prospects under each category
 
 table(bank_data$pdays)
-
-#===== Variable : previous
