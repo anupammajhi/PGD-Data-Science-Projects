@@ -263,5 +263,3 @@ ggplot(bank_data,aes(campaign))+geom_histogram()
 bank_data$pdays<- as.factor(bank_data$pdays)
 
 # Checking summary
-
-summary(bank_data$pdays)
