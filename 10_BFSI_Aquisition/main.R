@@ -282,6 +282,3 @@ levels(bank_data$pdays)[3] <- "First_time_contacted"
 plot_response(bank_data$pday,"Pday")
 # Response Rate is significantly higher for prospects that have been contacted within 27 days as compared to first time contacts
 
-# Number of prospects under each category
-
-table(bank_data$pdays)
