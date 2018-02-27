@@ -263,3 +263,27 @@ ggplot(bank_data,aes(campaign))+geom_histogram()
 bank_data$pdays<- as.factor(bank_data$pdays)
 
 # Checking summary
+
+summary(bank_data$pdays)
+
+levels(bank_data$pdays)
+
+# 999 is a valid value, which means this was the first time contact with the customer
+
+# Reducing the levels of this variable to 3.
+
+levels(bank_data$pdays)[1:10] <- "Contacted_in_first_10days"
+levels(bank_data$pdays)[2:17] <-"Contacted_after_10days"
+levels(bank_data$pdays)[3] <- "First_time_contacted"
+
+
+# Also,lets see the response rate of each levels. 
+
+plot_response(bank_data$pday,"Pday")
+# Response Rate is significantly higher for prospects that have been contacted within 27 days as compared to first time contacts
+
+# Number of prospects under each category
+
+table(bank_data$pdays)
+
+#===== Variable : previous
