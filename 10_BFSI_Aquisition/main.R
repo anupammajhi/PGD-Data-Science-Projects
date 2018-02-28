@@ -300,6 +300,3 @@ levels(bank_data$previous)[3:6] <- "More than_3_times"
 
 summary(bank_data$previous)
 
-plot_response(bank_data$previous,"Previous_contacts")
-
-# Those contacts that have been contacted previously more than 3 times display higher Response Rates
