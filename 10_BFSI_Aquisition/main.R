@@ -280,3 +280,26 @@ levels(bank_data$pdays)[3] <- "First_time_contacted"
 # Also,lets see the response rate of each levels. 
 
 plot_response(bank_data$pday,"Pday")
+# Response Rate is significantly higher for prospects that have been contacted within 27 days as compared to first time contacts
+
+# Number of prospects under each category
+
+table(bank_data$pdays)
+
+#===== Variable : previous
+# "previous" means, number of contacts performed before this campaign
+
+summary(bank_data$previous)
+# Max = 7, converting this variable to factor
+
+bank_data$previous <- as.factor(bank_data$previous)
+
+levels(bank_data$previous)[1]<-"Never contacted"
+levels(bank_data$previous)[2:4] <- "Less_than_3_times"
+levels(bank_data$previous)[3:6] <- "More than_3_times"
+
+summary(bank_data$previous)
+
+plot_response(bank_data$previous,"Previous_contacts")
+
+# Those contacts that have been contacted previously more than 3 times display higher Response Rates
