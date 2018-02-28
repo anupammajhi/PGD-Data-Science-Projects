@@ -298,5 +298,3 @@ levels(bank_data$previous)[1]<-"Never contacted"
 levels(bank_data$previous)[2:4] <- "Less_than_3_times"
 levels(bank_data$previous)[3:6] <- "More than_3_times"
 
-summary(bank_data$previous)
-
