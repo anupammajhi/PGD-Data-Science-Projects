@@ -293,5 +293,3 @@ summary(bank_data$previous)
 # Max = 7, converting this variable to factor
 
 bank_data$previous <- as.factor(bank_data$previous)
-
-levels(bank_data$previous)[1]<-"Never contacted"
