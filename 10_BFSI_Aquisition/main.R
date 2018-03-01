@@ -338,5 +338,3 @@ summary(bank_data$euribor3m)
 #===== Variable : nr.employed
 summary(bank_data$nr.employed)
 
-
-#===========================================================================
