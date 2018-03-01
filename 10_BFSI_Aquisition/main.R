@@ -312,3 +312,31 @@ summary(bank_data$poutcome)
 plot_response(bank_data$poutcome,"Outcome_of_Previous_contacts")
 
 # The Response Rate is significantly higher for those prospects,where a previous campaign was successful
+
+
+#===== Social and Economic Context Attributes
+
+#===== Variable : emp.var.rate
+summary(bank_data$emp.var.rate)
+
+# Histogram of employment variation rate variable
+ggplot(bank_data,aes(emp.var.rate))+geom_histogram()
+
+#===== Variable : cons.price.idx
+summary(bank_data$cons.price.idx)
+
+# Histogram of consumer price index variable
+ggplot(bank_data,aes(cons.price.idx))+geom_histogram()
+
+#===== Variable cons.conf.idx
+summary(bank_data$cons.conf.idx)
+# negative due to market crash
+
+#===== Variable : euribor3m
+summary(bank_data$euribor3m)
+
+#===== Variable : nr.employed
+summary(bank_data$nr.employed)
+
+
+#===========================================================================
