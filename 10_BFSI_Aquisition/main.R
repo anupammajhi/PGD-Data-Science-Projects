@@ -291,3 +291,24 @@ table(bank_data$pdays)
 
 summary(bank_data$previous)
 # Max = 7, converting this variable to factor
+
+bank_data$previous <- as.factor(bank_data$previous)
+
+levels(bank_data$previous)[1]<-"Never contacted"
+levels(bank_data$previous)[2:4] <- "Less_than_3_times"
+levels(bank_data$previous)[3:6] <- "More than_3_times"
+
+summary(bank_data$previous)
+
+plot_response(bank_data$previous,"Previous_contacts")
+
+# Those contacts that have been contacted previously more than 3 times display higher Response Rates
+
+
+#===== Variable : Poutcome
+
+summary(bank_data$poutcome)
+
+plot_response(bank_data$poutcome,"Outcome_of_Previous_contacts")
+
+# The Response Rate is significantly higher for those prospects,where a previous campaign was successful
