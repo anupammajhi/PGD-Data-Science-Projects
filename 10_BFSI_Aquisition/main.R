@@ -338,3 +338,29 @@ summary(bank_data$euribor3m)
 #===== Variable : nr.employed
 summary(bank_data$nr.employed)
 
+
+#===========================================================================
+
+# Keeping copies of data for different models
+
+bank_data_LR <- bank_data
+bank_data_DT <- bank_data
+bank_data_RF <- bank_data
+
+#===========================================================================
+
+
+
+
+#===================================================
+# MODEL BUILDING 
+#===================================================
+
+
+#=============== Logistic Regression ===============
+
+# Loading libraries
+library(caret)
+library(caTools)
+library(dummies)
+
