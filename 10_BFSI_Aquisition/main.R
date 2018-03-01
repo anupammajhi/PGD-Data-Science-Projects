@@ -386,3 +386,25 @@ bank_data_LR <- dummy.data.frame(bank_data_LR)
 
 bank_data_LR$response <- as.factor(ifelse(bank_data_LR$response == 1, "yes", "no"))
 summary(bank_data_LR)
+
+# Dividing into test and train datasets
+
+set.seed(100)
+
+split_indices_LR <- sample.split(bank_data_LR$response, SplitRatio = 0.70)
+
+train_LR <- bank_data_LR[split_indices_LR, ]
+test_LR <- bank_data_LR[!split_indices_LR, ]
+
+nrow(train_LR)/nrow(bank_data_LR) #70%
+nrow(test_LR)/nrow(bank_data_LR) #30%
+
+# Loading libraries
+library(MASS)
+library(car)
+
+logistic_1 <- glm(response ~ ., family = "binomial", data = train_LR)
+
+summary(logistic_1)
+# AIC: 15907
+
