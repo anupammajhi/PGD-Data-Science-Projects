@@ -406,5 +406,3 @@ library(car)
 logistic_1 <- glm(response ~ ., family = "binomial", data = train_LR)
 
 summary(logistic_1)
-# AIC: 15907
-
