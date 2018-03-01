@@ -364,3 +364,25 @@ library(caret)
 library(caTools)
 library(dummies)
 
+# Removing binning variables 
+
+bank_data_LR <- bank_data_LR[, -21]
+summary(bank_data_LR)
+
+# Removing duration column
+
+duration <- data.frame(bank_data_LR$duration)
+
+bank_data_LR <-bank_data_LR[, -10]
+summary(bank_data_LR)
+
+# Creating dummy variables
+
+bank_data_LR$response <- as.integer(bank_data_LR$response)
+
+bank_data_LR <- dummy.data.frame(bank_data_LR)
+
+# Converting response to factor with yes and no values
+
+bank_data_LR$response <- as.factor(ifelse(bank_data_LR$response == 1, "yes", "no"))
+summary(bank_data_LR)
