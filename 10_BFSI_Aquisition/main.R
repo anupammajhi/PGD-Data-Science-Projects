@@ -455,5 +455,3 @@ sort(vif(logistic_4), decreasing = T)
 logistic_5 <- glm(response ~ age + jobretired + loanno + contactcellular + monthaug + monthdec + 
                     monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
                     day_of_weekthu + day_of_weektue + campaign + pdaysContacted_in_first_10days + 
-                    pdaysContacted_after_10days + poutcomefailure + 
-                    emp.var.rate + cons.price.idx + cons.conf.idx + 
