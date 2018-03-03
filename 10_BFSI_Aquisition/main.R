@@ -429,5 +429,3 @@ logistic_3 <- glm(response ~ age + jobretired + loanno + contactcellular + month
                   family = "binomial", data = train_LR)
 
 summary(logistic_3)
-# AIC: 15879
-
