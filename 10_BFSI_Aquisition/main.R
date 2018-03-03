@@ -431,5 +431,3 @@ logistic_3 <- glm(response ~ age + jobretired + loanno + contactcellular + month
 summary(logistic_3)
 # AIC: 15879
 
-sort(vif(logistic_3), decreasing = T)
-
