@@ -450,6 +450,3 @@ summary(logistic_4)
 sort(vif(logistic_4), decreasing = T)
 
 
-# previousLess_than_3_times has high VIF and low significance, hence collinearity is high, removing  this variable
-
-logistic_5 <- glm(response ~ age + jobretired + loanno + contactcellular + monthaug + monthdec + 
