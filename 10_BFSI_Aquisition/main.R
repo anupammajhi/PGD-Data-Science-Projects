@@ -457,5 +457,3 @@ logistic_5 <- glm(response ~ age + jobretired + loanno + contactcellular + month
                     day_of_weekthu + day_of_weektue + campaign + pdaysContacted_in_first_10days + 
                     pdaysContacted_after_10days + poutcomefailure + 
                     emp.var.rate + cons.price.idx + cons.conf.idx + 
-                    educationTertiary_Education + `jobblue-collar` + jobservices, 
-                  family = "binomial", data = train_LR)
