@@ -429,3 +429,33 @@ logistic_3 <- glm(response ~ age + jobretired + loanno + contactcellular + month
                   family = "binomial", data = train_LR)
 
 summary(logistic_3)
+# AIC: 15879
+
+sort(vif(logistic_3), decreasing = T)
+
+
+# nr.employed has high VIF and low significance, hence collinearity is high, removing  this variable
+
+logistic_4 <- glm(response ~ age + jobretired + loanno + contactcellular + monthaug + monthdec + 
+                    monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
+                    day_of_weekthu + day_of_weektue + campaign + pdaysContacted_in_first_10days + 
+                    pdaysContacted_after_10days + previousLess_than_3_times + poutcomefailure + 
+                    emp.var.rate + cons.price.idx + cons.conf.idx + 
+                    educationTertiary_Education + `jobblue-collar` + jobservices, 
+                  family = "binomial", data = train_LR)
+
+summary(logistic_4)
+# AIC: 15895
+
+sort(vif(logistic_4), decreasing = T)
+
+
+# previousLess_than_3_times has high VIF and low significance, hence collinearity is high, removing  this variable
+
+logistic_5 <- glm(response ~ age + jobretired + loanno + contactcellular + monthaug + monthdec + 
+                    monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
+                    day_of_weekthu + day_of_weektue + campaign + pdaysContacted_in_first_10days + 
+                    pdaysContacted_after_10days + poutcomefailure + 
+                    emp.var.rate + cons.price.idx + cons.conf.idx + 
+                    educationTertiary_Education + `jobblue-collar` + jobservices, 
+                  family = "binomial", data = train_LR)
