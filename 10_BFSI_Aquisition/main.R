@@ -403,3 +403,33 @@ nrow(test_LR)/nrow(bank_data_LR) #30%
 library(MASS)
 library(car)
 
+logistic_1 <- glm(response ~ ., family = "binomial", data = train_LR)
+
+summary(logistic_1)
+# AIC: 15907
+
+
+# Using StepAIC to remove insignificant variables
+
+logistic_2 <- stepAIC(logistic_1, direction = "both")
+
+summary(logistic_2)
+# AIC: 15876
+
+sort(vif(logistic_2), decreasing = T)
+
+# euribor3m has high VIF and low significance, hence collinearity is high, removing  this variable
+
+logistic_3 <- glm(response ~ age + jobretired + loanno + contactcellular + monthaug + monthdec + 
+                    monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
+                    day_of_weekthu + day_of_weektue + campaign + pdaysContacted_in_first_10days + 
+                    pdaysContacted_after_10days + previousLess_than_3_times + poutcomefailure + 
+                    emp.var.rate + cons.price.idx + cons.conf.idx + nr.employed + 
+                    educationTertiary_Education + `jobblue-collar` + jobservices, 
+                  family = "binomial", data = train_LR)
+
+summary(logistic_3)
+# AIC: 15879
+
+sort(vif(logistic_3), decreasing = T)
+
