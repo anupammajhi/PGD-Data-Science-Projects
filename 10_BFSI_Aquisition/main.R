@@ -450,3 +450,29 @@ summary(logistic_4)
 sort(vif(logistic_4), decreasing = T)
 
 
+# previousLess_than_3_times has high VIF and low significance, hence collinearity is high, removing  this variable
+
+logistic_5 <- glm(response ~ age + jobretired + loanno + contactcellular + monthaug + monthdec + 
+                    monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
+                    day_of_weekthu + day_of_weektue + campaign + pdaysContacted_in_first_10days + 
+                    pdaysContacted_after_10days + poutcomefailure + 
+                    emp.var.rate + cons.price.idx + cons.conf.idx + 
+                    educationTertiary_Education + `jobblue-collar` + jobservices, 
+                  family = "binomial", data = train_LR)
+
+summary(logistic_5)
+# AIC: 15897
+
+sort(vif(logistic_5), decreasing = T)
+
+# cons.price.idx has high VIF but is also very significant.
+# monthaug has very low significance, removing  this variable
+
+logistic_6 <- glm(response ~ age + jobretired + loanno + contactcellular + monthdec + 
+                    monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
+                    day_of_weekthu + day_of_weektue + campaign + pdaysContacted_in_first_10days + 
+                    pdaysContacted_after_10days + poutcomefailure + 
+                    emp.var.rate + cons.price.idx + cons.conf.idx + 
+                    educationTertiary_Education + `jobblue-collar` + jobservices, 
+                  family = "binomial", data = train_LR)
+
