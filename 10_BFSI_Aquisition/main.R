@@ -525,3 +525,32 @@ logistic_9 <- glm(response ~ age + jobretired + loanno + contactcellular + month
                   family = "binomial", data = train_LR)
 
 summary(logistic_9)
+# AIC: 15899
+
+sort(vif(logistic_9), decreasing = T)
+
+
+# loanno has very low significance, removing  this variable
+
+logistic_10 <- glm(response ~ age + jobretired + contactcellular + monthdec + 
+                    monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
+                    campaign + pdaysContacted_in_first_10days + 
+                    pdaysContacted_after_10days + poutcomefailure + 
+                    emp.var.rate + cons.price.idx + cons.conf.idx + 
+                    `jobblue-collar` + jobservices, 
+                  family = "binomial", data = train_LR)
+
+summary(logistic_10)
+# AIC: 15900
+
+sort(vif(logistic_10), decreasing = T)
+
+
+# day_of_weekfri has very low significance , removing  this variable
+
+logistic_11 <- glm(response ~ age + jobretired + contactcellular + monthdec + 
+                     monthjun + monthmar + monthmay + monthnov + day_of_weekmon + 
+                     campaign + pdaysContacted_in_first_10days + 
+                     pdaysContacted_after_10days + poutcomefailure + 
+                     emp.var.rate + cons.price.idx + cons.conf.idx + 
+                     `jobblue-collar` + jobservices, 
