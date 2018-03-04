@@ -554,3 +554,31 @@ logistic_11 <- glm(response ~ age + jobretired + contactcellular + monthdec +
                      pdaysContacted_after_10days + poutcomefailure + 
                      emp.var.rate + cons.price.idx + cons.conf.idx + 
                      `jobblue-collar` + jobservices, 
+                   family = "binomial", data = train_LR)
+
+summary(logistic_11)
+# AIC: 15903
+
+sort(vif(logistic_11), decreasing = T)
+
+
+# monthdec has very low significance , removing  this variable
+
+logistic_12 <- glm(response ~ age + jobretired + contactcellular +
+                     monthjun + monthmar + monthmay + monthnov + day_of_weekmon + 
+                     campaign + pdaysContacted_in_first_10days + 
+                     pdaysContacted_after_10days + poutcomefailure + 
+                     emp.var.rate + cons.price.idx + cons.conf.idx + 
+                     `jobblue-collar` + jobservices, 
+                   family = "binomial", data = train_LR)
+
+summary(logistic_12)
+# AIC: 15905
+
+sort(vif(logistic_12), decreasing = T)
+
+
+# jobretired has very low significance , removing  this variable
+
+logistic_13 <- glm(response ~ age + contactcellular + monthjun + 
+                     monthmar + monthmay + monthnov + day_of_weekmon + 
