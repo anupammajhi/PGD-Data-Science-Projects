@@ -503,3 +503,25 @@ sort(vif(logistic_7), decreasing = T)
 logistic_8 <- glm(response ~ age + jobretired + loanno + contactcellular + monthdec + 
                     monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
                     campaign + pdaysContacted_in_first_10days + 
+                    pdaysContacted_after_10days + poutcomefailure + 
+                    emp.var.rate + cons.price.idx + cons.conf.idx + 
+                    educationTertiary_Education + `jobblue-collar` + jobservices, 
+                  family = "binomial", data = train_LR)
+
+summary(logistic_8)
+# AIC: 15898
+
+sort(vif(logistic_8), decreasing = T)
+
+
+# educationTertiary_Education has very low significance, removing  this variable
+
+logistic_9 <- glm(response ~ age + jobretired + loanno + contactcellular + monthdec + 
+                    monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
+                    campaign + pdaysContacted_in_first_10days + 
+                    pdaysContacted_after_10days + poutcomefailure + 
+                    emp.var.rate + cons.price.idx + cons.conf.idx + 
+                    `jobblue-collar` + jobservices, 
+                  family = "binomial", data = train_LR)
+
+summary(logistic_9)
