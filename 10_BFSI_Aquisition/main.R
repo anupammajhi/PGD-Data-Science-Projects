@@ -474,3 +474,32 @@ logistic_6 <- glm(response ~ age + jobretired + loanno + contactcellular + month
                     pdaysContacted_after_10days + poutcomefailure + 
                     emp.var.rate + cons.price.idx + cons.conf.idx + 
                     educationTertiary_Education + `jobblue-collar` + jobservices, 
+                  family = "binomial", data = train_LR)
+
+summary(logistic_6)
+# AIC: 15898
+
+sort(vif(logistic_6), decreasing = T)
+
+
+# day_of_weekthu has very low significance, removing  this variable
+
+logistic_7 <- glm(response ~ age + jobretired + loanno + contactcellular + monthdec + 
+                    monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
+                    day_of_weektue + campaign + pdaysContacted_in_first_10days + 
+                    pdaysContacted_after_10days + poutcomefailure + 
+                    emp.var.rate + cons.price.idx + cons.conf.idx + 
+                    educationTertiary_Education + `jobblue-collar` + jobservices, 
+                  family = "binomial", data = train_LR)
+
+summary(logistic_7)
+# AIC: 15899
+
+sort(vif(logistic_7), decreasing = T)
+
+
+# day_of_weektue has very low significance, removing  this variable
+
+logistic_8 <- glm(response ~ age + jobretired + loanno + contactcellular + monthdec + 
+                    monthjun + monthmar + monthmay + monthnov + day_of_weekfri + day_of_weekmon + 
+                    campaign + pdaysContacted_in_first_10days + 
