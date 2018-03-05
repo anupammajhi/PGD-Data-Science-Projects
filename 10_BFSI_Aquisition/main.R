@@ -672,3 +672,30 @@ perform_fn <- function(cutoff)
 {
   test_pred_resp <- factor(ifelse(prediction_test_LR >= cutoff, "yes", "no"))
   conf <- confusionMatrix(test_pred_resp, test_LR$response, positive = "yes")
+  acc <- conf$overall[1]
+  sens <- conf$byClass[1]
+  spec <- conf$byClass[2]
+  out <- t(as.matrix(c(sens, spec, acc))) 
+  colnames(out) <- c("sensitivity", "specificity", "accuracy")
+  return(out)
+}
+
+# Creating cutoff values from 0.01 to 0.5
+
+s = seq(.01,.5,length=100)
+OUT = matrix(0,100,3)
+
+for(i in 1:100){
+  OUT[i,] = perform_fn(s[i])
+} 
+
+
+plot(s, OUT[,1],xlab="Cutoff",ylab="Value",cex.lab=1.5,cex.axis=1.5,ylim=c(0,1),type="l",lwd=2,axes=FALSE,col=2)
+axis(1,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1.5)
+axis(2,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1.5)
+lines(s,OUT[,2],col="darkgreen",lwd=2)
+lines(s,OUT[,3],col=4,lwd=2)
+box()
+legend(0,.50,col=c(2,"darkgreen",4,"darkred"),lwd=c(2,2,2,2),c("Sensitivity","Specificity","Accuracy"))
+
+# Calculating cutoff where we have similar accuracy and sensitivity
