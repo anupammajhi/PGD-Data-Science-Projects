@@ -672,6 +672,3 @@ perform_fn <- function(cutoff)
 {
   test_pred_resp <- factor(ifelse(prediction_test_LR >= cutoff, "yes", "no"))
   conf <- confusionMatrix(test_pred_resp, test_LR$response, positive = "yes")
-  acc <- conf$overall[1]
-  sens <- conf$byClass[1]
-  spec <- conf$byClass[2]
