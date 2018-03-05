@@ -582,3 +582,23 @@ sort(vif(logistic_12), decreasing = T)
 
 logistic_13 <- glm(response ~ age + contactcellular + monthjun + 
                      monthmar + monthmay + monthnov + day_of_weekmon + 
+                     campaign + pdaysContacted_in_first_10days + 
+                     pdaysContacted_after_10days + poutcomefailure + 
+                     emp.var.rate + cons.price.idx + cons.conf.idx + 
+                     `jobblue-collar` + jobservices, 
+                   family = "binomial", data = train_LR)
+
+summary(logistic_13)
+# AIC: 15908
+
+sort(vif(logistic_13), decreasing = T)
+
+# age has very low significance , removing  this variable
+
+logistic_14 <- glm(response ~ contactcellular + monthjun + 
+                     monthmar + monthmay + monthnov + day_of_weekmon + 
+                     campaign + pdaysContacted_in_first_10days + 
+                     pdaysContacted_after_10days + poutcomefailure + 
+                     emp.var.rate + cons.price.idx + cons.conf.idx + 
+                     `jobblue-collar` + jobservices, 
+                   family = "binomial", data = train_LR)
