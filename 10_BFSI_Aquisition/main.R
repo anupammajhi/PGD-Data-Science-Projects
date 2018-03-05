@@ -602,3 +602,27 @@ logistic_14 <- glm(response ~ contactcellular + monthjun +
                      emp.var.rate + cons.price.idx + cons.conf.idx + 
                      `jobblue-collar` + jobservices, 
                    family = "binomial", data = train_LR)
+
+summary(logistic_14)
+# AIC: 15908
+
+sort(vif(logistic_14), decreasing = T)
+
+
+# jobservices  has very low significance , removing  this variable
+
+logistic_15 <- glm(response ~ contactcellular + monthjun + 
+                     monthmar + monthmay + monthnov + day_of_weekmon + 
+                     campaign + pdaysContacted_in_first_10days + 
+                     pdaysContacted_after_10days + poutcomefailure + 
+                     emp.var.rate + cons.price.idx + cons.conf.idx + 
+                     `jobblue-collar`, 
+                   family = "binomial", data = train_LR)
+
+summary(logistic_15)
+# AIC: 15914
+
+sort(vif(logistic_15), decreasing = T)
+
+# All the variables are significant now
+
