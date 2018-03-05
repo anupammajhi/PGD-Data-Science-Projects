@@ -648,3 +648,30 @@ library(DAAG)
 prediction_test_LR <- predict(final_LR_model,type="response", newdata = test_LR[,-60])
 
 summary(prediction_test_LR)
+
+test_LR$prob <- prediction_test_LR
+
+
+#===== Accuracy, Sensitivity and Specificity
+
+prediction_test_LR_response <- factor(ifelse(prediction_test_LR >= 0.50, "yes", "no"))
+
+# Comparing prediction with actual value in test data
+table(test_LR$response,prediction_test_LR_response)
+
+# Confusion matrix
+confusion_LR <- confusionMatrix(prediction_test_LR_response,test_LR$response,positive = "yes")
+confusion_LR
+
+# Accuracy = 0.898
+# Sensitivity = 0.21480
+# Specificity = 0.98477
+
+# Choosing cutoff
+perform_fn <- function(cutoff) 
+{
+  test_pred_resp <- factor(ifelse(prediction_test_LR >= cutoff, "yes", "no"))
+  conf <- confusionMatrix(test_pred_resp, test_LR$response, positive = "yes")
+  acc <- conf$overall[1]
+  sens <- conf$byClass[1]
+  spec <- conf$byClass[2]
