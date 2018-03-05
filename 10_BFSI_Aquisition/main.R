@@ -626,3 +626,25 @@ sort(vif(logistic_15), decreasing = T)
 
 # All the variables are significant now
 
+
+final_LR_model <- logistic_15
+
+
+
+
+#===================================================
+# MODEL EVALUATION
+#===================================================
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(corrplot)
+library(e1071)
+library(ROCR)
+library(DAAG)
+
+# predicting response probability based on final model
+prediction_test_LR <- predict(final_LR_model,type="response", newdata = test_LR[,-60])
+
+summary(prediction_test_LR)
