@@ -813,3 +813,23 @@ final_all_LR$Cost <- (0.033*final_all_LR$Duration) + 0.8
 
 final_all_LR$Actual_Response_num <- ifelse(final_all_LR$Actual_Response == "yes",1,0) 
 
+#using lift function created earlier
+
+aquisition_decile_all = lift(final_all_LR$Actual_Response_num, final_all_LR$Predicted_Probability_of_Response, groups = 10)
+View(aquisition_decile_all)
+
+# Lift Chart
+plot(aquisition_decile_all$bucket, aquisition_decile_all$Cumlift, type="l", ylab="Cumulative lift", xlab="Bucket",  main = 'Lift Chart')
+
+# 5th Decile has a total gain of 81%
+# Hence to achieve a 80% of total responders at minimum cost, bank needs to call first 50% of the prospects.
+
+# Calculating average call duration 
+
+# Sorting based on probability of response
+Prospects_ordered_probablity <- final_all_LR[order(-(final_all_LR$Predicted_Probability_of_Response)),]
+
+# Taking 5th decile / 50% of total prospects
+prospects_to_call <- Prospects_ordered_probablity[1:(nrow(Prospects_ordered_probablity)*0.50),]
+
+# Average call duration for targetting prospects
