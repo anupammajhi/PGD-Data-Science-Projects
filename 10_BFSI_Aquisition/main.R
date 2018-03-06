@@ -788,3 +788,28 @@ plot(aquisition_decile$bucket, aquisition_decile$Cumlift, type="l", ylab="Cumula
 
 #===== Checkpoint 3
 
+# Create a data frame with the variables
+# prospect ID, actual response, predicted response, predicted probability of response, duration of call in seconds, and cost of call
+
+# Using complete dataset
+
+bank_prob_LR <- predict(final_LR_model, type = "response", newdata = bank_data_LR[,-60])
+bank_pred_resp_LR <- factor(ifelse(bank_prob_LR >= cutoff, "yes", "no"))
+prospect_ID <- seq(1:nrow(bank_data_LR))
+final_all_LR <- cbind(prospect_ID, bank_data_LR$response, bank_pred_resp_LR, bank_prob_LR, duration)
+colnames(final_all_LR) <- c('prospect_ID','Actual_Response','Predicted_Response','Predicted_Probability_of_Response','Duration')
+
+# It's important to mention here that the variable 'Duration' had outliers, 
+# which were capped during the data preparation and EDA phase
+
+final_all_LR$Cost <- (0.033*final_all_LR$Duration) + 0.8
+
+
+
+#===== Checkpoint 4
+
+# Find the number of top X% prospects you should target to meet the business objective
+# Report the average call duration for targeting the top X% prospects to the CMO (report this as a comment in the R file)
+
+final_all_LR$Actual_Response_num <- ifelse(final_all_LR$Actual_Response == "yes",1,0) 
+
