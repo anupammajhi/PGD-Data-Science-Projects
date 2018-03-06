@@ -699,3 +699,27 @@ box()
 legend(0,.50,col=c(2,"darkgreen",4,"darkred"),lwd=c(2,2,2,2),c("Sensitivity","Specificity","Accuracy"))
 
 # Calculating cutoff where we have similar accuracy and sensitivity
+cutoff <- s[which(abs(OUT[,1]-OUT[,2]) < 0.03)]
+cutoff 
+# 0.07434
+
+test_LR_cutoff_response <- factor(ifelse(prediction_test_LR >= cutoff, "yes", "no"))
+
+
+confusion_LR_final <- confusionMatrix(test_LR_cutoff_response, test_LR$response, positive = "yes")
+
+acc <- confusion_LR_final$overall[1]
+sens <- confusion_LR_final$byClass[1]
+spec <- confusion_LR_final$byClass[2]
+
+acc
+# 0.7249
+
+sens
+# 0.7069
+
+spec
+# 0.7272
+
+
+
