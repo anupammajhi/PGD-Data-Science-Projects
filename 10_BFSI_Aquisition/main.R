@@ -768,3 +768,23 @@ lift <- function(labels,predicted_prob,groups=10){
   helper[,"bucket"] = ntile(-helper[,"predicted_prob"],groups)
   gaintable = helper %>% group_by(bucket) %>%
     summarise_at(vars(labels ),funs(total = n(),totalresp=sum(., na.rm = TRUE))) %>%
+    mutate(Cumresp = cumsum(totalresp),
+           Gain=Cumresp/sum(totalresp)*100,
+           Cumlift=Gain/(bucket*(100/groups))) 
+  return(gaintable)
+}
+
+
+aquisition_decile = lift(test_LR$response, prediction_test_LR, groups = 10)
+View(aquisition_decile)
+
+
+# Lift Chart
+
+plot(aquisition_decile$bucket, aquisition_decile$Cumlift, type="l", ylab="Cumulative lift", xlab="Bucket",  main = 'Lift Chart')
+
+
+
+
+#===== Checkpoint 3
+
