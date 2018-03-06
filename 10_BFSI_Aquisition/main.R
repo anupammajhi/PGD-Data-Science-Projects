@@ -721,3 +721,25 @@ sens
 spec
 # 0.7272
 
+
+
+# Checking model accuracy with k-fold cross verification
+
+cv.binary(final_LR_model, nfolds = 100)
+
+# Internal estimate of accuracy = 0.901
+# Cross-validation estimate of accuracy = 0.901
+
+
+# KS Statistic
+
+test_LR_cutoff_response <- ifelse(test_LR_cutoff_response == "yes", 1, 0)
+test_LR$response <- ifelse(test_LR$response == "yes", 1, 0)
+
+pred_LR_object_test <- prediction(test_LR_cutoff_response, test_LR$response)
+performance_LR_measures_test <- performance(pred_LR_object_test, "tpr", "fpr")  
+
+ks_table_test <- attr(performance_LR_measures_test, "y.values")[[1]] - (attr(performance_LR_measures_test, "x.values")[[1]])
+
+max(ks_table_test)
+# 0.4341
