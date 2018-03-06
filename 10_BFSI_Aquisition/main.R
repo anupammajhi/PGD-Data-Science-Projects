@@ -830,6 +830,3 @@ plot(aquisition_decile_all$bucket, aquisition_decile_all$Cumlift, type="l", ylab
 Prospects_ordered_probablity <- final_all_LR[order(-(final_all_LR$Predicted_Probability_of_Response)),]
 
 # Taking 5th decile / 50% of total prospects
-prospects_to_call <- Prospects_ordered_probablity[1:(nrow(Prospects_ordered_probablity)*0.50),]
-
-# Average call duration for targetting prospects
