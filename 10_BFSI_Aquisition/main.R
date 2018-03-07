@@ -828,5 +828,3 @@ plot(aquisition_decile_all$bucket, aquisition_decile_all$Cumlift, type="l", ylab
 
 # Sorting based on probability of response
 Prospects_ordered_probablity <- final_all_LR[order(-(final_all_LR$Predicted_Probability_of_Response)),]
-
-# Taking 5th decile / 50% of total prospects
