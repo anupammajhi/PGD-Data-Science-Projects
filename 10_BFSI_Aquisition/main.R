@@ -828,3 +828,23 @@ plot(aquisition_decile_all$bucket, aquisition_decile_all$Cumlift, type="l", ylab
 
 # Sorting based on probability of response
 Prospects_ordered_probablity <- final_all_LR[order(-(final_all_LR$Predicted_Probability_of_Response)),]
+
+# Taking 5th decile / 50% of total prospects
+prospects_to_call <- Prospects_ordered_probablity[1:(nrow(Prospects_ordered_probablity)*0.50),]
+
+# Average call duration for targetting prospects
+mean(prospects_to_call$Duration)
+# (267 seconds) or (4 mins and 27 seconds)
+
+# Total cost for 50% prospects
+sum(prospects_to_call$Cost)
+# Rs. 1,97,923.4
+
+# Average cost per call for these prospects
+mean(prospects_to_call$Cost)
+# Rs. 9.61 per call on average
+
+#===== Checkpoint 5
+
+# Create a lift chart
+# The x-axis contains the number of prospects contacted 
