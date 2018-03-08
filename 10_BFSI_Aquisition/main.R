@@ -848,3 +848,6 @@ mean(prospects_to_call$Cost)
 
 # Create a lift chart
 # The x-axis contains the number of prospects contacted 
+# the y-axis contains the ratio: response rate using the model/ response rate without using the model
+
+plot(((aquisition_decile_all$bucket)/10)*nrow(final_all_LR), aquisition_decile_all$Cumlift, type="l",  xlab="Total people Called", ylab="Response rate ratio",  main = 'Lift Chart')
