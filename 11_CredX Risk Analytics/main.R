@@ -131,11 +131,3 @@ knitr::kable(sort(sapply(full_clean, function(x) sum(is.na(x))), decreasing = T)
 
 # NA values in the combined dataset
 # |                                                                |    x|
-# |:---------------------------------------------------------------|----:|
-# |Performance.Tag                                                 | 1425|
-# |Avgas.CC.Utilization.in.last.12.months                          | 1058|
-# |Presence.of.open.home.loan                                      |  272|
-# |Outstanding.Balance                                             |  272|
-# |Education                                                       |  119|
-# |Profession                                                      |   14|
-# |Type.of.residence                                               |    8|
