@@ -30,3 +30,57 @@ str(dem)
 str(cred)
 
 
+#== Checking Rate of Default
+
+default_rate <- sum(dem$Performance.Tag == 1, na.rm = T)/ nrow(dem)
+default_rate      
+
+# Fraction of Defaulters = 0.04134932
+
+
+
+#== Checking for Missing Values
+
+plot_missing(dem)
+
+knitr::kable(sort(sapply(dem, function(x) sum(is.na(x))), decreasing = T))
+
+# Number of NA in Demographic Data
+
+# |                                            |    x|
+# |:-------------------------------------------|----:|
+# |Performance.Tag                             | 1425|
+# |Education                                   |  119|
+# |Profession                                  |   14|
+# |Type.of.residence                           |    8|
+# |Marital.Status..at.the.time.of.application. |    6|
+# |No.of.dependents                            |    3|
+# |Gender                                      |    2|
+
+plot_missing(cred)
+
+knitr::kable(sort(sapply(cred, function(x) sum(is.na(x))), decreasing = T))
+
+# Number of NA in Credit Bureau Data
+
+# |                                                                |    x|
+# |:---------------------------------------------------------------|----:|
+# |Performance.Tag                                                 | 1425|
+# |Avgas.CC.Utilization.in.last.12.months                          | 1058|
+# |Presence.of.open.home.loan                                      |  272|
+# |Outstanding.Balance                                             |  272|
+# |No.of.trades.opened.in.last.6.months                            |    1|
+
+
+
+
+#== Checking for Duplicate Values
+
+dem_dup <- dem[duplicated2(dem$Application.ID),]
+cred_dup <- cred[duplicated2(cred$Application.ID),]
+
+# Both Demographic and Credit bureau have duplicated rows
+
+setdiff(dem_dup$Application.ID,cred_dup$Application.ID)
+setdiff(cred_dup$Application.ID,dem_dup$Application.ID)
+
