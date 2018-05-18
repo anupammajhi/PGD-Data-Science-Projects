@@ -30,11 +30,3 @@ str(dem)
 str(cred)
 
 
-#== Checking Rate of Default
-
-default_rate <- sum(dem$Performance.Tag == 1, na.rm = T)/ nrow(dem)
-default_rate      
-
-# Fraction of Defaulters = 0.04134932
-
-
