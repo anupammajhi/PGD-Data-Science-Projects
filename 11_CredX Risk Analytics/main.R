@@ -242,3 +242,48 @@ summary(full_clean)
 # No.of.months.in.current.company
 # No.of.times.90.DPD.or.worse.in.last.6.months
 # No.of.times.60.DPD.or.worse.in.last.6.months
+# No.of.times.30.DPD.or.worse.in.last.6.months
+# No.of.times.90.DPD.or.worse.in.last.12.months
+# No.of.times.60.DPD.or.worse.in.last.12.months
+# No.of.times.30.DPD.or.worse.in.last.12.months
+# No.of.trades.opened.in.last.6.months
+# No.of.trades.opened.in.last.12.months
+# No.of.PL.trades.opened.in.last.6.months
+# No.of.PL.trades.opened.in.last.12.months
+# No.of.Inquiries.in.last.6.months..excluding.home...auto.loans.
+# No.of.Inquiries.in.last.12.months..excluding.home...auto.loans.
+# Total.No.of.Trades
+
+# Presence.of.open.auto.loan
+full_clean$Presence.of.open.auto.loan <- as.factor(full_clean$Presence.of.open.auto.loan)
+
+# Presence.of.open.home.loan
+full_clean$Presence.of.open.home.loan <- as.factor(full_clean$Presence.of.open.home.loan)
+
+
+
+#------------------------------------------------------------------
+
+
+# Indices with Performance tag as NA
+full_clean_Tag_NA_indices <- which(is.na(full_clean$Performance.Tag))
+dem_clean_Tag_NA_indices <- which(is.na(dem_clean$Performance.Tag))
+
+# creating copy of cleaned data
+full_data <- full_clean
+dem_data <- dem_clean
+
+# converting Performance Tag to 1 where NA assuming they were rejected at the application stage of CC request and are potential defaulters
+# This is done for WOE since WOE is done on Dichotomous dependent variable
+
+full_data[full_clean_Tag_NA_indices,"Performance.Tag"] <- 1
+dem_data[dem_clean_Tag_NA_indices,"Performance.Tag"] <- 1
+
+
+
+full_data$Performance.Tag <- as.factor(full_data$Performance.Tag)
+dem_data$Performance.Tag <- as.factor(dem_data$Performance.Tag)
+
+#==========================================================================================
+
+#-------------------------------------
