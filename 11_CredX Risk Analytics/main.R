@@ -172,3 +172,46 @@ summary(full_clean)
 boxplot(full_clean$Age)
 
 # There are outliers towards lower ages
+# We will remove rows with age lower than lower whisker
+
+min_age <- quantile(full_clean$Age)[2] - 1.5 * IQR(full_clean$Age)
+min_age 
+# 13 years
+
+full_clean <- full_clean[-which(full_clean$Age < min_age),]
+dem_clean <- dem_clean[-which(dem_clean$Age < min_age),]
+
+summary(full_clean$Age)
+summary(dem_clean$Age)
+
+
+#==== No. of dependents variable
+
+summary(full_clean$No.of.dependents)
+
+# Converting age to factor
+
+full_clean$No.of.dependents <- as.factor(full_clean$No.of.dependents)
+dem_clean$No.of.dependents <- as.factor(dem_clean$No.of.dependents)
+
+summary(full_clean$No.of.dependents)
+
+
+#==== INCOME variable
+
+summary(full_clean$Income)
+
+boxplot(full_clean$Income)
+
+quantile(full_clean$Income,seq(0,1,0.01))
+
+full_clean$Income[which(full_clean$Income <= 0)]
+
+# There are negative values and 0, removing those rows
+
+# As we can see, there are rows that have either 0 or -0.5 as Income. This has to be a data entry error.
+# We will be removing these rows as they do not add value.
+
+full_clean <- full_clean[-which(full_clean$Income <= 0),]
+dem_clean <- dem_clean[-which(dem_clean$Income <= 0),]
+
