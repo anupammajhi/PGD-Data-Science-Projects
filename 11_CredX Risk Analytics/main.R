@@ -249,10 +249,3 @@ summary(full_clean)
 # No.of.trades.opened.in.last.6.months
 # No.of.trades.opened.in.last.12.months
 # No.of.PL.trades.opened.in.last.6.months
-# No.of.PL.trades.opened.in.last.12.months
-# No.of.Inquiries.in.last.6.months..excluding.home...auto.loans.
-# No.of.Inquiries.in.last.12.months..excluding.home...auto.loans.
-# Total.No.of.Trades
-
-# Presence.of.open.auto.loan
-full_clean$Presence.of.open.auto.loan <- as.factor(full_clean$Presence.of.open.auto.loan)
