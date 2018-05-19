@@ -215,3 +215,44 @@ full_clean$Income[which(full_clean$Income <= 0)]
 full_clean <- full_clean[-which(full_clean$Income <= 0),]
 dem_clean <- dem_clean[-which(dem_clean$Income <= 0),]
 
+summary(full_clean$Income)
+
+
+
+#==== EDUCATION variable
+
+summary(full_clean$Education)
+# Variable EDUCATION has a significant number of Missing Values 
+# which will be imputed later using WOE
+
+
+
+#==== PROFESSION variable
+
+summary(full_clean$Profession)
+
+
+summary(full_clean)
+
+
+#==== Variables with categorical values
+# Converting to factor
+
+# No.of.months.in.current.residence
+# No.of.months.in.current.company
+# No.of.times.90.DPD.or.worse.in.last.6.months
+# No.of.times.60.DPD.or.worse.in.last.6.months
+# No.of.times.30.DPD.or.worse.in.last.6.months
+# No.of.times.90.DPD.or.worse.in.last.12.months
+# No.of.times.60.DPD.or.worse.in.last.12.months
+# No.of.times.30.DPD.or.worse.in.last.12.months
+# No.of.trades.opened.in.last.6.months
+# No.of.trades.opened.in.last.12.months
+# No.of.PL.trades.opened.in.last.6.months
+# No.of.PL.trades.opened.in.last.12.months
+# No.of.Inquiries.in.last.6.months..excluding.home...auto.loans.
+# No.of.Inquiries.in.last.12.months..excluding.home...auto.loans.
+# Total.No.of.Trades
+
+# Presence.of.open.auto.loan
+full_clean$Presence.of.open.auto.loan <- as.factor(full_clean$Presence.of.open.auto.loan)
