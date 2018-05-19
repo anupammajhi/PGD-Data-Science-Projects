@@ -242,10 +242,3 @@ summary(full_clean)
 # No.of.months.in.current.company
 # No.of.times.90.DPD.or.worse.in.last.6.months
 # No.of.times.60.DPD.or.worse.in.last.6.months
-# No.of.times.30.DPD.or.worse.in.last.6.months
-# No.of.times.90.DPD.or.worse.in.last.12.months
-# No.of.times.60.DPD.or.worse.in.last.12.months
-# No.of.times.30.DPD.or.worse.in.last.12.months
-# No.of.trades.opened.in.last.6.months
-# No.of.trades.opened.in.last.12.months
-# No.of.PL.trades.opened.in.last.6.months
