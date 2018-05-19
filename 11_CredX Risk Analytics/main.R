@@ -122,12 +122,3 @@ full_clean <- full_join(dem_clean,cred_clean,by=c("Application.ID","Performance.
 
 # We will not be removing the Application ID column as it will be vital for future analysis
 
-# NOTE : We will use the same cleaning process for demographic data as well
-
-
-summary(full_clean)
-
-knitr::kable(sort(sapply(full_clean, function(x) sum(is.na(x))), decreasing = T))
-
-# NA values in the combined dataset
-# |                                                                |    x|
