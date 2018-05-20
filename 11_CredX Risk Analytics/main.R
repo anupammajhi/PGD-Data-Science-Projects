@@ -419,3 +419,52 @@ dem_data_woe$woe.Application.ID.binned <- NULL
 
 full_rejects_woe <- full_data_woe[full_clean_Tag_NA_indices,]
 dem_rejects_woe <- dem_data_woe[dem_clean_Tag_NA_indices,]
+
+
+# Data without the rows which originally has Performance tag NA i.e. The data of approved customers who were issued credit (those rows are further added in validation set) 
+full_approves_woe <- full_data_woe[-full_clean_Tag_NA_indices,]
+dem_approves_woe <- dem_data_woe[-dem_clean_Tag_NA_indices,]
+
+
+#-----------------------------------------------------------------------------------------------------------
+
+#                             -----------------------------------
+#                                 EXPLORATORY DATA ANALYSIS
+#                             -----------------------------------
+
+
+
+#====  Univariate and Bivariate Analysis
+
+# Let's look at the categorical variables in both datasets
+
+plot_bar(full_data)
+plot_bar(dem_data)
+
+# Let's look at the  continuous variables in both datasets.
+
+plot_histogram(full_data)
+plot_histogram(dem_data)
+
+# Lets's look at the Density plots for various variables in both datasets
+
+plot_density(full_data,  fill = "pink", alpha = 0.5)
+plot_density(dem_data, fill = "yellow", alpha = 0.5)
+
+
+
+#====  Multivariate Analysis
+
+cormat_full <- round(cor(sapply(full_approves_woe[!colnames(full_approves_woe) %in% c("Application.ID")],as.numeric)),2)
+cormat_dem <- round(cor(sapply(dem_approves_woe[!colnames(dem_approves_woe) %in% c("Application.ID")],as.numeric)),2)
+
+# Get upper and lower triangle of the correlation matrix
+
+get_upper_tri <- function(cormat){
+  cormat[lower.tri(cormat)]<- NA
+  return(cormat)
+}
+
+get_lower_tri<-function(cormat){
+  cormat[upper.tri(cormat)] <- NA
+  return(cormat)
