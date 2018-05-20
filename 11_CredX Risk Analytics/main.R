@@ -373,3 +373,49 @@ demo_iv_plot<-ggplot(plotFrame1, aes(x = Variable, y = as.numeric(as.character(I
   ggtitle("INFORMATION VALUE ") +
   theme_bw() +
   theme(plot.title = element_text(size = 20, face = 'bold', color= 'darkgrey', hjust = 0.5)) +
+  theme(axis.text.x = element_text( size = 10, angle = 90)) +
+  geom_hline(yintercept=0.02, linetype="dashed", color = "red", size = 1) +
+  labs(y="IV")
+demo_iv_plot
+write.csv(plotFrame1, "IV tables Demographic.csv")
+
+# variables with low IV value (below 0.02) idealy have low or no predictive power and ideally can be gotten rid of
+
+
+
+# We will remove variables with IV value lower than 0.02, except Application ID
+dem_data_low_IV <- as.character(dem_woe_data[which(dem_woe_data[,3] <= 0.02),1])
+dem_data <- dem_data[,-which(colnames(dem_data) %in% dem_data_low_IV[!dem_data_low_IV %in% c("Application.ID")])]
+
+dem_woe_data <- woe.binning(dem_data, target.var = 'Performance.Tag', pred.var = dem_data)
+
+
+# woe.binning.plot(dem_woe_data)
+
+dem_woe_data_deploy <- woe.binning.deploy(dem_data,dem_woe_data)
+
+dem_woe_data_deploy_imputed <- woe.binning.deploy(dem_data, dem_woe_data, add.woe.or.dum.var = 'woe')
+
+
+
+# variables with low IV value (below 0.02) idealy have low or no predictive power and ideally can be gotten rid of
+
+# Keeping columns Application ID, Performance Tag and Woe valued variables
+
+
+colnames(full_woe_data_deploy_imputed)
+colnames(dem_woe_data_deploy_imputed)
+
+
+full_data_woe <- full_woe_data_deploy_imputed[,c(setdiff(colnames(full_woe_data_deploy_imputed),colnames(full_woe_data_deploy)),'Performance.Tag',"Application.ID")]
+dem_data_woe <- dem_woe_data_deploy_imputed[,c(setdiff(colnames(dem_woe_data_deploy_imputed),colnames(dem_woe_data_deploy)),'Performance.Tag',"Application.ID")]
+
+
+full_data_woe$woe.Application.ID.binned <- NULL
+dem_data_woe$woe.Application.ID.binned <- NULL
+
+# Separating rows which originally had Performance.Tag as NA (i.e. The rejected customers who were issued credit)
+# So that those can be used in validation set to verify if the model can predict "rejection of candidates at form filling stage"
+
+full_rejects_woe <- full_data_woe[full_clean_Tag_NA_indices,]
+dem_rejects_woe <- dem_data_woe[dem_clean_Tag_NA_indices,]
