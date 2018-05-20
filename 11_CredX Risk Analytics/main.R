@@ -322,9 +322,3 @@ demo_iv_plot<-ggplot(plotFrame1, aes(x = Variable, y = as.numeric(as.character(I
   geom_hline(yintercept=0.02, linetype="dashed", color = "red", size = 1) +
   labs(y="IV")
 demo_iv_plot
-
-write.csv(plotFrame1, "IV tables Combined.csv")
-
-
-
-# We will remove variables with IV value lower than 0.02, except Application ID
