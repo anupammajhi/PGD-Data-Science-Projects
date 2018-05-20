@@ -462,9 +462,3 @@ cormat_dem <- round(cor(sapply(dem_approves_woe[!colnames(dem_approves_woe) %in%
 
 get_upper_tri <- function(cormat){
   cormat[lower.tri(cormat)]<- NA
-  return(cormat)
-}
-
-get_lower_tri<-function(cormat){
-  cormat[upper.tri(cormat)] <- NA
-  return(cormat)
