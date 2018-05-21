@@ -538,3 +538,59 @@ ggplot(dem_melted_cormat, aes(Var2, Var1, fill = value))+
   scale_y_discrete(position = "right")
 
 
+# For Demographic Dataset we do not see any significant correlation among independent or dependent variables
+
+
+
+# Number of months in Current Company
+p1 <- dem_clean %>% filter(Performance.Tag == 1) %>%
+  ggplot(aes(No.of.months.in.current.company, fill = as.factor(Performance.Tag) )) +
+  geom_histogram(binwidth = 10) +
+  xlab("Number of Months in Current Company") +
+  scale_fill_discrete(name = "Performance") +
+  theme(legend.position = "none")
+
+# Current Income of the Applicant 
+p2 <- dem_clean %>% filter(Performance.Tag == 1) %>%
+  ggplot(aes(Income, fill = as.factor(Performance.Tag) )) +
+  geom_histogram(binwidth = 5) +
+  xlab("Income of the Applicant") +
+  scale_fill_discrete(name = "Performance") +
+  theme(legend.position = "none")
+
+p3 <- dem_clean %>% filter(Performance.Tag == 1) %>%
+  ggplot(aes(No.of.months.in.current.residence, fill = as.factor(Performance.Tag) )) +
+  geom_histogram(binwidth = 25) +
+  xlab("Number of Months in Current Residence") +
+  scale_fill_discrete(name = "Performance") +
+  theme(legend.position = "none")
+
+
+p4 <- full_clean %>% filter(Performance.Tag == 1) %>%
+  ggplot(aes(Avgas.CC.Utilization.in.last.12.months, fill = as.factor(Performance.Tag) )) +
+  geom_histogram(binwidth = 10) +
+  xlab("Average Credit Card Utilization in 12 Months") +
+  scale_fill_discrete(name = "Performance") +
+  theme(legend.position = "none")
+
+
+p5 <- full_clean %>% filter(Performance.Tag == 1) %>%
+  ggplot(aes(No.of.times.30.DPD.or.worse.in.last.12.months, fill = as.factor(Performance.Tag) )) +
+  geom_histogram() +
+  xlab("Number of 30 Days Past Dues in 12 months") +
+  scale_fill_discrete(name = "Performance") +
+  theme(legend.position = "none")
+p5
+
+grid.arrange(p1, p2, p3, p4)
+
+# A person with higher number of months in current company - lower the chances of defaulting.
+# People with higher income tends to have low default rates.
+# People who are in same residence for very few months have high chances of defaulting.
+# Frequent Credit Card users tends to default lesser.
+
+
+#------------------------------------------------------------------------------------------------------------
+
+#------------------------------------
+#==== Preparing TRAIN and TEST Data
