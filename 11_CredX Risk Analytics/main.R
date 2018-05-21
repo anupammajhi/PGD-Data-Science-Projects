@@ -492,10 +492,3 @@ dem_melted_cormat <- melt(dem_upper_tri, na.rm = TRUE)
 ggplot(full_melted_cormat, aes(Var2, Var1, fill = value))+
   geom_tile(color = "white")+
   scale_fill_gradient2(low = "red", high = "green", mid = "white", 
-                       midpoint = 0, limit = c(-1,1), space = "Lab") +
-  theme_minimal()+ 
-  theme(axis.text.x = element_blank())+
-  coord_fixed()+
-  geom_text(aes(Var2, Var1, label = value), color = "black", size = 4) +
-  theme(
-    axis.title.x = element_blank(),
