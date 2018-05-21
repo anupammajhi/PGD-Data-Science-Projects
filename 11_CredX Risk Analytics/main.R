@@ -538,11 +538,3 @@ ggplot(dem_melted_cormat, aes(Var2, Var1, fill = value))+
   scale_y_discrete(position = "right")
 
 
-# For Demographic Dataset we do not see any significant correlation among independent or dependent variables
-
-
-
-# Number of months in Current Company
-p1 <- dem_clean %>% filter(Performance.Tag == 1) %>%
-  ggplot(aes(No.of.months.in.current.company, fill = as.factor(Performance.Tag) )) +
-  geom_histogram(binwidth = 10) +
