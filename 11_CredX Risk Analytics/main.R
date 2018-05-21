@@ -499,10 +499,3 @@ ggplot(full_melted_cormat, aes(Var2, Var1, fill = value))+
   geom_text(aes(Var2, Var1, label = value), color = "black", size = 4) +
   theme(
     axis.title.x = element_blank(),
-    axis.title.y = element_blank(),
-    panel.grid.major = element_blank(),
-    panel.border = element_blank(),
-    panel.background = element_blank(),
-    axis.ticks = element_blank(),
-    legend.justification = c(1, 0),
-    legend.position = c(0.6, 0.7),
