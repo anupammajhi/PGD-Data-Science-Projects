@@ -455,10 +455,3 @@ plot_density(dem_data, fill = "yellow", alpha = 0.5)
 
 #====  Multivariate Analysis
 
-cormat_full <- round(cor(sapply(full_approves_woe[!colnames(full_approves_woe) %in% c("Application.ID")],as.numeric)),2)
-cormat_dem <- round(cor(sapply(dem_approves_woe[!colnames(dem_approves_woe) %in% c("Application.ID")],as.numeric)),2)
-
-# Get upper and lower triangle of the correlation matrix
-
-get_upper_tri <- function(cormat){
-  cormat[lower.tri(cormat)]<- NA
