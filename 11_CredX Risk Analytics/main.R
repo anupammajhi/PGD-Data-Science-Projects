@@ -630,11 +630,3 @@ dem_test_incl_rejects <- dem_test_incl_rejects[sample(nrow(dem_test_incl_rejects
 summary(full_train$Performance.Tag)
 summary(full_test$Performance.Tag)
 
-summary(dem_train$Performance.Tag)
-summary(dem_test$Performance.Tag)
-
-summary(full_test_incl_rejects$Performance.Tag)
-summary(dem_test_incl_rejects$Performance.Tag)
-
-
-
