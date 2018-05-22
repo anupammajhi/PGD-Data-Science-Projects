@@ -580,3 +580,61 @@ p5 <- full_clean %>% filter(Performance.Tag == 1) %>%
   xlab("Number of 30 Days Past Dues in 12 months") +
   scale_fill_discrete(name = "Performance") +
   theme(legend.position = "none")
+p5
+
+grid.arrange(p1, p2, p3, p4)
+
+# A person with higher number of months in current company - lower the chances of defaulting.
+# People with higher income tends to have low default rates.
+# People who are in same residence for very few months have high chances of defaulting.
+# Frequent Credit Card users tends to default lesser.
+
+
+#------------------------------------------------------------------------------------------------------------
+
+#------------------------------------
+#==== Preparing TRAIN and TEST Data
+#------------------------------------
+
+
+
+set.seed(421)
+
+
+full_sample_70 <- sample(nrow(full_approves_woe),0.7*nrow(full_approves_woe),replace = F)
+dem_sample_70 <- sample(nrow(dem_approves_woe),0.7*nrow(dem_approves_woe),replace = F)
+
+# preparing training dataset from the customers who were approved for credit
+full_train <- full_approves_woe[full_sample_70,]
+dem_train <- dem_approves_woe[dem_sample_70,]
+
+# Separating the Application IDs from Train Data
+full_train_App_ID <- full_train$Application.ID
+dem_train_App_ID <- dem_train$Application.ID
+
+full_train$Application.ID <- NULL
+dem_train$Application.ID <- NULL
+
+
+# preparing test dataset from approved customers and also combined approved + rejected customers
+full_test <- full_approves_woe[-full_sample_70,]
+dem_test <- dem_approves_woe[-dem_sample_70,]
+
+full_test_incl_rejects <- rbind(full_test,full_rejects_woe)
+dem_test_incl_rejects <- rbind(dem_test,dem_rejects_woe)
+
+# Shuffling test data by row after rbind
+full_test_incl_rejects <- full_test_incl_rejects[sample(nrow(full_test_incl_rejects),replace = F),]
+dem_test_incl_rejects <- dem_test_incl_rejects[sample(nrow(dem_test_incl_rejects),replace = F),]
+
+summary(full_train$Performance.Tag)
+summary(full_test$Performance.Tag)
+
+summary(dem_train$Performance.Tag)
+summary(dem_test$Performance.Tag)
+
+summary(full_test_incl_rejects$Performance.Tag)
+summary(dem_test_incl_rejects$Performance.Tag)
+
+
+
