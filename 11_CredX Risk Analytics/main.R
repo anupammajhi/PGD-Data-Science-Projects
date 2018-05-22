@@ -580,9 +580,3 @@ p5 <- full_clean %>% filter(Performance.Tag == 1) %>%
   xlab("Number of 30 Days Past Dues in 12 months") +
   scale_fill_discrete(name = "Performance") +
   theme(legend.position = "none")
-p5
-
-grid.arrange(p1, p2, p3, p4)
-
-# A person with higher number of months in current company - lower the chances of defaulting.
-# People with higher income tends to have low default rates.
