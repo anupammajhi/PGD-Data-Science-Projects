@@ -586,11 +586,3 @@ grid.arrange(p1, p2, p3, p4)
 
 # A person with higher number of months in current company - lower the chances of defaulting.
 # People with higher income tends to have low default rates.
-# People who are in same residence for very few months have high chances of defaulting.
-# Frequent Credit Card users tends to default lesser.
-
-
-#------------------------------------------------------------------------------------------------------------
-
-#------------------------------------
-#==== Preparing TRAIN and TEST Data
