@@ -670,11 +670,3 @@ summary(dem_test_incl_rejects$Performance.Tag)
 # data_smote_2_10 <- SMOTE(Performance.Tag ~. , data = full_train, perc.over = 200, perc.under = 1350)
 # summary(data_smote_2_10$Performance.Tag)
 # #    0     1 
-# #55674  6186 
-# nrow(data_smote_2_10) #61860
-# #Hence the minority class percentage is 10%
-# 
-# #Running loagistic regression with default parameters.
-# logistic_default_2_10 <- glm(Performance.Tag ~.,
-#                              data = data_smote_2_10,
-#                              family = 'binomial')
