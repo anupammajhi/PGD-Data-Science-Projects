@@ -840,9 +840,3 @@ summary(dem_test_incl_rejects$Performance.Tag)
 # forest_default_2_40 <- randomForest(Performance.Tag ~., data = data_smote_2_40, proximity = F, do.trace = T)
 # forest_pred_2_40<-predict(forest_default_2_40, full_test, type = "class")
 # forest_pred_2_40<-unfactor(forest_pred_2_40)
-# forest_pred_2_40<-ifelse(forest_pred_2_40==1,"1","0")
-# summary(factor(forest_pred_2_40))
-# forest_conf_tree_2_40<-confusionMatrix(factor(forest_pred_2_40),factor(test_results), positive  = '1')
-# forest_conf_tree_2_40
-# 
-# 
