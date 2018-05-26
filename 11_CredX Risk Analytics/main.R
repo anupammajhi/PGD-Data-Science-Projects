@@ -918,9 +918,3 @@ summary(dem_test_incl_rejects$Performance.Tag)
 # test_conf_logistic_2_60 <- confusionMatrix(factor(prediction_logistic_2_60), factor(test_results), positive = '1')
 # test_conf_logistic_2_60
 # 
-# #Decision Trees
-# library(rpart)
-# library(varhandle)
-# tree_default_2_60<-rpart(Performance.Tag~.,data=data_smote_2_60, method= "class")
-# plot(tree_default_2_60)
-# tree_pred_2_60<-predict(tree_default_2_60, full_test, type = "class")
