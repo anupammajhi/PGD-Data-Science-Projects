@@ -1063,10 +1063,3 @@ summary(dem_test_incl_rejects$Performance.Tag)
 # tree_default_3_30<-rpart(Performance.Tag~.,data=data_smote_3_30, method= "class")
 # plot(tree_default_3_30)
 # tree_pred_3_30<-predict(tree_default_3_30, full_test, type = "class")
-# tree_pred_3_30<-unfactor(tree_pred_3_30)
-# tree_pred_3_30<-ifelse(tree_pred_3_30==1,"1","0")
-# test_conf_tree_3_30<-confusionMatrix(factor(tree_pred_3_30),factor(test_results), positive  = '1')
-# test_conf_tree_3_30
-# 
-# #Random Forest:
-# library(randomForest)
