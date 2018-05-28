@@ -1546,9 +1546,3 @@ printcp(dem_tree)
 plotcp(dem_tree)
 
 # Setting the CP value, with least error
-
-bestcp <- dem_tree$cptable[which.min(dem_tree$cptable[,"xerror"]),"CP"]
-bestcp
-
-
-# Pruning the tree based on the CP value
