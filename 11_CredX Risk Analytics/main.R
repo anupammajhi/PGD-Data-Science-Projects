@@ -1348,3 +1348,50 @@ axis(1,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1)
 axis(2,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1)
 lines(dem_logistic_s,dem_logistic_OUT[,2],col="darkgreen",lwd=2)
 lines(dem_logistic_s,dem_logistic_OUT[,3],col=4,lwd=2)
+box()
+legend(0,.50,col=c(2,"darkgreen",4,"darkred"),lwd=c(2,2,2,2),c("Sensitivity","Specificity","Accuracy"))
+
+
+dem_logistic_cutoff <- dem_logistic_s[which(abs(dem_logistic_OUT[,1]-dem_logistic_OUT[,2])<0.1)]  
+dem_logistic_cutoff <- dem_logistic_cutoff[length(dem_logistic_cutoff)]
+dem_logistic_cutoff
+
+#After trying the above values the best cut off value is stored in dem_logistic_cutoff
+dem_logistic_predicted_response <- factor(ifelse(prediction_dem_logistic >= dem_logistic_cutoff, "1", "0"))
+
+dem_logistic_conf_final <- confusionMatrix(factor(dem_logistic_predicted_response), factor(dem_test$Performance.Tag), positive = "1")
+dem_logistic_conf_final
+
+#Accuracy     0.5734
+#Sensitivity  0.59708
+#Specificity  0.57193
+
+
+
+# KS Statistics
+
+dem_logistic_pred_object_test <- prediction(as.numeric(as.character(dem_logistic_predicted_response)), as.numeric(as.character(dem_test$Performance.Tag)))
+dem_logistic_performance_measures_test <- performance(dem_logistic_pred_object_test, "tpr", "fpr")  
+
+dem_logistic_ks_table_test <- attr(dem_logistic_performance_measures_test, "y.values")[[1]] - 
+  (attr(dem_logistic_performance_measures_test, "x.values")[[1]])
+
+max(dem_logistic_ks_table_test)  # 0.166314
+
+plot(dem_logistic_performance_measures_test,main=paste0(' KS=',round(max(dem_logistic_ks_table_test*100,1)),'%'), colorize = T)
+lines(x=c(0,1),y=c(0,1))
+
+# Area under the curve
+dem_logistic_auc <- performance(dem_logistic_pred_object_test, "auc")
+dem_logistic_auc@y.values[[1]] # 0.5831572
+
+
+# Lift and Gain Chart
+
+dem_logistic_performance_measures_test <- performance(dem_logistic_pred_object_test, "lift", "rpp")
+plot(dem_logistic_performance_measures_test)
+
+lift <- function(labels,predicted_prob,groups=10){
+  if(is.factor(labels)){labels <- as.integer(as.character(labels))}
+  if(is.factor(predicted_prob)){predicted_prob <- as.integer(as.character(predicted_prob))}
+  helper = data.frame(cbind(labels,predicted_prob))
