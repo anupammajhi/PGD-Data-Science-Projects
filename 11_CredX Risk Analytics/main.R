@@ -1395,3 +1395,53 @@ lift <- function(labels,predicted_prob,groups=10){
   if(is.factor(labels)){labels <- as.integer(as.character(labels))}
   if(is.factor(predicted_prob)){predicted_prob <- as.integer(as.character(predicted_prob))}
   helper = data.frame(cbind(labels,predicted_prob))
+  helper[,"bucket"] = ntile(-helper[,"predicted_prob"],groups)
+  gaintable = helper %>% group_by(bucket) %>%
+    summarise_at(vars(labels ),funs(total = n(),totalresp=sum(., na.rm = TRUE))) %>%
+    mutate(Cumresp = cumsum(totalresp),Gain=Cumresp/sum(totalresp)*100,Cumlift=Gain/(bucket*(100/groups))) 
+  return(gaintable)
+}
+
+dem_logistic_default_decile = lift(as.numeric(as.character(dem_test$Performance.Tag)), as.numeric(as.character(dem_logistic_predicted_response)), groups = 10)
+View(dem_logistic_default_decile)  
+
+# K Fold - Cross Validation
+cv.binary(dem_logistic_model_final, nfolds = 100)
+
+# We see that the accuracy is consistent after 100 folds, hence we conclude that the model is quite stable
+
+
+
+
+
+
+
+# For Test data including rejected applications
+#------------------------------------------------
+
+
+# Running the model on test data that includes rejected applications to see performance
+
+prediction_dem_logistic_incl_rejects <- predict(dem_logistic_model_final, dem_test_incl_rejects, type = "response")
+
+# Finding out optimal cutoff
+dem_logistic_perform_fn_incl_rejects <- function(cutoff) 
+{
+  predicted_response <- ifelse(prediction_dem_logistic_incl_rejects >= cutoff, "1", "0")
+  test_results <- as.character(dem_test_incl_rejects$Performance.Tag)
+  conf <- confusionMatrix(factor(predicted_response), factor(dem_test_incl_rejects$Performance.Tag), positive = "1")
+  acc <- conf$overall[1]
+  sens <- conf$byClass[1]
+  spec <- conf$byClass[2]
+  out <- t(as.matrix(c(sens, spec, acc))) 
+  colnames(out) <- c("sensitivity", "specificity", "accuracy")
+  return(out)
+}
+
+# Creating cutoff values from 0.01 to 0.99 for plotting and initiallizing a matrix of 1000 X 4.
+
+dem_logistic_s_incl_rejects = seq(.01,.99,length=100)
+
+dem_logistic_OUT_incl_rejects = matrix(0,100,3)
+
+
