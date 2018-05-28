@@ -1296,3 +1296,55 @@ dem_logistic_model_1 <- glm(Performance.Tag ~.,
 
 summary(dem_logistic_model_1)
 
+
+
+# we can see that there are no insignificant values. Hence this will be the Logistic Regression's Final model 
+
+# Since all the variables are highly significant now, hence we will take this as final logistic model
+dem_logistic_model_final <- dem_logistic_model_1
+
+
+
+
+
+#==== MODEL EVALUATION : LOGISTIC REGRESSION : DEMOGRAPHIC DATA ====
+#     ---------------------------------------------------------
+
+
+# Running the model on test data to see performance
+
+prediction_dem_logistic <- predict(dem_logistic_model_final, dem_test, type = "response")
+
+# Finding out optimal cutoff
+dem_logistic_perform_fn <- function(cutoff) 
+{
+  predicted_response <- ifelse(prediction_dem_logistic >= cutoff, "1", "0")
+  test_results <- as.character(dem_test$Performance.Tag)
+  conf <- confusionMatrix(factor(predicted_response), factor(dem_test$Performance.Tag), positive = "1")
+  acc <- conf$overall[1]
+  sens <- conf$byClass[1]
+  spec <- conf$byClass[2]
+  out <- t(as.matrix(c(sens, spec, acc))) 
+  colnames(out) <- c("sensitivity", "specificity", "accuracy")
+  return(out)
+}
+
+# Creating cutoff values from 0.01 to 0.99 for plotting and initiallizing a matrix of 1000 X 4.
+
+dem_logistic_s = seq(.01,.99,length=100)
+
+dem_logistic_OUT = matrix(0,100,3)
+
+
+for(i in 1:100){
+  dem_logistic_OUT[i,] = dem_logistic_perform_fn(dem_logistic_s[i])
+} 
+
+
+# plotting cutoffs 
+par(mfrow=c(1,1), mar=c(3,2,2,2)) 
+plot(dem_logistic_s, dem_logistic_OUT[,1],xlab="Cutoff",ylab="Value",cex.lab=1,cex.axis=1,ylim=c(0,1),type="l",lwd=2,axes=FALSE,col=2)
+axis(1,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1)
+axis(2,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1)
+lines(dem_logistic_s,dem_logistic_OUT[,2],col="darkgreen",lwd=2)
+lines(dem_logistic_s,dem_logistic_OUT[,3],col=4,lwd=2)
