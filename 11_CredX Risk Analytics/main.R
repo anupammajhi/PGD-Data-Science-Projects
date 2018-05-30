@@ -1722,3 +1722,55 @@ models_dem$Metrics <- c('Sensitivity','Specificity',  'Accuracy')
 kable(models_dem[,c(4,1,2,3)])
 
 # |Metrics     | Logistic Regression| Decision Trees | Random Forest|
+# |:-----------|-------------------:|---------------:|-------------:|
+# |Sensitivity |           0.6237581|       0.6319654|     0.6863931|
+# |Specificity |           0.6902907|       0.6127759|     0.5413545|
+# |Accuracy    |           0.6833953|       0.6147647|     0.5563863|
+
+
+# We have taken the liberty of building a scorecard with just the demographic data. 
+# The Results have been commented out
+# The Modelling of the combined dataset appears after this commented portion
+
+
+
+
+
+
+# #===========================================================
+# #               Application Scorecard
+# #============================================================
+
+# FORMULAE
+# --------
+
+#            _____________________________________________________
+#           | SCORE = OFFSET + FACTOR +LN(ODDS)                   |
+#           |                                                     |
+#           | SCORE + PDO = OFFSET + FACTOR + LN(2 * ODDS)        |
+#           |_____________________________________________________|
+
+
+#pdo<-20
+#pdo = Factor * ln (2)
+#Hence, Factor = pdo / ln (2)
+
+# fact<-20/log(2)
+# fact
+# offset<-400 -(28.8539 * log(10))
+# offset
+# #Running the fianl logistic regression model on the test set which did not have Performance.Tag as NA that is test_target_without_na
+# predictions_without_na<-predict(dem_logistic_model_final,dem_test, type = "response")
+# scorecard<-data.frame(P_Good=1-predictions_without_na)
+# library(dplyr)
+# scorecard<-mutate(scorecard, Odds_good = P_Good /(1-P_Good))
+# scorecard<-mutate(scorecard, ln_Odds = log(Odds_good))
+# scorecard$Original_Response<-dem_test$Performance.Tag
+# scorecard<-mutate(scorecard, Score = offset+(fact*ln_Odds))
+# 
+# summary(scorecard)
+# write.csv(scorecard,"scorecard.csv")
+# #After trial and error the optimal cut off was found to be at 330.
+# predicted<- factor(ifelse(scorecard$Score>330, "0", "1"))
+# scorecard$Predicted_Response<-predicted
+# conf_without_na<- confusionMatrix(factor(scorecard$Predicted_Response), factor(scorecard$Original_Response), positive = "0")
