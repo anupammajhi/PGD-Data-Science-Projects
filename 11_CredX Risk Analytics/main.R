@@ -1794,9 +1794,3 @@ kable(models_dem[,c(4,1,2,3)])
 # predicted_response_only_na<- factor(ifelse(scorecard_Performance.Tag_na$Score>=330, "0", "1"))
 # scorecard_Performance.Tag_na$Predicted_response<-predicted_response_only_na
 # conf_only_na<- confusionMatrix(predicted_response_only_na, scorecard_Performance.Tag_na$Original_Response, positive = "1")
-# conf_only_na
-# 
-# 
-# #Accuracy : 68.12 %
-# 
-# 
