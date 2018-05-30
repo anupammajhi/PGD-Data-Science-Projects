@@ -1751,10 +1751,3 @@ kable(models_dem[,c(4,1,2,3)])
 #           |_____________________________________________________|
 
 
-#pdo<-20
-#pdo = Factor * ln (2)
-#Hence, Factor = pdo / ln (2)
-
-# fact<-20/log(2)
-# fact
-# offset<-400 -(28.8539 * log(10))
