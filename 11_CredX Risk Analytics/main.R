@@ -1684,10 +1684,3 @@ axis(2,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1.5)
 lines(s,OUT_rf[,2],col="darkgreen",lwd=2)
 lines(s,OUT_rf[,3],col=4,lwd=2)
 box()
-
-legend(0,.50,col=c(2,"darkgreen",4,"darkred"),lwd=c(2,2,2,2),c("Sensitivity","Specificity","Accuracy"))
-
-cutoff_rf <- s[which(abs(OUT_rf[,1]-OUT_rf[,2])<0.15)]
-cutoff_rf <- cutoff_rf[1]
-cutoff_rf
-
