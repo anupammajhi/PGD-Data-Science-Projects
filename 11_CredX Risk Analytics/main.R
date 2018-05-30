@@ -1758,12 +1758,3 @@ kable(models_dem[,c(4,1,2,3)])
 # fact<-20/log(2)
 # fact
 # offset<-400 -(28.8539 * log(10))
-# offset
-# #Running the fianl logistic regression model on the test set which did not have Performance.Tag as NA that is test_target_without_na
-# predictions_without_na<-predict(dem_logistic_model_final,dem_test, type = "response")
-# scorecard<-data.frame(P_Good=1-predictions_without_na)
-# library(dplyr)
-# scorecard<-mutate(scorecard, Odds_good = P_Good /(1-P_Good))
-# scorecard<-mutate(scorecard, ln_Odds = log(Odds_good))
-# scorecard$Original_Response<-dem_test$Performance.Tag
-# scorecard<-mutate(scorecard, Score = offset+(fact*ln_Odds))
