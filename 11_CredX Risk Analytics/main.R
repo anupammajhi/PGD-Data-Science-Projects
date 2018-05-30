@@ -1767,10 +1767,3 @@ kable(models_dem[,c(4,1,2,3)])
 # scorecard<-mutate(scorecard, ln_Odds = log(Odds_good))
 # scorecard$Original_Response<-dem_test$Performance.Tag
 # scorecard<-mutate(scorecard, Score = offset+(fact*ln_Odds))
-# 
-# summary(scorecard)
-# write.csv(scorecard,"scorecard.csv")
-# #After trial and error the optimal cut off was found to be at 330.
-# predicted<- factor(ifelse(scorecard$Score>330, "0", "1"))
-# scorecard$Predicted_Response<-predicted
-# conf_without_na<- confusionMatrix(factor(scorecard$Predicted_Response), factor(scorecard$Original_Response), positive = "0")
