@@ -1722,9 +1722,3 @@ models_dem$Metrics <- c('Sensitivity','Specificity',  'Accuracy')
 kable(models_dem[,c(4,1,2,3)])
 
 # |Metrics     | Logistic Regression| Decision Trees | Random Forest|
-# |:-----------|-------------------:|---------------:|-------------:|
-# |Sensitivity |           0.6237581|       0.6319654|     0.6863931|
-# |Specificity |           0.6902907|       0.6127759|     0.5413545|
-# |Accuracy    |           0.6833953|       0.6147647|     0.5563863|
-
-
