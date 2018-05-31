@@ -1770,11 +1770,3 @@ kable(models_dem[,c(4,1,2,3)])
 # 
 # summary(scorecard)
 # write.csv(scorecard,"scorecard.csv")
-# #After trial and error the optimal cut off was found to be at 330.
-# predicted<- factor(ifelse(scorecard$Score>330, "0", "1"))
-# scorecard$Predicted_Response<-predicted
-# conf_without_na<- confusionMatrix(factor(scorecard$Predicted_Response), factor(scorecard$Original_Response), positive = "0")
-# conf_without_na
-# 
-# #Accuracy :     68.78 %
-# #Sensitivity :  69.75 %         
