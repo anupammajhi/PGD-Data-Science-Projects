@@ -1811,11 +1811,3 @@ kable(models_dem[,c(4,1,2,3)])
 # 
 # 
 # dem_test_incl_rejects$P_Good<- 1- dem_test_incl_rejects$probs
-# 
-# 
-# dem_test_incl_rejects <- mutate(dem_test_incl_rejects, Odds_good =  P_Good /(1-P_Good))
-# 
-# 
-# dem_test_incl_rejects<-mutate(dem_test_incl_rejects, Score = offset+(fact*log(Odds_good)))
-# 
-# 
