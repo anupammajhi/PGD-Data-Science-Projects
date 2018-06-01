@@ -1862,10 +1862,3 @@ kable(models_dem[,c(4,1,2,3)])
 # R2 <- sum(correct_pred_non$Outstanding.Balance, na.rm =T)
 # R2
 # 
-# # Revenue Gain = 17,382,609,578
-# 
-# 
-# 
-# Total_R <- R1+R2
-# Total_R
-# 
