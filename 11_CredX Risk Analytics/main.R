@@ -1811,3 +1811,61 @@ kable(models_dem[,c(4,1,2,3)])
 # 
 # 
 # dem_test_incl_rejects$P_Good<- 1- dem_test_incl_rejects$probs
+# 
+# 
+# dem_test_incl_rejects <- mutate(dem_test_incl_rejects, Odds_good =  P_Good /(1-P_Good))
+# 
+# 
+# dem_test_incl_rejects<-mutate(dem_test_incl_rejects, Score = offset+(fact*log(Odds_good)))
+# 
+# 
+# # Using Our Score Cutoff of 330
+# 
+# dem_test_incl_rejects$pred <- factor(ifelse(dem_test_incl_rejects$Score > 330, "0", "1"))
+# 
+# confusionMatrix(dem_test_incl_rejects$pred, dem_test_incl_rejects$Performance.Tag, positive = "1")
+# 
+# # Accuracy :    68.74 %
+# # Sensitivity : 59.96 %        
+# # Specificity : 69.75 %
+# 
+# test_subset <- dem_test_incl_rejects[, c('Application.ID', 'pred')]
+# 
+# 
+# main_subset <- full_data[,c('Application.ID', 'Outstanding.Balance', 'Performance.Tag')]
+# 
+# 
+# score_check <- merge(test_subset, main_subset, by ="Application.ID")
+# 
+# 
+# # Assessing Benefit
+# 
+# 
+# # Revenue Gain 
+# 
+# #1 Correct Defaulters
+# 
+# correct_pred <- score_check[score_check$Performance.Tag == score_check$pred,]
+# 
+# correct_pred_def <- correct_pred[correct_pred$Performance.Tag == 1,]
+# 
+# R1 <- sum(correct_pred_def$Outstanding.Balance, na.rm =T)
+# R1
+# 
+# # Revenue Gain = 1,517,114,061
+# 
+# 
+# # 2 Correct Non Defaulters
+# 
+# correct_pred_non <- correct_pred[correct_pred$Performance.Tag == 0,]
+# 
+# R2 <- sum(correct_pred_non$Outstanding.Balance, na.rm =T)
+# R2
+# 
+# # Revenue Gain = 17,382,609,578
+# 
+# 
+# 
+# Total_R <- R1+R2
+# Total_R
+# 
