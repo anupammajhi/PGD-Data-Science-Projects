@@ -1862,3 +1862,55 @@ kable(models_dem[,c(4,1,2,3)])
 # R2 <- sum(correct_pred_non$Outstanding.Balance, na.rm =T)
 # R2
 # 
+# # Revenue Gain = 17,382,609,578
+# 
+# 
+# 
+# Total_R <- R1+R2
+# Total_R
+# 
+# # Total Revenue Gained = 18,899,723,639
+# #                        --------------
+# 
+# 
+# 
+# # Credit Loss
+# 
+# #1 
+# wrong_pred  <- score_check[score_check$Performance.Tag == 0 & score_check$pred == 1,]
+# L1 <- sum(wrong_pred$Outstanding.Balance, na.rm =T)
+# L1
+# 
+# # Loss = 7,536,346,714
+# 
+# 
+# # 2 Loss as a result of Model not picking the defaulters
+# 
+# wrong_pred_notpicked  <- score_check[score_check$Performance.Tag == 1 & score_check$pred == 0,]
+# L2 <- sum(wrong_pred_notpicked $Outstanding.Balance, na.rm =T)
+# L2
+# 
+# # Loss  = 1,122,899,336
+# 
+# 
+# Total_L <- L1+L2
+# Total_L
+# 
+# # Total Loss = 8,659,246,050
+# 
+# 
+# 
+# Fin_Benefit <- Total_R - Total_L
+# Fin_Benefit
+# 
+# # Financial Benefit = 10,240,477,589  (Gain)
+# #                     --------------
+
+
+
+
+
+#====================================================================================
+#                ANALYSING COMBINED DEMOGRAPHIC AND CREDIT BUREAU DATA
+#====================================================================================
+
