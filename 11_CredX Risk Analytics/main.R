@@ -1999,10 +1999,3 @@ full_logistic_model_6 <- glm( Performance.Tag ~ woe.No.of.times.30.DPD.or.worse.
                                 woe.No.of.trades.opened.in.last.12.months.binned +
                                 woe.No.of.Inquiries.in.last.12.months..excluding.home...auto.loans..binned +
                                 woe.No.of.Inquiries.in.last.6.months..excluding.home...auto.loans..binned +
-                                woe.No.of.months.in.current.company.binned +
-                                woe.Presence.of.open.home.loan.binned +
-                                woe.No.of.dependents.binned,
-                              data = full_train_smoted,
-                              family = "binomial")
-
-summary(full_logistic_model_6)
