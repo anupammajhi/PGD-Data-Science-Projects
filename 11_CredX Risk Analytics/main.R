@@ -2160,9 +2160,3 @@ full_logistic_conf_final
 #Sensitivity  0.57834
 #Specificity  0.67089
 
-
-# KS Statistics
-
-full_logistic_pred_object_test <- prediction(as.numeric(as.character(full_logistic_predicted_response)), as.numeric(as.character(full_test$Performance.Tag)))
-full_logistic_performance_measures_test <- performance(full_logistic_pred_object_test, "tpr", "fpr")  
-
