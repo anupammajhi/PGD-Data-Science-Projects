@@ -2151,3 +2151,47 @@ full_logistic_cutoff <- full_logistic_cutoff[length(full_logistic_cutoff)]
 full_logistic_cutoff
 
 #After trying the above values the best cut off value  is present in full_logistic_cutoff
+full_logistic_predicted_response <- factor(ifelse(prediction_full_logistic >= full_logistic_cutoff, "1", "0"))
+
+full_logistic_conf_final <- confusionMatrix(factor(full_logistic_predicted_response), factor(full_test$Performance.Tag), positive = "1")
+full_logistic_conf_final
+
+#Accuracy     0.6669
+#Sensitivity  0.57834
+#Specificity  0.67089
+
+
+# KS Statistics
+
+full_logistic_pred_object_test <- prediction(as.numeric(as.character(full_logistic_predicted_response)), as.numeric(as.character(full_test$Performance.Tag)))
+full_logistic_performance_measures_test <- performance(full_logistic_pred_object_test, "tpr", "fpr")  
+
+full_logistic_ks_table_test <- attr(full_logistic_performance_measures_test, "y.values")[[1]] - 
+  (attr(full_logistic_performance_measures_test, "x.values")[[1]])
+
+max(full_logistic_ks_table_test)  # 0.2502978
+
+plot(full_logistic_performance_measures_test,main=paste0(' KS=',round(max(full_logistic_ks_table_test*100,1)),'%'), colorize = T)
+lines(x=c(0,1),y=c(0,1))
+
+# Area under the curve
+full_logistic_auc <- performance(full_logistic_pred_object_test, "auc")
+full_logistic_auc@y.values[[1]] # 0.6251489
+
+
+# Lift and Gain Chart
+
+full_logistic_performance_measures_test <- performance(full_logistic_pred_object_test, "lift", "rpp")
+plot(full_logistic_performance_measures_test)
+
+lift <- function(labels,predicted_prob,groups=10){
+  if(is.factor(labels)){labels <- as.integer(as.character(labels))}
+  if(is.factor(predicted_prob)){predicted_prob <- as.integer(as.character(predicted_prob))}
+  helper = data.frame(cbind(labels,predicted_prob))
+  helper[,"bucket"] = ntile(-helper[,"predicted_prob"],groups)
+  gaintable = helper %>% group_by(bucket) %>%
+    summarise_at(vars(labels ),funs(total = n(),totalresp=sum(., na.rm = TRUE))) %>%
+    mutate(Cumresp = cumsum(totalresp),Gain=Cumresp/sum(totalresp)*100,Cumlift=Gain/(bucket*(100/groups))) 
+  return(gaintable)
+}
+
