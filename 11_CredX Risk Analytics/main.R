@@ -2151,12 +2151,3 @@ full_logistic_cutoff <- full_logistic_cutoff[length(full_logistic_cutoff)]
 full_logistic_cutoff
 
 #After trying the above values the best cut off value  is present in full_logistic_cutoff
-full_logistic_predicted_response <- factor(ifelse(prediction_full_logistic >= full_logistic_cutoff, "1", "0"))
-
-full_logistic_conf_final <- confusionMatrix(factor(full_logistic_predicted_response), factor(full_test$Performance.Tag), positive = "1")
-full_logistic_conf_final
-
-#Accuracy     0.6669
-#Sensitivity  0.57834
-#Specificity  0.67089
-
