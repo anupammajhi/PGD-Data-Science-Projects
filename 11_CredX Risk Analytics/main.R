@@ -2068,3 +2068,46 @@ full_logistic_model_10 <- glm( Performance.Tag ~ woe.No.of.times.30.DPD.or.worse
                                  woe.No.of.months.in.current.company.binned +
                                  woe.Presence.of.open.home.loan.binned,
                                data = full_train_smoted,
+                               family = "binomial")
+
+summary(full_logistic_model_10)
+
+
+# AIC did not change, hence keeping the variable
+
+# Adding back variable woe.Income.binned as it could be an important indicator of defaulter
+
+full_logistic_model_11 <- glm( Performance.Tag ~ woe.No.of.times.30.DPD.or.worse.in.last.6.months.binned +
+                                 woe.No.of.times.30.DPD.or.worse.in.last.12.months.binned +
+                                 woe.No.of.times.90.DPD.or.worse.in.last.12.months.binned +                  
+                                 woe.No.of.times.90.DPD.or.worse.in.last.6.months.binned +
+                                 woe.Income.binned +
+                                 woe.Avgas.CC.Utilization.in.last.12.months.binned +
+                                 woe.No.of.trades.opened.in.last.12.months.binned +
+                                 woe.No.of.Inquiries.in.last.12.months..excluding.home...auto.loans..binned +
+                                 woe.No.of.months.in.current.company.binned +
+                                 woe.Presence.of.open.home.loan.binned,
+                               data = full_train_smoted,
+                               family = "binomial")
+
+summary(full_logistic_model_11)
+# AIC did not change, hence keeping the variable
+
+
+
+# Since all the variables are highly significant now, hence we will take this as final logistic model
+full_logistic_model_final <- full_logistic_model_11
+
+
+
+
+
+#==== MODEL EVALUATION : LOGISTIC REGRESSION : COMBINED DEMO and BUREAU DATA ====
+
+
+# Running the model on test data to see performance
+
+prediction_full_logistic <- predict(full_logistic_model_final, full_test, type = "response")
+
+# Finding out optimal cutoff
+full_logistic_perform_fn <- function(cutoff) 
