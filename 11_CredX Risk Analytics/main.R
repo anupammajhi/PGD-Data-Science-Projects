@@ -2068,11 +2068,3 @@ full_logistic_model_10 <- glm( Performance.Tag ~ woe.No.of.times.30.DPD.or.worse
                                  woe.No.of.months.in.current.company.binned +
                                  woe.Presence.of.open.home.loan.binned,
                                data = full_train_smoted,
-                               family = "binomial")
-
-summary(full_logistic_model_10)
-
-
-# AIC did not change, hence keeping the variable
-
-# Adding back variable woe.Income.binned as it could be an important indicator of defaulter
