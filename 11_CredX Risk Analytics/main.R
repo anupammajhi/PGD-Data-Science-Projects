@@ -2322,10 +2322,3 @@ cv.binary(full_logistic_model_final, nfolds = 100)
 
 #==== DECISION TREE ====
 
-
-full_tree <- rpart(Performance.Tag ~ .,data = full_train_smoted, method="class")
-summary(full_tree)
-
-plot(full_tree)
-text(full_tree, pretty=2)
-
