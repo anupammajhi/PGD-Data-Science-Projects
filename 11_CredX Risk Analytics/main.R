@@ -2277,3 +2277,55 @@ full_logistic_ks_table_test_incl_rejects <- attr(full_logistic_performance_measu
 
 max(full_logistic_ks_table_test_incl_rejects)  # 0.5377652
 
+plot(full_logistic_performance_measures_test_incl_rejects,main=paste0(' KS=',round(max(full_logistic_ks_table_test_incl_rejects*100,1)),'%'), colorize = T)
+lines(x=c(0,1),y=c(0,1))
+
+# Area under the curve
+full_auc_incl_rejects <- performance(full_logistic_pred_object_test_incl_rejects, "auc")
+full_auc_incl_rejects@y.values[[1]] # 0.7688826
+
+
+# Lift and Gain Chart
+
+full_logistic_performance_measures_test_incl_rejects <- performance(full_logistic_pred_object_test_incl_rejects, "lift", "rpp")
+plot(full_logistic_performance_measures_test_incl_rejects)
+
+lift <- function(labels,predicted_prob,groups=10){
+  if(is.factor(labels)){labels <- as.integer(as.character(labels))}
+  if(is.factor(predicted_prob)){predicted_prob <- as.integer(as.character(predicted_prob))}
+  helper = data.frame(cbind(labels,predicted_prob))
+  helper[,"bucket"] = ntile(-helper[,"predicted_prob"],groups)
+  gaintable = helper %>% group_by(bucket) %>%
+    summarise_at(vars(labels ),funs(total = n(),totalresp=sum(., na.rm = TRUE))) %>%
+    mutate(Cumresp = cumsum(totalresp),Gain=Cumresp/sum(totalresp)*100,Cumlift=Gain/(bucket*(100/groups))) 
+  return(gaintable)
+}
+
+full_logistic_default_decile_incl_rejects = lift(as.numeric(as.character(full_test_incl_rejects$Performance.Tag)), as.numeric(as.character(full_logistic_predicted_response_incl_rejects)), groups = 10)
+View(full_logistic_default_decile_incl_rejects)  
+
+# K Fold - Cross Validation
+cv.binary(full_logistic_model_final, nfolds = 100)
+
+# We see that the accuracy remains quite consistent after 100 folds, hence we conclude that the model is quite stable
+
+
+
+
+
+
+
+
+# #==== DECISION TREE : COMBINED DEMO and BUREAU DATA ====
+
+
+
+#==== DECISION TREE ====
+
+
+full_tree <- rpart(Performance.Tag ~ .,data = full_train_smoted, method="class")
+summary(full_tree)
+
+plot(full_tree)
+text(full_tree, pretty=2)
+
