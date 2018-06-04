@@ -2316,9 +2316,3 @@ cv.binary(full_logistic_model_final, nfolds = 100)
 
 
 
-# #==== DECISION TREE : COMBINED DEMO and BUREAU DATA ====
-
-
-
-#==== DECISION TREE ====
-
