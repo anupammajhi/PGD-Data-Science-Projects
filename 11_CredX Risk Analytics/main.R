@@ -2310,9 +2310,3 @@ cv.binary(full_logistic_model_final, nfolds = 100)
 # We see that the accuracy remains quite consistent after 100 folds, hence we conclude that the model is quite stable
 
 
-
-
-
-
-
-
