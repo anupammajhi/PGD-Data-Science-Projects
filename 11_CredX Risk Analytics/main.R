@@ -2293,12 +2293,3 @@ plot(full_logistic_performance_measures_test_incl_rejects)
 lift <- function(labels,predicted_prob,groups=10){
   if(is.factor(labels)){labels <- as.integer(as.character(labels))}
   if(is.factor(predicted_prob)){predicted_prob <- as.integer(as.character(predicted_prob))}
-  helper = data.frame(cbind(labels,predicted_prob))
-  helper[,"bucket"] = ntile(-helper[,"predicted_prob"],groups)
-  gaintable = helper %>% group_by(bucket) %>%
-    summarise_at(vars(labels ),funs(total = n(),totalresp=sum(., na.rm = TRUE))) %>%
-    mutate(Cumresp = cumsum(totalresp),Gain=Cumresp/sum(totalresp)*100,Cumlift=Gain/(bucket*(100/groups))) 
-  return(gaintable)
-}
-
-full_logistic_default_decile_incl_rejects = lift(as.numeric(as.character(full_test_incl_rejects$Performance.Tag)), as.numeric(as.character(full_logistic_predicted_response_incl_rejects)), groups = 10)
