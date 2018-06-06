@@ -2318,3 +2318,44 @@ cv.binary(full_logistic_model_final, nfolds = 100)
 
 # #==== DECISION TREE : COMBINED DEMO and BUREAU DATA ====
 
+
+
+#==== DECISION TREE ====
+
+
+full_tree <- rpart(Performance.Tag ~ .,data = full_train_smoted, method="class")
+summary(full_tree)
+
+plot(full_tree)
+text(full_tree, pretty=2)
+
+full_prediction_tree <- predict(full_tree, full_test_incl_rejects, type="class")
+
+
+full_conf_tree <- confusionMatrix(factor(full_prediction_tree), factor(full_test_incl_rejects$Performance.Tag), positive = "0")
+full_conf_tree
+
+#Accuracy       67%
+#Sensitivity    66%
+#Specificity    71%
+
+#Trying to find the optimal complexity parameter value.
+printcp(full_tree)
+plotcp(full_tree)
+
+# Setting the CP value, with least error
+
+bestcp <- full_tree$cptable[which.min(full_tree$cptable[,"xerror"]),"CP"]
+bestcp
+
+
+# Pruning the tree based on the CP value
+
+full_tree_pruned <- prune(full_tree, cp= bestcp)
+
+plot(full_tree_pruned)
+text(full_tree_pruned, pretty=2)
+
+full_prediction_tree_pruned <- predict(full_tree_pruned, full_test_incl_rejects, type="class")
+
+full_conf_tree_pruned <- confusionMatrix(factor(full_prediction_tree_pruned), factor(full_test_incl_rejects$Performance.Tag), positive = "1")
