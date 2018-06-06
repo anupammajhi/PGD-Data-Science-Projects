@@ -2327,11 +2327,3 @@ full_tree <- rpart(Performance.Tag ~ .,data = full_train_smoted, method="class")
 summary(full_tree)
 
 plot(full_tree)
-text(full_tree, pretty=2)
-
-full_prediction_tree <- predict(full_tree, full_test_incl_rejects, type="class")
-
-
-full_conf_tree <- confusionMatrix(factor(full_prediction_tree), factor(full_test_incl_rejects$Performance.Tag), positive = "0")
-full_conf_tree
-
