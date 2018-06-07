@@ -2390,11 +2390,3 @@ confusionMatrix(prediction_rf, full_test_incl_rejects$Performance.Tag, positive 
 
 
 # Tuning the RF
-# -------------
-
-
-# Searching for optimal mtry. 
-# We will take ntree as 1000 in order to reduce system constraints
-
-
-
