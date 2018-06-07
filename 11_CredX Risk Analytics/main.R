@@ -2390,3 +2390,51 @@ confusionMatrix(prediction_rf, full_test_incl_rejects$Performance.Tag, positive 
 
 
 # Tuning the RF
+# -------------
+
+
+# Searching for optimal mtry. 
+# We will take ntree as 1000 in order to reduce system constraints
+
+
+
+# Grid Search
+
+control <- trainControl(method="repeatedcv", number=3, repeats=3, search="grid")
+metric <- "Accuracy"
+tunegrid <- expand.grid(.mtry=c(3:7))
+rf_gridsearch <- train(Performance.Tag~., data=full_train_smoted, method="rf", metric=metric, tuneGrid=tunegrid, trControl=control)
+print(rf_gridsearch)
+plot(rf_gridsearch)
+
+
+# Random Forest 
+# 
+# 16408 samples
+# 20 predictor
+# 2 classes: '0', '1' 
+# 
+# No pre-processing
+# Resampling: Cross-Validated (3 fold, repeated 3 times) 
+# Summary of sample sizes: 10938, 10939, 10939, 10938, 10939, 10939, ... 
+# Resampling results across tuning parameters:
+#   
+#   mtry  Accuracy   Kappa    
+# 3     0.7784006  0.5573943
+# 4     0.8001787  0.6011101
+# 5     0.8107020  0.6221202
+# 6     0.8137493  0.6281729
+# 7     0.8138103  0.6282638
+# 
+# Accuracy was used to select the optimal model using the largest value.
+
+
+# The final value used for the model was mtry = 7.
+
+# Creating our final RF based on this mtry value.
+
+rf_tuned <- randomForest(Performance.Tag ~. , data = full_train_smoted, mtry = 7, ntree = 1000)
+
+
+
+# The next thing to do is set the correct cutoff after predicting
