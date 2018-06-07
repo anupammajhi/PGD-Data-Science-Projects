@@ -2350,12 +2350,3 @@ bestcp
 
 
 # Pruning the tree based on the CP value
-
-full_tree_pruned <- prune(full_tree, cp= bestcp)
-
-plot(full_tree_pruned)
-text(full_tree_pruned, pretty=2)
-
-full_prediction_tree_pruned <- predict(full_tree_pruned, full_test_incl_rejects, type="class")
-
-full_conf_tree_pruned <- confusionMatrix(factor(full_prediction_tree_pruned), factor(full_test_incl_rejects$Performance.Tag), positive = "1")
