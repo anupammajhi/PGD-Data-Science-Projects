@@ -2398,9 +2398,3 @@ confusionMatrix(prediction_rf, full_test_incl_rejects$Performance.Tag, positive 
 
 
 
-# Grid Search
-
-control <- trainControl(method="repeatedcv", number=3, repeats=3, search="grid")
-metric <- "Accuracy"
-tunegrid <- expand.grid(.mtry=c(3:7))
-rf_gridsearch <- train(Performance.Tag~., data=full_train_smoted, method="rf", metric=metric, tuneGrid=tunegrid, trControl=control)
