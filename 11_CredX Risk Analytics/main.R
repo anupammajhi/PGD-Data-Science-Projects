@@ -2424,11 +2424,3 @@ plot(rf_gridsearch)
 # 4     0.8001787  0.6011101
 # 5     0.8107020  0.6221202
 # 6     0.8137493  0.6281729
-# 7     0.8138103  0.6282638
-# 
-# Accuracy was used to select the optimal model using the largest value.
-
-
-# The final value used for the model was mtry = 7.
-
-# Creating our final RF based on this mtry value.
