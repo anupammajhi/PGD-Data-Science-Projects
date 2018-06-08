@@ -2432,9 +2432,3 @@ plot(rf_gridsearch)
 # The final value used for the model was mtry = 7.
 
 # Creating our final RF based on this mtry value.
-
-rf_tuned <- randomForest(Performance.Tag ~. , data = full_train_smoted, mtry = 7, ntree = 1000)
-
-
-
-# The next thing to do is set the correct cutoff after predicting
