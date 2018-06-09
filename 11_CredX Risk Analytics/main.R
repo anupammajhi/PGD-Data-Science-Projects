@@ -2461,10 +2461,3 @@ perform_fn_rf <- function(cutoff)
 #---------------------------------------------------------    
 
 # creating cutoff values from 0.01 to 0.99 for plotting and initialising a matrix of size 1000x4
-s = seq(.01,.99,length=100)
-
-OUT_rf = matrix(0,100,3)
-
-# calculate the sens, spec and acc for different cutoff values
-
-for(i in 1:100){
