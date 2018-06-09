@@ -2468,10 +2468,3 @@ OUT_rf = matrix(0,100,3)
 # calculate the sens, spec and acc for different cutoff values
 
 for(i in 1:100){
-  OUT_rf[i,] = perform_fn_rf(s[i])
-} 
-
-# Looking at the various cutoffs
-
-list <- as.data.frame(OUT_rf)
-colnames(list) <- c("Sensitivity", "Specificity", "Accuracy")
