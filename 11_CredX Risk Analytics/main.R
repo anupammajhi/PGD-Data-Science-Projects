@@ -2514,3 +2514,51 @@ conf_forest
 
 models <- as.data.frame(matrix(c(full_logistic_conf_final_incl_rejects$byClass[1], full_conf_tree_pruned$byClass[1], conf_forest$byClass[1],
                                  full_logistic_conf_final_incl_rejects$byClass[2],full_conf_tree_pruned$byClass[2],conf_forest$byClass[2],
+                                 full_logistic_conf_final_incl_rejects$overall[1],full_conf_tree_pruned$overall[1], conf_forest$overall[1]),nrow =3 ,ncol=3,byrow=TRUE))
+
+
+colnames(models) <-  c( 'Logistic Regression', 'Decision Trees ', 'Random Forest')
+
+
+models$Metrics <- c('Sensitivity','Specificity',  'Accuracy')
+
+kable(models[,c(4,1,2,3)])
+
+# |Metrics     | Logistic Regression| Decision Trees | Random Forest|
+# |:-----------|-------------------:|---------------:|-------------:|
+# |Sensitivity |           0.7246946|       0.7129145|     0.6928447|
+# |Specificity |           0.8130706|       0.6614617|     0.6978798|
+# |Accuracy    |           0.8040023|       0.6667413|     0.6973631|
+
+
+
+
+#--------------------------------------------------------------------------------------------------
+
+
+
+#               ===========================================================
+#                                 Application Scorecard
+#               ===========================================================
+
+
+
+# FORMULAE
+# --------
+
+#            _____________________________________________________
+#           | SCORE = OFFSET + FACTOR +LN(ODDS)                   |
+#           |                                                     |
+#           | SCORE + PDO = OFFSET + FACTOR + LN(2 * ODDS)        |
+#           |_____________________________________________________|
+
+
+pdo<-20
+#pdo = Factor * ln (2)
+#Hence Factor = pdo / ln (2)
+fact<-20/log(2)
+fact
+offset<-400 -(28.8539 * log(10))
+offset
+
+#Running the final logistic regression model on the test set which did not have Performance.Tag as NA that is test_target_without_na
