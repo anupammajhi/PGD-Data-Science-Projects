@@ -2475,10 +2475,3 @@ for(i in 1:100){
 
 list <- as.data.frame(OUT_rf)
 colnames(list) <- c("Sensitivity", "Specificity", "Accuracy")
-
-#---------------------------------------------------------    
-
-# plotting cutoffs
-
-plot(s, OUT_rf[,1],xlab="Cutoff",ylab="Value",cex.lab=1.5,cex.axis=1.5,ylim=c(0,1),type="l",lwd=2,axes=FALSE,col=2)
-axis(1,seq(0,1,length=5),seq(0,1,length=5),cex.lab=1.5)
