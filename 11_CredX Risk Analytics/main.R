@@ -2555,10 +2555,3 @@ kable(models[,c(4,1,2,3)])
 
 pdo<-20
 #pdo = Factor * ln (2)
-#Hence Factor = pdo / ln (2)
-fact<-20/log(2)
-fact
-offset<-400 -(28.8539 * log(10))
-offset
-
-#Running the final logistic regression model on the test set which did not have Performance.Tag as NA that is test_target_without_na
