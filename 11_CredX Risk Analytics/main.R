@@ -2614,12 +2614,3 @@ rejection_rate
 # 0.2842251
 
 # Thus,our model rejects about 30% of all applicants. It does remove a few good customers as well, but it ensures that the bank always remains profitable
-
-
-#------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-#==================================
-# Assessing Financial Benefit
-#==================================
-
