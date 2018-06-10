@@ -2580,9 +2580,3 @@ conf_without_na
 #Accuracy :     71.63 %
 #Sensitivity :  72.54 %         
 #Specificity :  50.69 %
-
-
-#Now creating for the records that were rejected during the first stage of screening, these were the ones which had
-#Performance.Tag as na. So we shall see how well will the model perform with the cut off of 324.3 on the dataframe test_target_with_na.
-
-predictions_final_only_na<-predict(full_logistic_model_final,full_rejects_woe, type = "response")
