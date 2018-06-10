@@ -2614,3 +2614,63 @@ rejection_rate
 # 0.2842251
 
 # Thus,our model rejects about 30% of all applicants. It does remove a few good customers as well, but it ensures that the bank always remains profitable
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+#==================================
+# Assessing Financial Benefit
+#==================================
+
+
+full_test_incl_rejects$probs <- predict(full_logistic_model_final, full_test_incl_rejects, type = "response")
+
+
+full_test_incl_rejects$P_Good<- 1- full_test_incl_rejects$probs
+
+
+full_test_incl_rejects <- mutate(full_test_incl_rejects, Odds_good =  P_Good /(1-P_Good))
+
+
+full_test_incl_rejects<-mutate(full_test_incl_rejects, Score = offset+(fact*log(Odds_good)))
+
+
+# Using Our Score Cutoff of 324.3
+
+full_test_incl_rejects$pred <- factor(ifelse(full_test_incl_rejects$Score > 324.3, "0", "1"))
+
+confusionMatrix(full_test_incl_rejects$pred, full_test_incl_rejects$Performance.Tag, positive = "1")
+
+# Accuracy :    73.29 %
+# Sensitivity : 79.84 %        
+# Specificity : 72.54 %
+
+test_subset <- full_test_incl_rejects[, c('Application.ID', 'pred')]
+
+
+main_subset <- full_data[,c('Application.ID', 'Outstanding.Balance', 'Performance.Tag')]
+
+
+score_check <- merge(test_subset, main_subset, by ="Application.ID")
+
+
+# Assessing Benefit
+#===================
+
+# We assume that the Outstanding Balance present in the dataset, represents total Exposure at Default.
+# Thus, we can assess the benefit as follows,
+
+
+
+# Revenue Gain 
+# -------------
+
+
+#1. Correct Defaulters
+
+correct_pred <- score_check[score_check$Performance.Tag == score_check$pred,]
+
+correct_pred_def <- correct_pred[correct_pred$Performance.Tag == 1,]
+
+R1 <- sum(as.numeric(correct_pred_def$Outstanding.Balance), na.rm =T)
