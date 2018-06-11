@@ -2716,3 +2716,31 @@ L1
 
 wrong_pred_notpicked  <- score_check[score_check$Performance.Tag == 1 & score_check$pred == 0,]
 L2 <- sum(as.numeric(wrong_pred_notpicked $Outstanding.Balance), na.rm =T)
+L2
+
+# Loss  = 626,429,652
+
+Total_L <- L1+L2
+Total_L
+
+# Total Loss = 6,698,003,758
+
+#  _____________________________________
+# |                                     |
+# | Total Credit Loss = 6,698,003,758   |
+# |                     --------------  |
+# |_____________________________________|                      
+
+
+
+
+
+
+Fin_Benefit <- Total_R - Total_L
+Fin_Benefit
+
+
+#  ____________________________________
+# |                                    |
+# | Financial Benefit = 13,895,705,131 | (PROFIT)
+# |                     -------------- |
