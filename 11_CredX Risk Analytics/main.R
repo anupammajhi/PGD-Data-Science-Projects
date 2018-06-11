@@ -2736,11 +2736,3 @@ Total_L
 
 
 
-Fin_Benefit <- Total_R - Total_L
-Fin_Benefit
-
-
-#  ____________________________________
-# |                                    |
-# | Financial Benefit = 13,895,705,131 | (PROFIT)
-# |                     -------------- |
